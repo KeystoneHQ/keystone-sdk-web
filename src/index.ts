@@ -5,6 +5,7 @@ import { Account } from './account'
 import { getCoinSymbol } from './utils/coin'
 import { KeystoneBitcoinSDK } from './chains/bitcoin'
 import { KeystoneEthereumSDK } from './chains/ethereum'
+import { KeystoneSolanaSDK } from './chains/solana'
 
 export default class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -21,6 +22,14 @@ export default class KeystoneSDK {
       this._eth = new KeystoneEthereumSDK()
     }
     return this._eth
+  }
+
+  private _sol!: KeystoneSolanaSDK
+  get sol (): KeystoneSolanaSDK {
+    if (this._sol === undefined) {
+      this._sol = new KeystoneSolanaSDK()
+    }
+    return this._sol
   }
 
   parseMultiAccounts (cborHex: string): MultiAccounts {

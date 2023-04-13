@@ -8,3 +8,8 @@ export interface EthSignature {
   requestId?: string
   origin?: string
 }
+
+export interface SolSignature {
+  signature: string
+  requestId?: string
+}

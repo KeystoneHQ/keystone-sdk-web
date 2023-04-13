@@ -1,36 +1,33 @@
-import { type EthSignature } from '../types/signature'
-import { CryptoKeypath, DataType, ETHSignature, EthSignRequest, PathComponent } from '@keystonehq/bc-ur-registry-eth'
+import { CryptoKeypath, PathComponent, SignType, SolSignRequest, SolSignature } from '@keystonehq/bc-ur-registry-sol'
+import { type SolSignature as SolSignatureInterface } from '../types/signature'
 import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
 import { type UR } from '../types/ur'
 
-export class KeystoneEthereumSDK {
-  static DataType = DataType
+export class KeystoneSolanaSDK {
+  static SignType = SignType
 
-  parseSignature (cborHex: string): EthSignature {
-    const sig = ETHSignature.fromCBOR(toBuffer(cborHex))
+  parseSignature (cborHex: string): SolSignatureInterface {
+    const sig = SolSignature.fromCBOR(toBuffer(cborHex))
     const requestId = sig.getRequestId()
     return {
       requestId: requestId === undefined ? undefined : uuidStringify(requestId),
-      signature: toHex(sig.getSignature()),
-      origin: sig.getOrigin()
+      signature: toHex(sig.getSignature())
     }
   }
 
   generateSignRequest (
     signData: string,
-    dataType: DataType,
+    signType: SignType,
     path: string,
     xfp: string,
     requestId?: string,
-    chainId?: number,
     address?: string,
     origin?: string
   ): UR {
-    const ur = new EthSignRequest({
+    const ur = new SolSignRequest({
       signData: toBuffer(signData),
-      dataType,
+      signType,
       derivationPath: new CryptoKeypath(parsePath(path).map(e => new PathComponent(e)), toBuffer(xfp)),
-      chainId,
       requestId: requestId !== undefined ? uuidParse(requestId) : undefined,
       address: address !== undefined ? toBuffer(address) : undefined,
       origin

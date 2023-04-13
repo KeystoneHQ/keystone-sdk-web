@@ -13,3 +13,7 @@ export interface SolSignature {
   signature: string
   requestId?: string
 }
+
+export interface CosmosSignature extends Signature {
+  publicKey: string
+}

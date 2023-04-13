@@ -20,6 +20,7 @@
   "homepage": "https://github.com/KeystoneHQ/keystone-sdk-web#readme",
   "dependencies": {
     "@keystonehq/bc-ur-registry": "^0.5.4",
+    "@keystonehq/bc-ur-registry-cosmos": "^0.2.2",
     "@keystonehq/bc-ur-registry-eth": "^0.15.2",
     "@keystonehq/bc-ur-registry-sol": "^0.6.2",
     "uuid": "^9.0.0"

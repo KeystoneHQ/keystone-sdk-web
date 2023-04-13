@@ -6,6 +6,7 @@ import { getCoinSymbol } from './utils/coin'
 import { KeystoneBitcoinSDK } from './chains/bitcoin'
 import { KeystoneEthereumSDK } from './chains/ethereum'
 import { KeystoneSolanaSDK } from './chains/solana'
+import { KeystoneCosmosSDK } from './chains/cosmos'
 
 export default class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -30,6 +31,14 @@ export default class KeystoneSDK {
       this._sol = new KeystoneSolanaSDK()
     }
     return this._sol
+  }
+
+  private _cosmos!: KeystoneCosmosSDK
+  get cosmos (): KeystoneCosmosSDK {
+    if (this._cosmos === undefined) {
+      this._cosmos = new KeystoneCosmosSDK()
+    }
+    return this._cosmos
   }
 
   parseMultiAccounts (cborHex: string): MultiAccounts {

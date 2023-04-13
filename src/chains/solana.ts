@@ -1,12 +1,12 @@
 import { CryptoKeypath, PathComponent, SignType, SolSignRequest, SolSignature } from '@keystonehq/bc-ur-registry-sol'
-import { type SolSignature as SolSignatureInterface } from '../types/signature'
+import { type SolSignature as SolSignatureType } from '../types/signature'
 import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
 import { type UR } from '../types/ur'
 
 export class KeystoneSolanaSDK {
   static SignType = SignType
 
-  parseSignature (cborHex: string): SolSignatureInterface {
+  parseSignature (cborHex: string): SolSignatureType {
     const sig = SolSignature.fromCBOR(toBuffer(cborHex))
     const requestId = sig.getRequestId()
     return {

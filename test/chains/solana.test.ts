@@ -1,6 +1,8 @@
 import KeystoneSDK from '../../src'
 import { KeystoneSolanaSDK } from '../../src/chains/solana'
 import { type SolSignature } from '../../src/types/signature'
+import { UR } from '../../src/types/ur'
+import { toBuffer } from '../../src/utils'
 
 test('parseSignature', () => {
   const keystoneSDK = new KeystoneSDK()
@@ -12,7 +14,7 @@ test('parseSignature', () => {
     requestId: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
   }
 
-  expect(keystoneSDK.sol.parseSignature(type, cborHex)).toStrictEqual(expectResult)
+  expect(keystoneSDK.sol.parseSignature(new UR(toBuffer(cborHex), type))).toStrictEqual(expectResult)
 })
 
 test('generateSignRequest', () => {
@@ -26,10 +28,9 @@ test('generateSignRequest', () => {
   const origin = 'solflare'
   const dataType = KeystoneSolanaSDK.DataType.Transaction
 
-  const expectResult = {
-    type: 'sol-sign-request',
-    cbor: 'a601d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d02589601000103c8d842a2f17fd7aab608ce2ea535a6e958dffa20caf669b347b911c4171965530f957620b228bae2b94c82ddd4c093983a67365555b737ec7ddc1117e61c72e0000000000000000000000000000000000000000000000000000000000000000010295cc2f1f39f3604718496ea00676d6a72ec66ad09d926e3ece34f565f18d201020200010c0200000000e1f5050000000003d90130a20188182cf51901f5f500f500f5021a1212121204400568736f6c666c6172650601'
-  }
+  const type = 'sol-sign-request'
+  const cborHex = 'a601d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d02589601000103c8d842a2f17fd7aab608ce2ea535a6e958dffa20caf669b347b911c4171965530f957620b228bae2b94c82ddd4c093983a67365555b737ec7ddc1117e61c72e0000000000000000000000000000000000000000000000000000000000000000010295cc2f1f39f3604718496ea00676d6a72ec66ad09d926e3ece34f565f18d201020200010c0200000000e1f5050000000003d90130a20188182cf51901f5f500f500f5021a1212121204400568736f6c666c6172650601'
+  const expectResult = new UR(toBuffer(cborHex), type)
 
   expect(keystoneSDK.sol.generateSignRequest({ requestId, signData, dataType, path, xfp, address, origin })).toStrictEqual(expectResult)
 })

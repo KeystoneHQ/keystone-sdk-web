@@ -1,6 +1,8 @@
 import KeystoneSDK from '../../src'
 import { KeystoneEthereumSDK } from '../../src/chains/ethereum'
 import { type EthSignature } from '../../src/types/signature'
+import { UR } from '../../src/types/ur'
+import { toBuffer } from '../../src/utils'
 
 test('parseSignature', () => {
   const keystoneSDK = new KeystoneSDK()
@@ -13,7 +15,7 @@ test('parseSignature', () => {
     origin: 'keystone'
   }
 
-  expect(keystoneSDK.eth.parseSignature(type, cborHex)).toStrictEqual(expectResult)
+  expect(keystoneSDK.eth.parseSignature(new UR(toBuffer(cborHex), type))).toStrictEqual(expectResult)
 })
 
 test('generateSignRequest', () => {
@@ -28,10 +30,9 @@ test('generateSignRequest', () => {
   const origin = 'metamask'
   const dataType = KeystoneEthereumSDK.DataType.transaction
 
-  const expectResult = {
-    type: 'eth-sign-request',
-    cbor: 'a701d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d02584bf849808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000578080800301040105d90130a2018a182cf501f501f500f401f4021a12345678064007686d6574616d61736b'
-  }
+  const type = 'eth-sign-request'
+  const cborHex = 'a701d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d02584bf849808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000578080800301040105d90130a2018a182cf501f501f500f401f4021a12345678064007686d6574616d61736b'
+  const expectResult = new UR(toBuffer(cborHex), type)
 
   expect(keystoneSDK.eth.generateSignRequest({ requestId, signData, dataType, path, xfp, chainId, address, origin })).toStrictEqual(expectResult)
 })

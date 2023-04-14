@@ -7,11 +7,11 @@ import { type SolSignRequestProps } from '../types/props'
 export class KeystoneSolanaSDK {
   static DataType = SignType
 
-  parseSignature (type: string, cborHex: string): SolSignatureType {
-    if (type !== URType.SolSignature) {
+  parseSignature (ur: UR): SolSignatureType {
+    if (ur.type !== URType.SolSignature) {
       throw new Error('type not match')
     }
-    const sig = SolSignature.fromCBOR(toBuffer(cborHex))
+    const sig = SolSignature.fromCBOR(ur.cbor)
     const requestId = sig.getRequestId()
     return {
       requestId: requestId === undefined ? undefined : uuidStringify(requestId),
@@ -28,7 +28,7 @@ export class KeystoneSolanaSDK {
     address,
     origin
   }: SolSignRequestProps): UR {
-    const ur = new SolSignRequest({
+    return new SolSignRequest({
       requestId: uuidParse(requestId),
       signData: toBuffer(signData),
       signType: dataType,
@@ -36,9 +36,5 @@ export class KeystoneSolanaSDK {
       address: address !== undefined ? toBuffer(address) : undefined,
       origin
     }).toUR()
-    return {
-      type: ur.type,
-      cbor: toHex(ur.cbor)
-    }
   }
 }

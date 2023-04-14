@@ -7,11 +7,11 @@ import { type CosmosSignRequestProps } from '../types/props'
 export class KeystoneCosmosSDK {
   static DataType = DataType
 
-  parseSignature (type: string, cborHex: string): CosmosSignatureType {
-    if (type !== URType.CosmosSignature) {
+  parseSignature (ur: UR): CosmosSignatureType {
+    if (ur.type !== URType.CosmosSignature) {
       throw new Error('type not match')
     }
-    const sig = CosmosSignature.fromCBOR(toBuffer(cborHex))
+    const sig = CosmosSignature.fromCBOR(ur.cbor)
     return {
       requestId: uuidStringify(sig.getRequestId()),
       signature: toHex(sig.getSignature()),
@@ -28,7 +28,7 @@ export class KeystoneCosmosSDK {
     addresses,
     origin
   }: CosmosSignRequestProps): UR {
-    const ur = new CosmosSignRequest({
+    return new CosmosSignRequest({
       signData: toBuffer(signData),
       dataType,
       derivationPaths: paths.map(path => new CryptoKeypath(parsePath(path).map(e => new PathComponent(e)), toBuffer(xfp))),
@@ -36,9 +36,5 @@ export class KeystoneCosmosSDK {
       addresses,
       origin
     }).toUR()
-    return {
-      type: ur.type,
-      cbor: toHex(ur.cbor)
-    }
   }
 }

@@ -1,3 +1,12 @@
+export interface AccountProps {
+  chain?: string
+  path: string
+  publicKey: string
+  name?: string
+  chainCode?: string
+  extendedPublicKey?: string
+}
+
 export interface Account {
   chain: string
   path: string

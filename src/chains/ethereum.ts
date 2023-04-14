@@ -7,11 +7,11 @@ import { type EthSignRequestProps } from '../types/props'
 export class KeystoneEthereumSDK {
   static DataType = DataType
 
-  parseSignature (type: string, cborHex: string): EthSignature {
-    if (type !== URType.EthSignature) {
+  parseSignature (ur: UR): EthSignature {
+    if (ur.type !== URType.EthSignature) {
       throw new Error('type not match')
     }
-    const sig = ETHSignature.fromCBOR(toBuffer(cborHex))
+    const sig = ETHSignature.fromCBOR(ur.cbor)
     const requestId = sig.getRequestId()
     return {
       requestId: requestId === undefined ? undefined : uuidStringify(requestId),
@@ -30,7 +30,7 @@ export class KeystoneEthereumSDK {
     address,
     origin
   }: EthSignRequestProps): UR {
-    const ur = new EthSignRequest({
+    return new EthSignRequest({
       requestId: uuidParse(requestId),
       signData: toBuffer(signData),
       dataType,
@@ -39,9 +39,5 @@ export class KeystoneEthereumSDK {
       address: address !== undefined ? toBuffer(address) : undefined,
       origin
     }).toUR()
-    return {
-      type: ur.type,
-      cbor: toHex(ur.cbor)
-    }
   }
 }

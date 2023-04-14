@@ -1,7 +1,4 @@
-export interface UR {
-  type: string
-  cbor: string
-}
+export { UR } from '@ngraveio/bc-ur'
 
 export enum URType {
   CryptoPSBT = 'crypto-psbt',

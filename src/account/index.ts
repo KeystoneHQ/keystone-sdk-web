@@ -1,4 +1,4 @@
-import { type Account as AccountInterface } from '../types/account'
+import { type AccountProps, type Account as AccountInterface } from '../types/account'
 
 export class Account implements AccountInterface {
   chain
@@ -8,13 +8,13 @@ export class Account implements AccountInterface {
   private readonly chainCode
   private readonly extendedPublicKey
 
-  constructor (chain: string, path: string, publicKey: string, name: string, chainCode: string, extendedPublicKey: string) {
-    this.chain = chain
+  constructor ({ chain, path, publicKey, name, chainCode, extendedPublicKey }: AccountProps) {
+    this.chain = chain ?? ''
     this.path = path
     this.publicKey = publicKey
-    this.name = name
-    this.chainCode = chainCode
-    this.extendedPublicKey = extendedPublicKey
+    this.name = name ?? ''
+    this.chainCode = chainCode ?? ''
+    this.extendedPublicKey = extendedPublicKey ?? ''
   }
 
   getChainCode (): string {

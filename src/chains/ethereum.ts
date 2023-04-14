@@ -17,21 +17,21 @@ export class KeystoneEthereumSDK {
   }
 
   generateSignRequest (
+    requestId: string,
     signData: string,
     dataType: DataType,
     path: string,
     xfp: string,
-    requestId?: string,
     chainId?: number,
     address?: string,
     origin?: string
   ): UR {
     const ur = new EthSignRequest({
+      requestId: uuidParse(requestId),
       signData: toBuffer(signData),
       dataType,
       derivationPath: new CryptoKeypath(parsePath(path).map(e => new PathComponent(e)), toBuffer(xfp)),
       chainId,
-      requestId: requestId !== undefined ? uuidParse(requestId) : undefined,
       address: address !== undefined ? toBuffer(address) : undefined,
       origin
     }).toUR()

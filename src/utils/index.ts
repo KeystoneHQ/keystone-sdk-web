@@ -1,7 +1,7 @@
 import * as uuid from 'uuid'
 import { type PathComponent } from '../types/account'
 
-export function toHex (buf: Buffer | undefined): string {
+export function toHex (buf: Buffer | Uint8Array | undefined): string {
   return buf === undefined ? '' : Buffer.from(buf).toString('hex')
 }
 

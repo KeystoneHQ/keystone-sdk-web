@@ -17,3 +17,8 @@ export interface SolSignature {
 export interface CosmosSignature extends Signature {
   publicKey: string
 }
+
+export interface TronSignature {
+  signature: string
+  requestId?: string
+}

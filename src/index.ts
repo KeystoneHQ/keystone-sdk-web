@@ -7,6 +7,7 @@ import { KeystoneBitcoinSDK } from './chains/bitcoin'
 import { KeystoneEthereumSDK } from './chains/ethereum'
 import { KeystoneSolanaSDK } from './chains/solana'
 import { KeystoneCosmosSDK } from './chains/cosmos'
+import { KeystoneTronSDK } from './chains/tron'
 
 export default class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -39,6 +40,14 @@ export default class KeystoneSDK {
       this._cosmos = new KeystoneCosmosSDK()
     }
     return this._cosmos
+  }
+
+  private _tron!: KeystoneTronSDK
+  get tron (): KeystoneTronSDK {
+    if (this._tron === undefined) {
+      this._tron = new KeystoneTronSDK()
+    }
+    return this._tron
   }
 
   parseMultiAccounts (cborHex: string): MultiAccounts {

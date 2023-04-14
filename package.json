@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsc -w",
     "build": "tsc -b tsconfig.build.json",
-    "test": "jest"
+    "test": "jest",
+    "proto": "buf generate src"
   },
   "repository": {
     "type": "git",
@@ -23,9 +24,14 @@
     "@keystonehq/bc-ur-registry-cosmos": "^0.2.2",
     "@keystonehq/bc-ur-registry-eth": "^0.15.2",
     "@keystonehq/bc-ur-registry-sol": "^0.6.2",
+    "@keystonehq/bc-ur-registry-tron": "file:.yalc/@keystonehq/bc-ur-registry-tron",
+    "bs58check": "^3.0.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@bufbuild/buf": "^1.15.0-1",
+    "@bufbuild/protobuf": "^1.2.0",
+    "@bufbuild/protoc-gen-es": "^1.2.0",
     "@types/jest": "^29.5.0",
     "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.43.0",

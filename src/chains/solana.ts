@@ -16,19 +16,19 @@ export class KeystoneSolanaSDK {
   }
 
   generateSignRequest (
+    requestId: string,
     signData: string,
     signType: SignType,
     path: string,
     xfp: string,
-    requestId?: string,
     address?: string,
     origin?: string
   ): UR {
     const ur = new SolSignRequest({
+      requestId: uuidParse(requestId),
       signData: toBuffer(signData),
       signType,
       derivationPath: new CryptoKeypath(parsePath(path).map(e => new PathComponent(e)), toBuffer(xfp)),
-      requestId: requestId !== undefined ? uuidParse(requestId) : undefined,
       address: address !== undefined ? toBuffer(address) : undefined,
       origin
     }).toUR()

@@ -49,6 +49,8 @@ typings/
 
 # Optional npm cache directory
 .npm
+.yalc
+yalc.lock
 
 # Optional eslint cache
 .eslintcache

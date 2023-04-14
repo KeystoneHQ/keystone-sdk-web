@@ -1,12 +1,15 @@
 import { CryptoKeypath, PathComponent, TronSignRequest, TronSignature } from '@keystonehq/bc-ur-registry-tron'
 import { type TronSignature as TronSignatureType } from '../../types/signature'
 import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../../utils'
-import { type UR } from '../../types/ur'
-import { type TokenInfo } from '../../types/token'
+import { URType, type UR } from '../../types/ur'
 import { raw2json } from './transfer'
+import { type TronSignRequestProps } from '../../types/props'
 
 export class KeystoneTronSDK {
-  parseSignature (cborHex: string): TronSignatureType {
+  parseSignature (type: string, cborHex: string): TronSignatureType {
+    if (type !== URType.TronSignature) {
+      throw new Error('type not match')
+    }
     const sig = TronSignature.fromCBOR(toBuffer(cborHex))
     const requestId = sig.getRequestId()
     return {
@@ -15,15 +18,15 @@ export class KeystoneTronSDK {
     }
   }
 
-  generateSignRequest (
-    requestId: string,
-    signData: string,
-    path: string,
-    xfp: string,
-    tokenInfo?: TokenInfo,
-    address?: string,
-    origin?: string
-  ): UR {
+  generateSignRequest ({
+    requestId,
+    signData,
+    path,
+    xfp,
+    tokenInfo,
+    address,
+    origin
+  }: TronSignRequestProps): UR {
     const ur = new TronSignRequest({
       requestId: uuidParse(requestId),
       signData: raw2json(toBuffer(signData), tokenInfo),

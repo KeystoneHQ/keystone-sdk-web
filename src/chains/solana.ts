@@ -1,12 +1,16 @@
 import { CryptoKeypath, PathComponent, SignType, SolSignRequest, SolSignature } from '@keystonehq/bc-ur-registry-sol'
 import { type SolSignature as SolSignatureType } from '../types/signature'
 import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
-import { type UR } from '../types/ur'
+import { URType, type UR } from '../types/ur'
+import { type SolSignRequestProps } from '../types/props'
 
 export class KeystoneSolanaSDK {
-  static SignType = SignType
+  static DataType = SignType
 
-  parseSignature (cborHex: string): SolSignatureType {
+  parseSignature (type: string, cborHex: string): SolSignatureType {
+    if (type !== URType.SolSignature) {
+      throw new Error('type not match')
+    }
     const sig = SolSignature.fromCBOR(toBuffer(cborHex))
     const requestId = sig.getRequestId()
     return {
@@ -15,19 +19,19 @@ export class KeystoneSolanaSDK {
     }
   }
 
-  generateSignRequest (
-    requestId: string,
-    signData: string,
-    signType: SignType,
-    path: string,
-    xfp: string,
-    address?: string,
-    origin?: string
-  ): UR {
+  generateSignRequest ({
+    requestId,
+    signData,
+    dataType,
+    path,
+    xfp,
+    address,
+    origin
+  }: SolSignRequestProps): UR {
     const ur = new SolSignRequest({
       requestId: uuidParse(requestId),
       signData: toBuffer(signData),
-      signType,
+      signType: dataType,
       derivationPath: new CryptoKeypath(parsePath(path).map(e => new PathComponent(e)), toBuffer(xfp)),
       address: address !== undefined ? toBuffer(address) : undefined,
       origin

@@ -1,12 +1,16 @@
 import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
-import { type UR } from '../types/ur'
+import { URType, type UR } from '../types/ur'
 import { CosmosSignRequest, CosmosSignature, CryptoKeypath, PathComponent, SignDataType as DataType } from '@keystonehq/bc-ur-registry-cosmos'
 import { type CosmosSignature as CosmosSignatureType } from '../types/signature'
+import { type CosmosSignRequestProps } from '../types/props'
 
 export class KeystoneCosmosSDK {
   static DataType = DataType
 
-  parseSignature (cborHex: string): CosmosSignatureType {
+  parseSignature (type: string, cborHex: string): CosmosSignatureType {
+    if (type !== URType.CosmosSignature) {
+      throw new Error('type not match')
+    }
     const sig = CosmosSignature.fromCBOR(toBuffer(cborHex))
     return {
       requestId: uuidStringify(sig.getRequestId()),
@@ -15,15 +19,15 @@ export class KeystoneCosmosSDK {
     }
   }
 
-  generateSignRequest (
-    requestId: string,
-    signData: string,
-    dataType: DataType,
-    paths: string[],
-    xfp: string,
-    addresses?: string[],
-    origin?: string
-  ): UR {
+  generateSignRequest ({
+    requestId,
+    signData,
+    dataType,
+    paths,
+    xfp,
+    addresses,
+    origin
+  }: CosmosSignRequestProps): UR {
     const ur = new CosmosSignRequest({
       signData: toBuffer(signData),
       dataType,

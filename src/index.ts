@@ -8,6 +8,7 @@ import { KeystoneEthereumSDK } from './chains/ethereum'
 import { KeystoneSolanaSDK } from './chains/solana'
 import { KeystoneCosmosSDK } from './chains/cosmos'
 import { KeystoneTronSDK } from './chains/tron'
+import { URType } from './types/ur'
 
 export default class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -50,7 +51,10 @@ export default class KeystoneSDK {
     return this._tron
   }
 
-  parseMultiAccounts (cborHex: string): MultiAccounts {
+  parseMultiAccounts (type: string, cborHex: string): MultiAccounts {
+    if (type !== URType.CryptoMultiAccounts) {
+      throw new Error('type not match')
+    }
     const accounts = CryptoMultiAccounts.fromCBOR(toBuffer(cborHex))
     return {
       device: accounts.getDevice(),

@@ -5,6 +5,7 @@ import { type EthSignature } from '../../src/types/signature'
 test('parseSignature', () => {
   const keystoneSDK = new KeystoneSDK()
 
+  const type = 'eth-signature'
   const cborHex = 'a301d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d025841d4f0a7bcd95bba1fbb1051885054730e3f47064288575aacc102fbbf6a9a14daa066991e360d3e3406c20c00a40973eff37c7d641e5b351ec4a99bfe86f335f71303686b657973746f6e65'
   const expectResult: EthSignature = {
     signature: 'd4f0a7bcd95bba1fbb1051885054730e3f47064288575aacc102fbbf6a9a14daa066991e360d3e3406c20c00a40973eff37c7d641e5b351ec4a99bfe86f335f713',
@@ -12,7 +13,7 @@ test('parseSignature', () => {
     origin: 'keystone'
   }
 
-  expect(keystoneSDK.eth.parseSignature(cborHex)).toStrictEqual(expectResult)
+  expect(keystoneSDK.eth.parseSignature(type, cborHex)).toStrictEqual(expectResult)
 })
 
 test('generateSignRequest', () => {
@@ -32,5 +33,5 @@ test('generateSignRequest', () => {
     cbor: 'a701d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d02584bf849808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000578080800301040105d90130a2018a182cf501f501f500f401f4021a12345678064007686d6574616d61736b'
   }
 
-  expect(keystoneSDK.eth.generateSignRequest(requestId, signData, dataType, path, xfp, chainId, address, origin)).toStrictEqual(expectResult)
+  expect(keystoneSDK.eth.generateSignRequest({ requestId, signData, dataType, path, xfp, chainId, address, origin })).toStrictEqual(expectResult)
 })

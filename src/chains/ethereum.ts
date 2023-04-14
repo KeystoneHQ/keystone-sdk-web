@@ -1,12 +1,16 @@
 import { type EthSignature } from '../types/signature'
 import { CryptoKeypath, DataType, ETHSignature, EthSignRequest, PathComponent } from '@keystonehq/bc-ur-registry-eth'
 import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
-import { type UR } from '../types/ur'
+import { URType, type UR } from '../types/ur'
+import { type EthSignRequestProps } from '../types/props'
 
 export class KeystoneEthereumSDK {
   static DataType = DataType
 
-  parseSignature (cborHex: string): EthSignature {
+  parseSignature (type: string, cborHex: string): EthSignature {
+    if (type !== URType.EthSignature) {
+      throw new Error('type not match')
+    }
     const sig = ETHSignature.fromCBOR(toBuffer(cborHex))
     const requestId = sig.getRequestId()
     return {
@@ -16,16 +20,16 @@ export class KeystoneEthereumSDK {
     }
   }
 
-  generateSignRequest (
-    requestId: string,
-    signData: string,
-    dataType: DataType,
-    path: string,
-    xfp: string,
-    chainId?: number,
-    address?: string,
-    origin?: string
-  ): UR {
+  generateSignRequest ({
+    requestId,
+    signData,
+    dataType,
+    path,
+    xfp,
+    chainId,
+    address,
+    origin
+  }: EthSignRequestProps): UR {
     const ur = new EthSignRequest({
       requestId: uuidParse(requestId),
       signData: toBuffer(signData),

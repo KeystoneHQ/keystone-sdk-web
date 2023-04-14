@@ -1,9 +1,12 @@
 import { CryptoPSBT } from '@keystonehq/bc-ur-registry'
 import { toBuffer, toHex } from '../utils'
-import { type UR } from '../types/ur'
+import { URType, type UR } from '../types/ur'
 
 export class KeystoneBitcoinSDK {
-  parsePSBT (cborHex: string): string {
+  parsePSBT (type: string, cborHex: string): string {
+    if (type !== URType.CryptoPSBT) {
+      throw new Error('type not match')
+    }
     return toHex(CryptoPSBT.fromCBOR(toBuffer(cborHex)).getPSBT())
   }
 

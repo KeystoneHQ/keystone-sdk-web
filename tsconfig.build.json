@@ -3,7 +3,7 @@
   "compilerOptions": {
     "declaration": true,
     "declarationMap": true,
-    "target": "ES5",
+    "target": "ES6",
     "module": "CommonJS",
     "outDir": "./dist",
     "rootDir": "./src"

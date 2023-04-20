@@ -1,0 +1,10 @@
+syntax = "proto3";
+package protoc;
+option java_package = "com.keystone.cold.protobuf";
+option java_outer_classname = "VerifyAddressProtoc";
+
+message VerifyAddress {
+    int32 coinType = 1;
+    int32 addressIndex = 2;
+    string address = 3;
+}

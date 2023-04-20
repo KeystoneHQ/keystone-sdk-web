@@ -1,0 +1,21 @@
+syntax = "proto3";
+package protoc;
+option java_package = "com.keystone.cold.protobuf";
+option java_outer_classname = "SyncProtoc";
+
+message Account {
+    string hdPath = 1;
+    string xPub = 2;
+    int32 addressLength = 3;
+    bool isMultiSign = 4;
+}
+
+message Coin {
+    string coinCode = 1;
+    bool active = 2;
+    repeated Account accounts = 3;
+}
+
+message Sync {
+    repeated Coin coins = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package protoc;
+option java_package = "com.keystone.cold.protobuf";
+option java_outer_classname = "MessageProtoc";
+
+message SignMessage {
+    string coinCode = 1;
+    string hdPath = 2;
+    string message = 3;
+}
+
+

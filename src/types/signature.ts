@@ -22,3 +22,8 @@ export interface TronSignature {
   signature: string
   requestId?: string
 }
+
+export interface UTXOSignResult {
+  requestId?: string
+  rawData: string
+}

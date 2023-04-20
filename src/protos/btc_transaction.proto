@@ -1,0 +1,40 @@
+syntax = "proto3";
+package protoc;
+option java_package = "com.keystone.cold.protobuf";
+option java_outer_classname = "BtcTxProtoc";
+
+
+message BtcTx {
+    // fee = outputs.size > 1 ? fee = sum(input.value) - sum(output.value) : fee
+    int64 fee = 1;
+    int32 dustThreshold = 2;
+    string memo = 3;
+    repeated Input inputs = 4;
+    repeated Output outputs = 5; // for normal btc transaction
+    Omni omni = 6; // for omni
+}
+
+message Omni {
+    string to = 5;
+    string changeAddress = 6;
+    int64 omniAmount = 7; // sat unit
+    int32 propertyId = 8; // optional default 31 for usdt
+}
+message Input {
+    string hash = 1;
+    int32 index = 2;
+    utxo utxo = 3;
+    string ownerKeyPath = 4;
+}
+
+message utxo {
+    string publicKey = 1;
+    string script = 2;
+    int64 value = 3;
+}
+message Output {
+    string address = 1;
+    int64 value = 2;
+    bool isChange = 3;
+    string changeAddressPath = 4;
+}

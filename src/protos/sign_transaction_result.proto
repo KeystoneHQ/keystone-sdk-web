@@ -1,0 +1,10 @@
+syntax = "proto3";
+package protoc;
+option java_package = "com.keystone.cold.protobuf";
+option java_outer_classname = "SignTransactionResultProtoc";
+
+message SignTransactionResult {
+    string signId = 1;
+    string txId = 2;
+    string rawTx = 3;
+}

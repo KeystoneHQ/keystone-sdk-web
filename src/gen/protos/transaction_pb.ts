@@ -5,9 +5,9 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { BchTx } from "../chains/utxo/protos/bch_transaction_pb.ts";
-import { DashTx } from "../chains/utxo/protos/dash_transaction_pb.ts";
-import { LtcTx } from "../chains/utxo/protos/ltc_transaction_pb.ts";
+import { BchTx } from "../chains/keystone/protos/bch_transaction_pb.ts";
+import { DashTx } from "../chains/keystone/protos/dash_transaction_pb.ts";
+import { LtcTx } from "../chains/keystone/protos/ltc_transaction_pb.ts";
 
 /**
  * @generated from message protoc.SignTransaction

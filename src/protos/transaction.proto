@@ -3,9 +3,9 @@ package protoc;
 option java_package = "com.keystone.cold.protobuf";
 option java_outer_classname = "TransactionProtoc";
 
-import "chains/utxo/protos/bch_transaction.proto";
-import "chains/utxo/protos/dash_transaction.proto";
-import "chains/utxo/protos/ltc_transaction.proto";
+import "chains/keystone/protos/bch_transaction.proto";
+import "chains/keystone/protos/dash_transaction.proto";
+import "chains/keystone/protos/ltc_transaction.proto";
 
 message SignTransaction {
     string coinCode = 1;

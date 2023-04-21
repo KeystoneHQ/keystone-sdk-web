@@ -12,6 +12,7 @@ import { type UR, URType } from './types/ur'
 import { KeystoneLitecoinSDK } from './chains/litecoin'
 import { KeystoneBitcoinCashSDK } from './chains/bitcoin_cash'
 import { KeystoneDashSDK } from './chains/dash'
+import { KeystoneAptosSDK } from './chains/aptos'
 
 export class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -76,6 +77,14 @@ export class KeystoneSDK {
       this._dash = new KeystoneDashSDK()
     }
     return this._dash
+  }
+
+  private _aptos!: KeystoneAptosSDK
+  get aptos (): KeystoneAptosSDK {
+    if (this._aptos === undefined) {
+      this._aptos = new KeystoneAptosSDK()
+    }
+    return this._aptos
   }
 
   parseMultiAccounts (ur: UR): MultiAccounts {

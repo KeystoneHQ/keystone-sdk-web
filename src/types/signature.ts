@@ -23,7 +23,11 @@ export interface TronSignature {
   requestId?: string
 }
 
-export interface UTXOSignResult {
+export interface KeystoneSignResult {
   requestId?: string
   rawData: string
+}
+
+export interface AptosSignature extends Signature {
+  authenticationPublicKey: string
 }

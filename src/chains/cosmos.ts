@@ -23,15 +23,21 @@ export class KeystoneCosmosSDK {
     requestId,
     signData,
     dataType,
-    paths,
-    xfp,
-    addresses,
+    accounts,
     origin
   }: CosmosSignRequestProps): UR {
+    const derivationPaths: CryptoKeypath[] = []
+    const addresses: string[] = []
+    accounts.forEach(account => {
+      derivationPaths.push(
+        new CryptoKeypath(parsePath(account.path).map(e => new PathComponent(e)), toBuffer(account.xfp))
+      )
+      addresses.push(account.address)
+    })
     return new CosmosSignRequest({
       signData: toBuffer(signData),
       dataType,
-      derivationPaths: paths.map(path => new CryptoKeypath(parsePath(path).map(e => new PathComponent(e)), toBuffer(xfp))),
+      derivationPaths,
       requestId: uuidParse(requestId),
       addresses,
       origin

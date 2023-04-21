@@ -3,10 +3,7 @@ package protoc;
 option java_package = "com.keystone.cold.protobuf";
 option java_outer_classname = "PayloadProtoc";
 
-import "protos/sync.proto";
 import "protos/transaction.proto";
-import "protos/message.proto";
-import "protos/verify_address.proto";
 import "protos/sign_transaction_result.proto";
 
 message Payload {
@@ -26,10 +23,10 @@ message Payload {
     Type type = 1;
     string xfp = 2;
     oneof Content {
-        Sync sync = 3;
+        // Sync sync = 3;
         SignTransaction signTx = 4;
-        SignMessage signMsg = 5;
-        VerifyAddress verifyAddr = 6;
+        // SignMessage signMsg = 5;
+        // VerifyAddress verifyAddr = 6;
         SignTransactionResult signTxResult = 7;
     }
 }

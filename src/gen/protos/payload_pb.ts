@@ -5,10 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { Sync } from "./sync_pb.ts";
 import { SignTransaction } from "./transaction_pb.ts";
-import { SignMessage } from "./message_pb.ts";
-import { VerifyAddress } from "./verify_address_pb.ts";
 import { SignTransactionResult } from "./sign_transaction_result_pb.ts";
 
 /**
@@ -30,30 +27,17 @@ export class Payload extends Message<Payload> {
    */
   Content: {
     /**
-     * @generated from field: protoc.Sync sync = 3;
-     */
-    value: Sync;
-    case: "sync";
-  } | {
-    /**
+     * Sync sync = 3;
+     *
      * @generated from field: protoc.SignTransaction signTx = 4;
      */
     value: SignTransaction;
     case: "signTx";
   } | {
     /**
-     * @generated from field: protoc.SignMessage signMsg = 5;
-     */
-    value: SignMessage;
-    case: "signMsg";
-  } | {
-    /**
-     * @generated from field: protoc.VerifyAddress verifyAddr = 6;
-     */
-    value: VerifyAddress;
-    case: "verifyAddr";
-  } | {
-    /**
+     * SignMessage signMsg = 5;
+     * VerifyAddress verifyAddr = 6;
+     *
      * @generated from field: protoc.SignTransactionResult signTxResult = 7;
      */
     value: SignTransactionResult;
@@ -70,10 +54,7 @@ export class Payload extends Message<Payload> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "type", kind: "enum", T: proto3.getEnumType(Payload_Type) },
     { no: 2, name: "xfp", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "sync", kind: "message", T: Sync, oneof: "Content" },
     { no: 4, name: "signTx", kind: "message", T: SignTransaction, oneof: "Content" },
-    { no: 5, name: "signMsg", kind: "message", T: SignMessage, oneof: "Content" },
-    { no: 6, name: "verifyAddr", kind: "message", T: VerifyAddress, oneof: "Content" },
     { no: 7, name: "signTxResult", kind: "message", T: SignTransactionResult, oneof: "Content" },
   ]);
 

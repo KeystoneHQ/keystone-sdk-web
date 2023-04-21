@@ -45,7 +45,8 @@ export class Keystone {
       case Chain.BCH:
         tx = new BchTx({
           ...signData,
-          fee: BigInt(signData.fee)
+          fee: BigInt(signData.fee),
+          dustThreshold: 546
         })
         coinCode = Chain.BCH
         txCase = TXCase.BCH
@@ -53,7 +54,8 @@ export class Keystone {
       case Chain.DASH:
         tx = new DashTx({
           ...signData,
-          fee: BigInt(signData.fee)
+          fee: BigInt(signData.fee),
+          dustThreshold: 546
         })
         coinCode = Chain.DASH
         txCase = TXCase.DASH
@@ -99,10 +101,9 @@ export class Keystone {
       throw new Error('type not match')
     }
     const sig = KeystoneSignResult.fromCBOR(ur.cbor)
-    console.log(sig.getSignResult())
     const base = Base.fromBinary(pako.ungzip(sig.getSignResult()))
     if (base.data?.Content.case !== 'signTxResult') {
-      throw new Error('invalid data type')
+      throw new Error('invalid sign result')
     }
     const value = base.data?.Content.value
     const requestId = value.signId

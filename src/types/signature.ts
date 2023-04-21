@@ -22,3 +22,12 @@ export interface TronSignature {
   signature: string
   requestId?: string
 }
+
+export interface KeystoneSignResult {
+  requestId?: string
+  rawData: string
+}
+
+export interface AptosSignature extends Signature {
+  authenticationPublicKey: string
+}

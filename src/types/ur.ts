@@ -8,4 +8,5 @@ export enum URType {
   CosmosSignature = 'cosmos-signature',
   AptosSignature = 'aptos-signature',
   TronSignature = 'tron-signature',
+  KeystoneSignResult = 'keystone-sign-result',
 }

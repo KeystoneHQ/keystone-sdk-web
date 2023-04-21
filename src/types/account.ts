@@ -26,3 +26,15 @@ export interface PathComponent {
   index: number
   hardened: boolean
 }
+
+export interface CosmosAccount {
+  path: string
+  xfp: string
+  address: string
+}
+
+export interface AptosAccount {
+  path: string
+  xfp: string
+  key?: string
+}

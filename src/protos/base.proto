@@ -1,0 +1,16 @@
+syntax = "proto3";
+package protoc;
+option java_package = "com.keystone.cold.protobuf";
+option java_outer_classname = "BaseProtoc";
+import "protos/payload.proto";
+
+message Base {
+    int32 version = 1;
+    string description = 2;
+    Payload data = 3;
+    oneof Content {
+        int32 hotVersion = 4;
+        int32 coldVersion = 5;
+    }
+    string deviceType = 6;
+}

@@ -1,0 +1,34 @@
+syntax = "proto3";
+package protoc;
+option java_package = "com.keystone.cold.protobuf";
+option java_outer_classname = "TransactionProtoc";
+
+import "chains/keystone/protos/bch_transaction.proto";
+import "chains/keystone/protos/dash_transaction.proto";
+import "chains/keystone/protos/ltc_transaction.proto";
+
+message SignTransaction {
+    string coinCode = 1;
+    string signId = 2;
+    string hdPath = 3;
+    int64 timestamp = 4;
+    int32 decimal = 5;
+    oneof Transaction {
+        // BtcTx btcTx = 6;
+        // EthTx ethTx = 7;
+        // TronTx tronTx = 8;
+        // EtcTx etcTx = 9;
+        BchTx bchTx = 10;
+        DashTx dashTx = 11;
+        LtcTx ltcTx = 12;
+        // DcrTx dcrTx = 13;
+        // XzcTx xzcTx = 14;
+        // XrpTx xrpTx = 15;
+        // IostTx iostTx = 16;
+        // OmniTx omniTx = 17;
+        // EosTx eosTx = 18;
+        // DotTx dotTx = 19;
+        // KsmTx ksmTx = 20;
+        // CfxTx cfxTx = 21;
+    }
+}

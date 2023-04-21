@@ -1,7 +1,14 @@
 import { type SignDataType as CosmosDataType } from '@keystonehq/bc-ur-registry-cosmos'
 import { type DataType as EthDataType } from '@keystonehq/bc-ur-registry-eth'
 import { type SignType as SolDataType } from '@keystonehq/bc-ur-registry-sol'
+import { type SignType as AptosSignType } from '@keystonehq/bc-ur-registry-aptos'
 import { type TokenInfo } from './token'
+import { type BchTx_Input } from '../gen/chains/keystone/protos/bch_transaction_pb'
+import { type Input, type Output } from '../gen/protos/btc_transaction_pb'
+import { type DashTx_Input } from '../gen/chains/keystone/protos/dash_transaction_pb'
+import { type Chain } from '../chains/keystone'
+import { type PartialMessage } from '@bufbuild/protobuf'
+import { type CosmosAccount, type AptosAccount } from './account'
 
 export interface TronSignRequestProps {
   requestId: string
@@ -17,9 +24,7 @@ export interface CosmosSignRequestProps {
   requestId: string
   signData: string
   dataType: CosmosDataType
-  paths: string[]
-  xfp: string
-  addresses?: string[]
+  accounts: CosmosAccount[]
   origin?: string
 }
 
@@ -41,5 +46,34 @@ export interface SolSignRequestProps {
   path: string
   xfp: string
   address?: string
+  origin?: string
+}
+
+export interface KeystoneSignRequestBaseProps<T> {
+  requestId: string
+  signData: {
+    inputs: T
+    outputs: Array<PartialMessage<Output>>
+    fee: string
+  }
+  xfp: string
+  origin?: string
+}
+
+export interface KeystoneSignRequestProps extends KeystoneSignRequestBaseProps<Array<PartialMessage<Input>> | Array<PartialMessage<BchTx_Input>> | Array<PartialMessage<DashTx_Input>>> {
+  chain: Chain
+}
+
+export type LTCSignRequestProps = KeystoneSignRequestBaseProps<Array<PartialMessage<Input>>>
+
+export type BCHSignRequestProps = KeystoneSignRequestBaseProps<Array<PartialMessage<BchTx_Input>>>
+
+export type DashSignRequestProps = KeystoneSignRequestBaseProps<Array<PartialMessage<DashTx_Input>>>
+
+export interface AptosSignRequestProps {
+  requestId: string
+  signData: string
+  signType: AptosSignType
+  accounts: AptosAccount[]
   origin?: string
 }

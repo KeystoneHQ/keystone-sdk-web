@@ -9,6 +9,10 @@ import { KeystoneSolanaSDK } from './chains/solana'
 import { KeystoneCosmosSDK } from './chains/cosmos'
 import { KeystoneTronSDK } from './chains/tron'
 import { type UR, URType } from './types/ur'
+import { KeystoneLitecoinSDK } from './chains/litecoin'
+import { KeystoneBitcoinCashSDK } from './chains/bitcoin_cash'
+import { KeystoneDashSDK } from './chains/dash'
+import { KeystoneAptosSDK } from './chains/aptos'
 
 export class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -49,6 +53,38 @@ export class KeystoneSDK {
       this._tron = new KeystoneTronSDK()
     }
     return this._tron
+  }
+
+  private _ltc!: KeystoneLitecoinSDK
+  get ltc (): KeystoneLitecoinSDK {
+    if (this._ltc === undefined) {
+      this._ltc = new KeystoneLitecoinSDK()
+    }
+    return this._ltc
+  }
+
+  private _bch!: KeystoneBitcoinCashSDK
+  get bch (): KeystoneBitcoinCashSDK {
+    if (this._bch === undefined) {
+      this._bch = new KeystoneBitcoinCashSDK()
+    }
+    return this._bch
+  }
+
+  private _dash!: KeystoneDashSDK
+  get dash (): KeystoneDashSDK {
+    if (this._dash === undefined) {
+      this._dash = new KeystoneDashSDK()
+    }
+    return this._dash
+  }
+
+  private _aptos!: KeystoneAptosSDK
+  get aptos (): KeystoneAptosSDK {
+    if (this._aptos === undefined) {
+      this._aptos = new KeystoneAptosSDK()
+    }
+    return this._aptos
   }
 
   parseMultiAccounts (ur: UR): MultiAccounts {

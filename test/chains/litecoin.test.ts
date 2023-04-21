@@ -55,7 +55,7 @@ test('generateSignRequest', () => {
   expect(result).toStrictEqual(expectResult)
 })
 
-test('parse', () => {
+test('parseSignRequest', () => {
   const keystoneSDK = new KeystoneSDK()
 
   const type = 'keystone-sign-result'

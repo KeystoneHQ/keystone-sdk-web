@@ -726,6 +726,13 @@
     hdkey "^2.0.1"
     uuid "^8.3.2"
 
+"@keystonehq/bc-ur-registry-keystone@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-keystone/-/bc-ur-registry-keystone-0.1.0.tgz#0fb1a6e868474380e88c42a31dfe47f840b8ae53"
+  integrity sha512-ev9Vi5h+ewFmKCBVFoOgWmF17RuG31UQKmTXjByD0p2QxCrIOpa5XWGKEpxrfl7Y2ulLpAloVt3Oy9FY5g38bQ==
+  dependencies:
+    "@keystonehq/bc-ur-registry" "0.5.4"
+
 "@keystonehq/bc-ur-registry-sol@^0.6.2":
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-sol/-/bc-ur-registry-sol-0.6.2.tgz#deb01321b79feca343251338730444d282b6d979"
@@ -739,12 +746,6 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-tron/-/bc-ur-registry-tron-0.1.0.tgz#74929c202089c44df7d78c6bf2bda087dbb5632f"
   integrity sha512-6uHu1MAjio/ZYquv98uHSBMIeGJOIVSTJ0Pqyy7AfxcaI02WuN9ooUT6ef/RCfMWThpcE/MvRJ7BEV+cQWd67w==
-  dependencies:
-    "@keystonehq/bc-ur-registry" "0.5.4"
-    uuid "^9.0.0"
-
-"@keystonehq/bc-ur-registry-utxo@file:.yalc/@keystonehq/bc-ur-registry-utxo":
-  version "0.1.1"
   dependencies:
     "@keystonehq/bc-ur-registry" "0.5.4"
     uuid "^9.0.0"

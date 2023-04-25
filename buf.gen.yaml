@@ -4,5 +4,5 @@ plugins:
   - name: es
     opt:
       - target=ts
-      - import_extension=.ts
+      - import_extension=
     out: src/gen

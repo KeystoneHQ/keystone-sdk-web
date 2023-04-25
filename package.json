@@ -1,6 +1,6 @@
 {
   "name": "@keystonehq/keystone-sdk",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Keystone SDK",
   "main": "dist/index.js",
   "scripts": {
@@ -9,6 +9,9 @@
     "test": "jest",
     "proto": "buf generate src"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KeystoneHQ/keystone-sdk-web.git"
@@ -28,13 +31,13 @@
     "@keystonehq/bc-ur-registry-sol": "^0.6.2",
     "@keystonehq/bc-ur-registry-tron": "^0.1.0",
     "@ngraveio/bc-ur": "^1.1.6",
+    "@bufbuild/protobuf": "^1.2.0",
     "bs58check": "^3.0.1",
     "pako": "^2.1.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@bufbuild/buf": "^1.15.0-1",
-    "@bufbuild/protobuf": "^1.2.0",
     "@bufbuild/protoc-gen-es": "^1.2.0",
     "@types/jest": "^29.5.0",
     "@types/pako": "^2.0.0",

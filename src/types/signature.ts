@@ -31,3 +31,8 @@ export interface KeystoneSignResult {
 export interface AptosSignature extends Signature {
   authenticationPublicKey: string
 }
+
+export interface NearSignature {
+  signature: string[]
+  requestId?: string
+}

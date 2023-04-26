@@ -1,21 +1,18 @@
 import { CryptoMultiAccounts } from '@keystonehq/bc-ur-registry'
-import { type MultiAccounts } from './types/account'
-import { toHex } from './utils'
+import { type MultiAccounts, type UR, URType } from './types'
+import { toHex, getCoinSymbol } from './utils'
 import { Account } from './account'
-import { getCoinSymbol } from './utils/coin'
-import { KeystoneBitcoinSDK } from './chains/bitcoin'
-import { KeystoneEthereumSDK } from './chains/ethereum'
-import { KeystoneSolanaSDK } from './chains/solana'
-import { KeystoneCosmosSDK } from './chains/cosmos'
-import { KeystoneTronSDK } from './chains/tron'
-import { type UR, URType } from './types/ur'
-import { KeystoneLitecoinSDK } from './chains/litecoin'
-import { KeystoneBitcoinCashSDK } from './chains/bitcoin_cash'
-import { KeystoneDashSDK } from './chains/dash'
-import { KeystoneAptosSDK } from './chains/aptos'
-import { KeystoneNearSDK } from './chains'
-import { KeystoneArweaveSDK } from './chains/arweave'
-import { KeystoneSuiSDK } from './chains/sui'
+import {
+  KeystoneAptosSDK,
+  KeystoneArweaveSDK,
+  KeystoneBitcoinCashSDK,
+  KeystoneBitcoinSDK,
+  KeystoneCardanoSDK,
+  KeystoneCosmosSDK, KeystoneDashSDK,
+  KeystoneEthereumSDK, KeystoneLitecoinSDK,
+  KeystoneSolanaSDK, KeystoneTronSDK,
+  KeystoneNearSDK, KeystoneSuiSDK
+} from './chains'
 
 export class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -112,6 +109,14 @@ export class KeystoneSDK {
       this._sui = new KeystoneSuiSDK()
     }
     return this._sui
+  }
+
+  private _cardano!: KeystoneCardanoSDK
+  get cardano (): KeystoneCardanoSDK {
+    if (this._cardano === undefined) {
+      this._cardano = new KeystoneCardanoSDK()
+    }
+    return this._cardano
   }
 
   parseMultiAccounts (ur: UR): MultiAccounts {

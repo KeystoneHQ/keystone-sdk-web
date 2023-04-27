@@ -13,6 +13,7 @@ import { KeystoneLitecoinSDK } from './chains/litecoin'
 import { KeystoneBitcoinCashSDK } from './chains/bitcoin_cash'
 import { KeystoneDashSDK } from './chains/dash'
 import { KeystoneAptosSDK } from './chains/aptos'
+import { KeystoneNearSDK } from './chains'
 
 export class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -85,6 +86,14 @@ export class KeystoneSDK {
       this._aptos = new KeystoneAptosSDK()
     }
     return this._aptos
+  }
+
+  private _near!: KeystoneNearSDK
+  get near (): KeystoneNearSDK {
+    if (this._near === undefined) {
+      this._near = new KeystoneNearSDK()
+    }
+    return this._near
   }
 
   parseMultiAccounts (ur: UR): MultiAccounts {

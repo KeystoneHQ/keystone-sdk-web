@@ -77,3 +77,12 @@ export interface AptosSignRequestProps {
   accounts: AptosAccount[]
   origin?: string
 }
+
+export interface NearSignRequestProps {
+  requestId: string
+  signData: string[]
+  path: string
+  xfp: string
+  account?: string
+  origin?: string
+}

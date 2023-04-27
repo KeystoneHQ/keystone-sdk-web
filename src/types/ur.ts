@@ -9,4 +9,5 @@ export enum URType {
   AptosSignature = 'aptos-signature',
   TronSignature = 'tron-signature',
   KeystoneSignResult = 'keystone-sign-result',
+  NearSignature = 'near-signature',
 }

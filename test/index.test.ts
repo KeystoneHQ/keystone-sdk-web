@@ -1,4 +1,4 @@
-import { Account } from '../src/account'
+import { Account } from '../src/wallet'
 import KeystoneSDK from '../src/index'
 import { UR } from '../src/types/ur'
 import { toBuffer } from '../src/utils'

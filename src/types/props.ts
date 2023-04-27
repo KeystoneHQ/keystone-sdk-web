@@ -87,6 +87,7 @@ export interface NearSignRequestProps {
   path: string
   xfp: string
   account?: string
+  origin?: string
 }
 
 export interface CardanoSignRequestProps {

@@ -1,7 +1,7 @@
-import { CryptoMultiAccounts } from '@keystonehq/bc-ur-registry'
+import { CryptoMultiAccounts, type Curve, type DerivationAlgorithm } from '@keystonehq/bc-ur-registry'
 import { type MultiAccounts, type UR, URType } from './types'
 import { toHex, getCoinSymbol } from './utils'
-import { Account } from './account'
+import { Account } from './wallet'
 import {
   KeystoneAptosSDK,
   KeystoneArweaveSDK,
@@ -13,6 +13,7 @@ import {
   KeystoneSolanaSDK, KeystoneTronSDK,
   KeystoneNearSDK, KeystoneSuiSDK
 } from './chains'
+import { generateKeyDerivationCall } from './wallet/hardwareCall'
 
 export class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -148,5 +149,9 @@ export class KeystoneSDK {
         })
       })
     }
+  }
+
+  generateKeyDerivationCall (paths: string[], curve?: Curve, algo?: DerivationAlgorithm): UR {
+    return generateKeyDerivationCall(paths, curve, algo)
   }
 }

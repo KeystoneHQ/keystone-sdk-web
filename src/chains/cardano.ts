@@ -1,4 +1,4 @@
-import { CardanoSignature, CardanoSignRequest, CardanoUtxoData } from '@keystonehq/bc-ur-registry-cardano'
+import { CardanoSignature, CardanoSignRequest } from '@keystonehq/bc-ur-registry-cardano'
 import { type AdaSignature } from '../types/signature'
 import { toHex, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'

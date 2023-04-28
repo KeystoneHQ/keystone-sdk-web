@@ -14,6 +14,7 @@ import { KeystoneBitcoinCashSDK } from './chains/bitcoin_cash'
 import { KeystoneDashSDK } from './chains/dash'
 import { KeystoneAptosSDK } from './chains/aptos'
 import { KeystoneNearSDK } from './chains'
+import { KeystoneArweaveSDK } from './chains/arweave'
 
 export class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -94,6 +95,14 @@ export class KeystoneSDK {
       this._near = new KeystoneNearSDK()
     }
     return this._near
+  }
+
+  private _arweave!: KeystoneArweaveSDK
+  get arweave (): KeystoneArweaveSDK {
+    if (this._arweave === undefined) {
+      this._arweave = new KeystoneArweaveSDK()
+    }
+    return this._arweave
   }
 
   parseMultiAccounts (ur: UR): MultiAccounts {

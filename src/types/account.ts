@@ -38,3 +38,9 @@ export interface AptosAccount {
   xfp: string
   key?: string
 }
+
+export interface ArweaveAccount {
+  masterFingerprint: string
+  keyData: string
+  device: string
+}

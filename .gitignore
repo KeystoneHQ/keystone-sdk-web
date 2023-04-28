@@ -83,6 +83,7 @@ yalc.lock
 # Nuxt.js build / generate output
 .nuxt
 dist
+cache
 
 # Gatsby files
 .cache/

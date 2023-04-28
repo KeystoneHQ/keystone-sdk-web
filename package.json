@@ -26,6 +26,7 @@
     "@bufbuild/protobuf": "^1.2.0",
     "@keystonehq/bc-ur-registry": "^0.5.4",
     "@keystonehq/bc-ur-registry-aptos": "^0.3.2",
+    "@keystonehq/bc-ur-registry-arweave": "^0.4.0",
     "@keystonehq/bc-ur-registry-cosmos": "^0.2.2",
     "@keystonehq/bc-ur-registry-eth": "^0.15.2",
     "@keystonehq/bc-ur-registry-keystone": "^0.1.0",

@@ -9,6 +9,7 @@ import { type DashTx_Input } from '../gen/chains/keystone/protos/dash_transactio
 import { type Chain } from '../chains/keystone'
 import { type PartialMessage } from '@bufbuild/protobuf'
 import { type CosmosAccount, type AptosAccount } from './account'
+import { type SaltLen, type SignType as ArweaveSignType } from '@keystonehq/bc-ur-registry-arweave'
 
 export interface TronSignRequestProps {
   requestId: string
@@ -83,6 +84,16 @@ export interface NearSignRequestProps {
   signData: string[]
   path: string
   xfp: string
+  account?: string
+  origin?: string
+}
+
+export interface ArweaveSignRequestProps {
+  requestId: string
+  signData: string
+  signType: ArweaveSignType
+  saltLen: SaltLen
+  masterFingerprint: string
   account?: string
   origin?: string
 }

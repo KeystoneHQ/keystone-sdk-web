@@ -7,10 +7,11 @@ export { Curve, DerivationAlgorithm }
 export const generateKeyDerivationCall = (
   paths: string[],
   curve = Curve.secp256k1,
-  algo = DerivationAlgorithm.slip10
+  algo = DerivationAlgorithm.slip10,
+  origin?: string
 ): UR => {
   const keypaths = paths.map(path => pathToKeypath(path))
-  const keyDerivation = new KeyDerivation(keypaths, curve, algo)
+  const keyDerivation = new KeyDerivation(keypaths, curve, algo, origin)
   const hardwareCall = new QRHardwareCall(QRHardwareCallName.KeyDerivation, keyDerivation)
   return hardwareCall.toUR()
 }

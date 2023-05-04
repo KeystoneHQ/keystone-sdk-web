@@ -1,4 +1,4 @@
-import { MultiAccounts, UR, URType } from '../types'
+import { type MultiAccounts, type UR, URType } from '../types'
 import { CryptoMultiAccounts } from '@keystonehq/bc-ur-registry'
 import { getCoinSymbol, toHex } from '../utils'
 import { Account } from './account'

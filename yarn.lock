@@ -759,6 +759,12 @@
     bs58check "^2.1.2"
     uuid "^8.3.2"
 
+"@keystonehq/bc-ur-registry-sui@file:.yalc/@keystonehq/bc-ur-registry-sui":
+  version "0.1.0"
+  dependencies:
+    "@keystonehq/bc-ur-registry" "^0.5.5"
+    uuid "^9.0.0"
+
 "@keystonehq/bc-ur-registry-tron@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-tron/-/bc-ur-registry-tron-0.1.0.tgz#74929c202089c44df7d78c6bf2bda087dbb5632f"
@@ -771,6 +777,15 @@
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry/-/bc-ur-registry-0.5.4.tgz#5802486a29f5d772520d15579d40fba02860e27f"
   integrity sha512-z7bZe10I5k0zz9znmDTXh+o3Rzb5XsRVpwAzexubOaLxVdZ0F7aMbe2LoEsw766Hpox/7zARi7UGmLz5C8BAzA==
+  dependencies:
+    "@ngraveio/bc-ur" "^1.1.5"
+    bs58check "^2.1.2"
+    tslib "^2.3.0"
+
+"@keystonehq/bc-ur-registry@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry/-/bc-ur-registry-0.5.5.tgz#b7cd9b08846c627e988933049aac94d3412fbb16"
+  integrity sha512-PoclPHf0OhpIKLfLwzymsu+CjkWf5ZKvaVjpkq3HUalcI4KW8wLk0m8qI2kBVv6F0BQ0ERPqW8OfjLTVqIgWLA==
   dependencies:
     "@ngraveio/bc-ur" "^1.1.5"
     bs58check "^2.1.2"

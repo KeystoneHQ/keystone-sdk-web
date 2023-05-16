@@ -44,3 +44,9 @@ export interface ArweaveAccount {
   keyData: string
   device: string
 }
+
+export interface SuiAccount {
+  path: string
+  xfp: string
+  address: string
+}

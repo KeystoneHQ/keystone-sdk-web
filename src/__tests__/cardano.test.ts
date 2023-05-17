@@ -49,7 +49,7 @@ test('generateSignRequest', () => {
         keyPath: "m/1852'/1815'/0'/2/0"
       }
     ],
-    uuidString: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
+    requestId: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
     origin: 'cardano-wallet'
   }
 

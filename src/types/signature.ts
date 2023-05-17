@@ -4,7 +4,7 @@ export interface Signature {
 }
 
 export interface CardanoSignature {
-  requestId?: string
+  requestId: string
   witnessSet: string
 }
 

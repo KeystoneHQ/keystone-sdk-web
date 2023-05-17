@@ -12,7 +12,7 @@ export class KeystoneCardanoSDK {
     const sig = AdaSignature.fromCBOR(ur.cbor)
     const requestId = sig.getRequestId()
     return {
-      requestId: requestId === undefined ? undefined : uuidStringify(requestId),
+      requestId: Buffer.isBuffer(requestId) ? uuidStringify(requestId) : '',
       witnessSet: toHex(sig.getWitnessSet())
     }
   }
@@ -21,14 +21,14 @@ export class KeystoneCardanoSDK {
     signData,
     utxos,
     certKeys,
-    uuidString,
+    requestId,
     origin
   }: CardanoSignRequestProps): UR {
     return CardanoSignRequest.constructCardanoSignRequest(
       signData,
       utxos,
       certKeys,
-      uuidString,
+      requestId,
       origin
     ).toUR()
   }

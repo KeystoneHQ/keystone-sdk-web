@@ -3,6 +3,7 @@ export { UR } from '@ngraveio/bc-ur'
 export enum URType {
   CryptoPSBT = 'crypto-psbt',
   CryptoMultiAccounts = 'crypto-multi-accounts',
+  CryptoHDKey = 'crypto-hdkey',
   ArweaveCryptoAccount = 'arweave-crypto-account',
   EthSignature = 'eth-signature',
   SolSignature = 'sol-signature',

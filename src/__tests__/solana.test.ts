@@ -1,8 +1,8 @@
 import KeystoneSDK from '../../src'
-import { KeystoneSolanaSDK } from '../../src/chains/solana'
-import { type SolSignature } from '../../src/types/signature'
+import { KeystoneSolanaSDK } from '../chains'
+import { type SolSignature } from '../types'
 import { UR } from '../../src/types/ur'
-import { toBuffer } from '../../src/utils'
+import { toBuffer } from '../utils'
 
 test('parseSignature', () => {
   const keystoneSDK = new KeystoneSDK()

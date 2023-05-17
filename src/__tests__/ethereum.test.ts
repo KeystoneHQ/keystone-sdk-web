@@ -1,8 +1,8 @@
 import KeystoneSDK from '../../src'
-import { KeystoneEthereumSDK } from '../../src/chains/ethereum'
-import { type EthSignature } from '../../src/types/signature'
+import { KeystoneEthereumSDK } from '../chains'
+import { type EthSignature } from '../types'
 import { UR } from '../../src/types/ur'
-import { toBuffer } from '../../src/utils'
+import { toBuffer } from '../utils'
 
 test('parseSignature', () => {
   const keystoneSDK = new KeystoneSDK()

@@ -1,7 +1,7 @@
 import KeystoneSDK from '../../src'
-import { type NearSignature } from '../../src/types/signature'
+import { type NearSignature } from '../types'
 import { UR } from '../../src/types/ur'
-import { toBuffer } from '../../src/utils'
+import { toBuffer } from '../utils'
 
 test('parseSignature', () => {
   const keystoneSDK = new KeystoneSDK()

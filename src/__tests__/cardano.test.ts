@@ -1,6 +1,6 @@
 import KeystoneSDK, { type CardanoSignRequestProps, type CardanoSignature } from '../../src'
 import { UR } from '../../src/types/ur'
-import { toBuffer } from '../../src/utils'
+import { toBuffer } from '../utils'
 
 test('parseSignature', () => {
   const keystoneSDK = new KeystoneSDK()

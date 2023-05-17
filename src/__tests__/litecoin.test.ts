@@ -1,6 +1,6 @@
-import { KeystoneSDK } from '../../src/sdk'
+import { KeystoneSDK } from '../sdk'
 import { UR } from '../../src/types/ur'
-import { toBuffer } from '../../src/utils'
+import { toBuffer } from '../utils'
 
 test('generateSignRequest', () => {
   jest.useFakeTimers({

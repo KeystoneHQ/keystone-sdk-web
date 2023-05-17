@@ -5,14 +5,16 @@ export class Account implements AccountInterface {
   path
   publicKey
   name
+  xfp
   private readonly chainCode
   private readonly extendedPublicKey
 
-  constructor ({ chain, path, publicKey, name, chainCode, extendedPublicKey }: AccountProps) {
+  constructor ({ chain, path, publicKey, name, xfp, chainCode, extendedPublicKey }: AccountProps) {
     this.chain = chain ?? ''
     this.path = path
     this.publicKey = publicKey
     this.name = name ?? ''
+    this.xfp = xfp ?? ''
     this.chainCode = chainCode ?? ''
     this.extendedPublicKey = extendedPublicKey ?? ''
   }

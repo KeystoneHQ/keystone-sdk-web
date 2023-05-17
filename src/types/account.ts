@@ -3,6 +3,7 @@ export interface AccountProps {
   path: string
   publicKey: string
   name?: string
+  xfp?: string
   chainCode?: string
   extendedPublicKey?: string
 }

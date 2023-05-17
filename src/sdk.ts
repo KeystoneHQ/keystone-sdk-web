@@ -9,7 +9,7 @@ import {
   KeystoneSolanaSDK, KeystoneTronSDK,
   KeystoneNearSDK, KeystoneSuiSDK
 } from './chains'
-import { parseMultiAccounts, generateKeyDerivationCall } from './wallet'
+import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall } from './wallet'
 
 export class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -117,5 +117,6 @@ export class KeystoneSDK {
   }
 
   static parseMultiAccounts = parseMultiAccounts
+  static parseHDKey = parseHDKey
   static generateKeyDerivationCall = generateKeyDerivationCall
 }

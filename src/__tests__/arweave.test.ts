@@ -1,7 +1,7 @@
 import KeystoneSDK, { type ArweaveAccount, type Signature } from '../../src'
-import { KeystoneArweaveSDK } from '../../src/chains/arweave'
+import { KeystoneArweaveSDK } from '../chains'
 import { UR } from '../../src/types/ur'
-import { toBuffer } from '../../src/utils'
+import { toBuffer } from '../utils'
 
 test('parseAccount', () => {
   const keystoneSDK = new KeystoneSDK()

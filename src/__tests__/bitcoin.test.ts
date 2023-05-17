@@ -1,6 +1,6 @@
 import KeystoneSDK from '../../src'
 import { UR } from '../../src/types/ur'
-import { toBuffer } from '../../src/utils'
+import { toBuffer } from '../utils'
 
 test('parsePSBT', () => {
   const keystoneSDK = new KeystoneSDK()

@@ -1,8 +1,8 @@
 import KeystoneSDK from '../../src'
-import { KeystoneSuiSDK } from '../../src/chains/sui'
-import { type SuiSignature } from '../../src/types/signature'
+import { KeystoneSuiSDK } from '../chains'
+import { type SuiSignature } from '../types'
 import { UR } from '../../src/types/ur'
-import { toBuffer } from '../../src/utils'
+import { toBuffer } from '../utils'
 
 test('parseSignature', () => {
   const keystoneSDK = new KeystoneSDK()

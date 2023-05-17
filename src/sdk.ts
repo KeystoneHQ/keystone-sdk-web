@@ -1,21 +1,15 @@
-import { CryptoMultiAccounts } from '@keystonehq/bc-ur-registry'
-import { type MultiAccounts } from './types/account'
-import { toHex } from './utils'
-import { Account } from './account'
-import { getCoinSymbol } from './utils/coin'
-import { KeystoneBitcoinSDK } from './chains/bitcoin'
-import { KeystoneEthereumSDK } from './chains/ethereum'
-import { KeystoneSolanaSDK } from './chains/solana'
-import { KeystoneCosmosSDK } from './chains/cosmos'
-import { KeystoneTronSDK } from './chains/tron'
-import { type UR, URType } from './types/ur'
-import { KeystoneLitecoinSDK } from './chains/litecoin'
-import { KeystoneBitcoinCashSDK } from './chains/bitcoin_cash'
-import { KeystoneDashSDK } from './chains/dash'
-import { KeystoneAptosSDK } from './chains/aptos'
-import { KeystoneNearSDK } from './chains'
-import { KeystoneArweaveSDK } from './chains/arweave'
-import { KeystoneSuiSDK } from './chains/sui'
+import {
+  KeystoneAptosSDK,
+  KeystoneArweaveSDK,
+  KeystoneBitcoinCashSDK,
+  KeystoneBitcoinSDK,
+  KeystoneCardanoSDK,
+  KeystoneCosmosSDK, KeystoneDashSDK,
+  KeystoneEthereumSDK, KeystoneLitecoinSDK,
+  KeystoneSolanaSDK, KeystoneTronSDK,
+  KeystoneNearSDK, KeystoneSuiSDK
+} from './chains'
+import { parseMultiAccounts, generateKeyDerivationCall } from './wallet'
 
 export class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -114,34 +108,14 @@ export class KeystoneSDK {
     return this._sui
   }
 
-  parseMultiAccounts (ur: UR): MultiAccounts {
-    if (ur.type !== URType.CryptoMultiAccounts) {
-      throw new Error('type not match')
+  private _cardano!: KeystoneCardanoSDK
+  get cardano (): KeystoneCardanoSDK {
+    if (this._cardano === undefined) {
+      this._cardano = new KeystoneCardanoSDK()
     }
-    const accounts = CryptoMultiAccounts.fromCBOR(ur.cbor)
-    return {
-      device: accounts.getDevice(),
-      masterFingerprint: toHex(accounts.getMasterFingerprint()),
-      keys: accounts.getKeys().map(key => {
-        const chainCode = toHex(key.getChainCode())
-        const parentFingerprint = toHex(key.getParentFingerprint())
-        const origin = key.getOrigin()
-        if (origin === undefined) {
-          throw new Error('multi accounts is invalid')
-        }
-        let extendedPublicKey
-        if (chainCode.length !== 0 && parentFingerprint.length !== 0) {
-          extendedPublicKey = key.getBip32Key()
-        }
-        return new Account({
-          chain: getCoinSymbol(origin.getComponents()[1].getIndex()),
-          path: `m/${origin.getPath()}`,
-          publicKey: toHex(key.getKey()),
-          name: key.getName(),
-          chainCode,
-          extendedPublicKey
-        })
-      })
-    }
+    return this._cardano
   }
+
+  static parseMultiAccounts = parseMultiAccounts
+  static generateKeyDerivationCall = generateKeyDerivationCall
 }

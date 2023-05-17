@@ -1,7 +1,7 @@
 import KeystoneSDK from '../../src'
-import { type TronSignature } from '../../src/types/signature'
+import { type TronSignature } from '../types'
 import { UR } from '../../src/types/ur'
-import { toBuffer } from '../../src/utils'
+import { toBuffer } from '../utils'
 
 test('parseSignature', () => {
   const keystoneSDK = new KeystoneSDK()

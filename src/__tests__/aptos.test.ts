@@ -1,8 +1,8 @@
-import KeystoneSDK from '../../src'
-import { KeystoneAptosSDK } from '../../src/chains/aptos'
-import { type AptosSignature } from '../../src/types/signature'
+import { KeystoneSDK } from '../sdk'
+import { KeystoneAptosSDK } from '../chains'
+import { type AptosSignature } from '../types'
 import { UR } from '../../src/types/ur'
-import { toBuffer } from '../../src/utils'
+import { toBuffer } from '../utils'
 
 test('parseSignature', () => {
   const keystoneSDK = new KeystoneSDK()

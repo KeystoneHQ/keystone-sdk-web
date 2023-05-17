@@ -11,6 +11,7 @@ import { type Chain } from '../chains/keystone'
 import { type PartialMessage } from '@bufbuild/protobuf'
 import { type CosmosAccount, type AptosAccount, type SuiAccount } from './account'
 import { type SaltLen, type SignType as ArweaveSignType } from '@keystonehq/bc-ur-registry-arweave'
+import { type CardanoCertKeyData, type CardanoUtxoData } from '@keystonehq/bc-ur-registry-cardano'
 
 export interface TronSignRequestProps {
   requestId: string
@@ -86,6 +87,14 @@ export interface NearSignRequestProps {
   path: string
   xfp: string
   account?: string
+  origin?: string
+}
+
+export interface CardanoSignRequestProps {
+  requestId: string
+  signData: Buffer
+  utxos: CardanoUtxoData[]
+  certKeys: CardanoCertKeyData[]
   origin?: string
 }
 

@@ -3,6 +3,11 @@ export interface Signature {
   signature: string
 }
 
+export interface CardanoSignature {
+  requestId: string
+  witnessSet: string
+}
+
 export interface EthSignature {
   signature: string
   requestId?: string

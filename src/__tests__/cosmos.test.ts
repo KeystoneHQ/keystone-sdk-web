@@ -1,8 +1,8 @@
 import KeystoneSDK from '../../src'
-import { KeystoneCosmosSDK } from '../../src/chains/cosmos'
-import { type CosmosSignature } from '../../src/types/signature'
+import { KeystoneCosmosSDK } from '../chains'
+import { type CosmosSignature } from '../types'
 import { UR } from '../../src/types/ur'
-import { toBuffer } from '../../src/utils'
+import { toBuffer } from '../utils'
 
 test('parseSignature', () => {
   const keystoneSDK = new KeystoneSDK()

@@ -2,13 +2,14 @@ import { type SignDataType as CosmosDataType } from '@keystonehq/bc-ur-registry-
 import { type DataType as EthDataType } from '@keystonehq/bc-ur-registry-eth'
 import { type SignType as SolDataType } from '@keystonehq/bc-ur-registry-sol'
 import { type SignType as AptosSignType } from '@keystonehq/bc-ur-registry-aptos'
+import { type SignType as SuiSignType } from '@keystonehq/bc-ur-registry-sui'
 import { type TokenInfo } from './token'
 import { type BchTx_Input } from '../gen/chains/keystone/protos/bch_transaction_pb'
 import { type Input, type Output } from '../gen/protos/btc_transaction_pb'
 import { type DashTx_Input } from '../gen/chains/keystone/protos/dash_transaction_pb'
 import { type Chain } from '../chains/keystone'
 import { type PartialMessage } from '@bufbuild/protobuf'
-import { type CosmosAccount, type AptosAccount } from './account'
+import { type CosmosAccount, type AptosAccount, type SuiAccount } from './account'
 import { type SaltLen, type SignType as ArweaveSignType } from '@keystonehq/bc-ur-registry-arweave'
 
 export interface TronSignRequestProps {
@@ -95,5 +96,13 @@ export interface ArweaveSignRequestProps {
   saltLen: SaltLen
   masterFingerprint: string
   account?: string
+  origin?: string
+}
+
+export interface SuiSignRequestProps {
+  requestId: string
+  signData: string
+  signType: SuiSignType
+  accounts: SuiAccount[]
   origin?: string
 }

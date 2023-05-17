@@ -36,3 +36,7 @@ export interface NearSignature {
   signature: string[]
   requestId?: string
 }
+
+export interface SuiSignature extends Signature {
+  publicKey: string
+}

@@ -12,4 +12,5 @@ export enum URType {
   KeystoneSignResult = 'keystone-sign-result',
   NearSignature = 'near-signature',
   ArweaveSignature = 'arweave-signature',
+  SuiSignature = 'sui-signature',
 }

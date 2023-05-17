@@ -15,6 +15,7 @@ import { KeystoneDashSDK } from './chains/dash'
 import { KeystoneAptosSDK } from './chains/aptos'
 import { KeystoneNearSDK } from './chains'
 import { KeystoneArweaveSDK } from './chains/arweave'
+import { KeystoneSuiSDK } from './chains/sui'
 
 export class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -103,6 +104,14 @@ export class KeystoneSDK {
       this._arweave = new KeystoneArweaveSDK()
     }
     return this._arweave
+  }
+
+  private _sui!: KeystoneSuiSDK
+  get sui (): KeystoneSuiSDK {
+    if (this._sui === undefined) {
+      this._sui = new KeystoneSuiSDK()
+    }
+    return this._sui
   }
 
   parseMultiAccounts (ur: UR): MultiAccounts {

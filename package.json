@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc -w",
     "build": "tsc -b tsconfig.build.json",
-    "test": "jest",
+    "test": "jest src",
     "proto": "buf generate src"
   },
   "files": [

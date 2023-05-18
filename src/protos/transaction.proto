@@ -6,6 +6,7 @@ option java_outer_classname = "TransactionProtoc";
 import "chains/keystone/protos/bch_transaction.proto";
 import "chains/keystone/protos/dash_transaction.proto";
 import "chains/keystone/protos/ltc_transaction.proto";
+import "chains/keystone/protos/tron_transaction.proto";
 
 message SignTransaction {
     string coinCode = 1;
@@ -16,7 +17,7 @@ message SignTransaction {
     oneof Transaction {
         // BtcTx btcTx = 6;
         // EthTx ethTx = 7;
-        // TronTx tronTx = 8;
+        TronTx tronTx = 8;
         // EtcTx etcTx = 9;
         BchTx bchTx = 10;
         DashTx dashTx = 11;

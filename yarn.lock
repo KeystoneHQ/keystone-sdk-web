@@ -775,14 +775,6 @@
     "@keystonehq/bc-ur-registry" "^0.5.5"
     uuid "^9.0.0"
 
-"@keystonehq/bc-ur-registry-tron@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-tron/-/bc-ur-registry-tron-0.1.0.tgz#74929c202089c44df7d78c6bf2bda087dbb5632f"
-  integrity sha512-6uHu1MAjio/ZYquv98uHSBMIeGJOIVSTJ0Pqyy7AfxcaI02WuN9ooUT6ef/RCfMWThpcE/MvRJ7BEV+cQWd67w==
-  dependencies:
-    "@keystonehq/bc-ur-registry" "0.5.4"
-    uuid "^9.0.0"
-
 "@keystonehq/bc-ur-registry@0.5.4":
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry/-/bc-ur-registry-0.5.4.tgz#5802486a29f5d772520d15579d40fba02860e27f"

@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { TronTx } from "../chains/keystone/protos/tron_transaction_pb";
 import { BchTx } from "../chains/keystone/protos/bch_transaction_pb";
 import { DashTx } from "../chains/keystone/protos/dash_transaction_pb";
 import { LtcTx } from "../chains/keystone/protos/ltc_transaction_pb";
@@ -45,7 +46,13 @@ export class SignTransaction extends Message<SignTransaction> {
     /**
      * BtcTx btcTx = 6;
      * EthTx ethTx = 7;
-     * TronTx tronTx = 8;
+     *
+     * @generated from field: protoc.TronTx tronTx = 8;
+     */
+    value: TronTx;
+    case: "tronTx";
+  } | {
+    /**
      * EtcTx etcTx = 9;
      *
      * @generated from field: protoc.BchTx bchTx = 10;
@@ -89,6 +96,7 @@ export class SignTransaction extends Message<SignTransaction> {
     { no: 3, name: "hdPath", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "timestamp", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 5, name: "decimal", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 8, name: "tronTx", kind: "message", T: TronTx, oneof: "Transaction" },
     { no: 10, name: "bchTx", kind: "message", T: BchTx, oneof: "Transaction" },
     { no: 11, name: "dashTx", kind: "message", T: DashTx, oneof: "Transaction" },
     { no: 12, name: "ltcTx", kind: "message", T: LtcTx, oneof: "Transaction" },

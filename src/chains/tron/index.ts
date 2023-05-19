@@ -1,20 +1,33 @@
-import { CryptoKeypath, PathComponent, TronSignRequest, TronSignature } from '@keystonehq/bc-ur-registry-tron'
-import { type TronSignature as TronSignatureType } from '../../types/signature'
-import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../../utils'
+import { toBuffer } from '../../utils'
 import { type UR, URType } from '../../types/ur'
-import { raw2json } from './transfer'
-import { type TronSignRequestProps } from '../../types/props'
+import { raw2tx } from './transfer'
+import {
+  type TronSignature,
+  type TronSignRequestProps
+} from '../../types'
+import { Transaction } from '../../gen/chains/tron/protos/tron_pb'
+import pako from 'pako'
+import { Base } from '../../gen/protos/base_pb'
+import { Payload, Payload_Type } from '../../gen/protos/payload_pb'
+import { SignTransaction } from '../../gen/protos/transaction_pb'
+import { KeystoneSignRequest, KeystoneSignResult } from '@keystonehq/bc-ur-registry-keystone'
 
 export class KeystoneTronSDK {
-  parseSignature (ur: UR): TronSignatureType {
-    if (ur.type !== URType.TronSignature) {
+  parseSignature (ur: UR): TronSignature {
+    if (ur.type !== URType.KeystoneSignResult) {
       throw new Error('type not match')
     }
-    const sig = TronSignature.fromCBOR(ur.cbor)
-    const requestId = sig.getRequestId()
+    const sig = KeystoneSignResult.fromCBOR(ur.cbor)
+    const base = Base.fromBinary(pako.ungzip(sig.getSignResult()))
+    if (base.data?.Content.case !== 'signTxResult') {
+      throw new Error('invalid sign result')
+    }
+    const { signId, rawTx } = base.data?.Content.value
+    const tx = Transaction.fromBinary(Buffer.from(rawTx, 'hex'))
+    const signature = Buffer.from(tx.signature[0]).toString('hex')
     return {
-      requestId: requestId === undefined ? undefined : uuidStringify(requestId),
-      signature: toHex(sig.getSignature())
+      requestId: signId,
+      signature
     }
   }
 
@@ -24,14 +37,36 @@ export class KeystoneTronSDK {
     path,
     xfp,
     tokenInfo,
-    address,
     origin
   }: TronSignRequestProps): UR {
-    return new TronSignRequest({
-      requestId: uuidParse(requestId),
-      signData: raw2json(toBuffer(signData), tokenInfo),
-      derivationPath: new CryptoKeypath(parsePath(path).map(e => new PathComponent(e)), toBuffer(xfp)),
-      address: (address !== undefined && address.length > 0) ? toBuffer(address) : undefined,
+    const tronTx = raw2tx(toBuffer(signData), tokenInfo)
+
+    const signDataBytes = pako.gzip(new Base({
+      version: 2,
+      description: 'QrCode Protocol',
+      deviceType: '',
+      data: new Payload({
+        xfp,
+        type: Payload_Type.SIGN_TX,
+        Content: {
+          case: 'signTx',
+          value: new SignTransaction({
+            coinCode: 'TRON',
+            hdPath: path,
+            signId: requestId,
+            timestamp: BigInt(Date.now()),
+            decimal: 6,
+            Transaction: {
+              case: 'tronTx',
+              value: tronTx
+            }
+          })
+        }
+      })
+    }).toBinary())
+
+    return new KeystoneSignRequest({
+      signData: Buffer.from(signDataBytes),
       origin
     }).toUR()
   }

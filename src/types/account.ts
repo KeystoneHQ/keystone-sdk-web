@@ -49,5 +49,5 @@ export interface ArweaveAccount {
 export interface SuiAccount {
   path: string
   xfp: string
-  address: string
+  address?: string
 }

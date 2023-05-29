@@ -15,4 +15,7 @@ export enum URType {
   NearSignature = 'near-signature',
   ArweaveSignature = 'arweave-signature',
   SuiSignature = 'sui-signature',
+  XrpAccount = 'bytes',
+  XrpSignRequest = 'bytes',
+  XrpSignature = 'bytes',
 }

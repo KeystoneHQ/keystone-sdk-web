@@ -10,6 +10,7 @@ import {
   KeystoneNearSDK, KeystoneSuiSDK
 } from './chains'
 import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall } from './wallet'
+import { KeystoneXrpSDK } from './chains/xrp'
 
 export class KeystoneSDK {
   private _btc!: KeystoneBitcoinSDK
@@ -114,6 +115,14 @@ export class KeystoneSDK {
       this._cardano = new KeystoneCardanoSDK()
     }
     return this._cardano
+  }
+
+  private _xrp!: KeystoneXrpSDK
+  get xrp (): KeystoneXrpSDK {
+    if (this._xrp === undefined) {
+      this._xrp = new KeystoneXrpSDK()
+    }
+    return this._xrp
   }
 
   static parseMultiAccounts = parseMultiAccounts

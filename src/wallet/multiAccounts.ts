@@ -1,7 +1,6 @@
 import { type MultiAccounts, type UR, URType } from '../types'
 import { CryptoMultiAccounts } from '@keystonehq/bc-ur-registry'
 import { getCoinSymbol, toHex } from '../utils'
-import { Account } from './account'
 
 export const parseMultiAccounts = (ur: UR): MultiAccounts => {
   if (ur.type !== URType.CryptoMultiAccounts) {
@@ -22,14 +21,14 @@ export const parseMultiAccounts = (ur: UR): MultiAccounts => {
       if (chainCode.length !== 0 && parentFingerprint.length !== 0) {
         extendedPublicKey = key.getBip32Key()
       }
-      return new Account({
+      return {
         chain: getCoinSymbol(origin.getComponents()[1].getIndex()),
         path: `m/${origin.getPath()}`,
         publicKey: toHex(key.getKey()),
         name: key.getName(),
         chainCode,
         extendedPublicKey
-      })
+      }
     })
   }
 }

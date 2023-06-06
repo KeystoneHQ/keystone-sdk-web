@@ -1,3 +1,9 @@
+export interface AccountExtra {
+  okx: {
+    chainId: number
+  }
+}
+
 export interface Account {
   chain: string
   path: string
@@ -6,7 +12,8 @@ export interface Account {
   chainCode: string
   extendedPublicKey: string
   xfp?: string
-  extra?: Record<string, any>
+  note?: string
+  extra: AccountExtra
 }
 
 export interface MultiAccounts {

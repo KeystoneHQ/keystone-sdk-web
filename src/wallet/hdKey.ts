@@ -1,6 +1,7 @@
 import { type Account, type UR, URType } from '../types'
 import { CryptoHDKey } from '@keystonehq/bc-ur-registry'
 import { getCoinSymbol, toHex } from '../utils'
+import { generateExtraData } from './accountHelper'
 
 export const parseHDKey = (ur: UR): Account => {
   if (ur.type !== URType.CryptoHDKey) {
@@ -19,13 +20,15 @@ export const parseHDKey = (ur: UR): Account => {
     extendedPublicKey = hdKey.getBip32Key()
   }
 
+  const coinType = origin.getComponents()[1].getIndex()
   return {
-    chain: getCoinSymbol(origin.getComponents()[1].getIndex()),
+    chain: getCoinSymbol(coinType),
     path: `m/${origin.getPath()}`,
     publicKey: toHex(hdKey.getKey()),
     name: hdKey.getName(),
     xfp: origin.getSourceFingerprint().toString('hex'),
     chainCode,
-    extendedPublicKey
+    extendedPublicKey,
+    extra: generateExtraData(coinType)
   }
 }

@@ -1,20 +1,19 @@
-export interface AccountProps {
-  chain?: string
-  path: string
-  publicKey: string
-  name?: string
-  xfp?: string
-  chainCode?: string
-  extendedPublicKey?: string
+export interface AccountExtra {
+  okx: {
+    chainId: number
+  }
 }
 
 export interface Account {
   chain: string
   path: string
   publicKey: string
-  name: string
-  getChainCode: () => string
-  getExtendedPublicKey: () => string
+  name?: string
+  chainCode: string
+  extendedPublicKey?: string
+  xfp?: string
+  note?: string
+  extra: AccountExtra
 }
 
 export interface MultiAccounts {

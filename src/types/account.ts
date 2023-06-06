@@ -8,9 +8,9 @@ export interface Account {
   chain: string
   path: string
   publicKey: string
-  name: string
+  name?: string
   chainCode: string
-  extendedPublicKey: string
+  extendedPublicKey?: string
   xfp?: string
   note?: string
   extra: AccountExtra

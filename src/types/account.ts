@@ -16,6 +16,12 @@ export interface Account {
   extra: AccountExtra
 }
 
+export enum AccountNote {
+  Standard = 'account.standard',
+  LedgerLegacy = 'account.ledger_legacy',
+  LedgerLive = 'account.ledger_live'
+}
+
 export interface MultiAccounts {
   masterFingerprint: string
   keys: Account[]

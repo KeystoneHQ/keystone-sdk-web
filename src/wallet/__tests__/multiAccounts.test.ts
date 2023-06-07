@@ -5,7 +5,7 @@ import { toBuffer } from '../../utils'
 test('parseMultiAccounts without xpub', () => {
   const type = 'crypto-multi-accounts'
   const cborHex =
-    'a3011ae9181cf30281d9012fa203582102eae4b876a8696134b868f88cc2f51f715f2dbedb7446b8e6edf3d4541c4eb67b06d90130a10188182cf51901f5f500f500f503686b657973746f6e65'
+    'a4011ae9181cf30281d9012fa203582102eae4b876a8696134b868f88cc2f51f715f2dbedb7446b8e6edf3d4541c4eb67b06d90130a10188182cf51901f5f500f500f503686b657973746f6e6504782832383437356338643830663663303662616662653436613764313735306633666366323536356637'
   const expectResult = {
     device: 'keystone',
     keys: [
@@ -15,7 +15,8 @@ test('parseMultiAccounts without xpub', () => {
         publicKey: '02eae4b876a8696134b868f88cc2f51f715f2dbedb7446b8e6edf3d4541c4eb67b'
       }
     ],
-    masterFingerprint: 'e9181cf3'
+    masterFingerprint: 'e9181cf3',
+    deviceId: '28475c8d80f6c06bafbe46a7d1750f3fcf2565f7'
   }
 
   const multiAccounts = parseMultiAccounts(new UR(toBuffer(cborHex), type))
@@ -23,6 +24,7 @@ test('parseMultiAccounts without xpub', () => {
   expect(multiAccounts.keys[0]).toMatchObject(expectResult.keys[0])
   expect(multiAccounts.keys.length).toBe(expectResult.keys.length)
   expect(multiAccounts.masterFingerprint).toBe(expectResult.masterFingerprint)
+  expect(multiAccounts.deviceId).toBe(expectResult.deviceId)
 })
 
 test('parseMultiAccounts with xpub', () => {

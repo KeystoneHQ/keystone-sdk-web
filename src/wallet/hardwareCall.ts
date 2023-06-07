@@ -3,32 +3,35 @@ import {
   DerivationAlgorithm,
   KeyDerivation,
   QRHardwareCall,
-  QRHardwareCallName
+  KeyDerivationSchema, QRHardwareCallType
 } from '@keystonehq/bc-ur-registry'
 import { type UR } from '@ngraveio/bc-ur'
 import { pathToKeypath } from '../utils'
 
 export { Curve, DerivationAlgorithm }
 
-export interface KeyDerivationCallArgs {
-  paths: string[]
+export interface KeySchema {
+  path: string
   curve?: Curve
   algo?: DerivationAlgorithm
+}
+
+export interface KeyDerivationCallArgs {
+  schemas: KeySchema[]
   origin?: string
 }
 
 export const generateKeyDerivationCall = ({
-  paths,
-  curve = Curve.secp256k1,
-  algo = DerivationAlgorithm.slip10,
+  schemas,
   origin
 }: KeyDerivationCallArgs): UR => {
-  if (curve === Curve.secp256k1 && algo === DerivationAlgorithm.bip32ed25519) {
-    throw new Error('the combination of the given curve and algo not supported')
-  }
-
-  const keypaths = paths.map(path => pathToKeypath(path))
-  const keyDerivation = new KeyDerivation(keypaths, curve, algo, origin)
-  const hardwareCall = new QRHardwareCall(QRHardwareCallName.KeyDerivation, keyDerivation)
+  const keyDerivationSchemas = schemas.map(({ path, curve = Curve.secp256k1, algo = DerivationAlgorithm.slip10 }) => {
+    if (curve === Curve.secp256k1 && algo === DerivationAlgorithm.bip32ed25519) {
+      throw new Error('the combination of the given curve and algo not supported')
+    }
+    return new KeyDerivationSchema(pathToKeypath(path), curve, algo)
+  })
+  const keyDerivation = new KeyDerivation(keyDerivationSchemas)
+  const hardwareCall = new QRHardwareCall(QRHardwareCallType.KeyDerivation, keyDerivation, origin)
   return hardwareCall.toUR()
 }

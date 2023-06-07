@@ -1,12 +1,12 @@
 {
   "name": "@keystonehq/keystone-sdk",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Keystone SDK",
   "main": "dist/index.js",
   "scripts": {
     "start": "tsc -w",
     "build": "tsc -b tsconfig.build.json",
-    "test": "jest",
+    "test": "jest src",
     "proto": "buf generate src"
   },
   "files": [
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/KeystoneHQ/keystone-sdk-web#readme",
   "dependencies": {
     "@bufbuild/protobuf": "^1.2.0",
-    "@keystonehq/bc-ur-registry": "^0.5.5",
+    "@keystonehq/bc-ur-registry": "^0.6.2",
     "@keystonehq/bc-ur-registry-aptos": "^0.3.2",
     "@keystonehq/bc-ur-registry-arweave": "^0.4.0",
     "@keystonehq/bc-ur-registry-cardano": "^0.2.0",

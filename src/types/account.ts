@@ -17,9 +17,10 @@ export interface Account {
 }
 
 export interface MultiAccounts {
-  device: string
   masterFingerprint: string
   keys: Account[]
+  device?: string
+  deviceId?: string
 }
 
 export interface PathComponent {

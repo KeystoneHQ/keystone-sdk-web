@@ -34,6 +34,7 @@ export const parseMultiAccounts = (ur: UR): MultiAccounts => {
         note: key.getNote(),
         extra: generateExtraData(coinType)
       }
-    })
+    }),
+    deviceId: accounts.getDeviceId()
   }
 }

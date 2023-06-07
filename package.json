@@ -24,7 +24,7 @@
   "homepage": "https://github.com/KeystoneHQ/keystone-sdk-web#readme",
   "dependencies": {
     "@bufbuild/protobuf": "^1.2.0",
-    "@keystonehq/bc-ur-registry": "^0.6.2",
+    "@keystonehq/bc-ur-registry": "^0.6.3",
     "@keystonehq/bc-ur-registry-aptos": "^0.3.2",
     "@keystonehq/bc-ur-registry-arweave": "^0.4.0",
     "@keystonehq/bc-ur-registry-cardano": "^0.2.0",

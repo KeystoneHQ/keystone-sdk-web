@@ -13,7 +13,8 @@ test('parseHDKey', () => {
     name: 'Keystone',
     xfp: 'f23f9fd2',
     chainCode: '712a9187e5c60c573a5acce855445376e1b74c240e417fe8cb2a8fdfd78d2d9d',
-    extendedPublicKey: 'xpub6CBZfsQuZgVnvTcScAAXSxtX5jdMHtX5LdRuygnTScMBbKyjsxznd8XMEqDntdY1jigmjunwRwHsQs3xusYQBVFbvLdN4YLzH8caLSSiAoV'
+    extendedPublicKey: 'xpub6CBZfsQuZgVnvTcScAAXSxtX5jdMHtX5LdRuygnTScMBbKyjsxznd8XMEqDntdY1jigmjunwRwHsQs3xusYQBVFbvLdN4YLzH8caLSSiAoV',
+    note: 'account.standard'
   }
 
   expect(parseHDKey(new UR(toBuffer(cborHex), type))).toMatchObject(expectResult)

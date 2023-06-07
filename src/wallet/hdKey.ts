@@ -29,6 +29,7 @@ export const parseHDKey = (ur: UR): Account => {
     xfp: origin.getSourceFingerprint().toString('hex'),
     chainCode,
     extendedPublicKey,
+    note: hdKey.getNote(),
     extra: generateExtraData(coinType)
   }
 }

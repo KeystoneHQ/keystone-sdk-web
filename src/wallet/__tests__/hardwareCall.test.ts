@@ -19,13 +19,13 @@ describe('hardwareCall', () => {
     it('should generate key derivation call given different curve and algo', () => {
       const schemas = [
         { path: "m/44'/0'/0'"},
-        { path: "m/44'/501'/0'/0'/0", curve: Curve.ed25519 }
+        { path: "m/44'/501'/0'/0'/0'", curve: Curve.ed25519 }
       ]
 
       const callUR = generateKeyDerivationCall({schemas})
 
       expect(callUR.type).toBe('qr-hardware-call')
-      expect(callUR.cbor.toString('hex')).toBe('a2010002d90515a10182d90516a301d90130a10186182cf500f500f502000300d90516a301d90130a1018a182cf51901f5f500f500f500f402010300')
+      expect(callUR.cbor.toString('hex')).toBe('a2010002d90515a10182d90516a301d90130a10186182cf500f500f502000300d90516a301d90130a1018a182cf51901f5f500f500f500f502010300')
     })
 
     it('should throw error given curve is secp256k1 and algo is bip32ed25519', () => {

@@ -1,31 +1,39 @@
-import { generateKeyDerivationCall } from '../hardwareCall'
-import { Curve, DerivationAlgorithm } from '@keystonehq/bc-ur-registry'
+import { generateKeyDerivationCall, Curve, DerivationAlgorithm } from '../hardwareCall'
 
 describe('hardwareCall', () => {
   describe('generateKeyDerivationCall', () => {
     it('should generate key derivation call given HD paths', () => {
-      const paths = ["m/44'/0'/0'", "m/49'/0'/0'", "m/84'/0'/0'", "m/44'/60'/0'"]
+      const schemas = [
+        { path: "m/44'/0'/0'"},
+        { path: "m/49'/0'/0'"},
+        { path: "m/84'/0'/0'"},
+        { path: "m/60'/0'/0'"},
+      ]
 
-      const callUR = generateKeyDerivationCall({ paths })
+      const callUR = generateKeyDerivationCall({ schemas })
 
       expect(callUR.type).toBe('qr-hardware-call')
-      expect(callUR.cbor.toString('hex')).toBe('a2016e6b65792d64657269766174696f6e02d90515a30184d90130a10186182cf500f500f5d90130a101861831f500f500f5d90130a101861854f500f500f5d90130a10186182cf5183cf500f50269736563703235366b310366736c69703130')
+      expect(callUR.cbor.toString('hex')).toBe('a2010002d90515a10184d90516a301d90130a10186182cf500f500f502000300d90516a301d90130a101861831f500f500f502000300d90516a301d90130a101861854f500f500f502000300d90516a301d90130a10186183cf500f500f502000300')
     })
 
     it('should generate key derivation call given different curve and algo', () => {
-      const paths = ["m/44'/0'/0'", "m/49'/0'/0'", "m/84'/0'/0'", "m/44'/60'/0'"]
+      const schemas = [
+        { path: "m/44'/0'/0'"},
+        { path: "m/44'/501'/0'/0'/0", curve: Curve.ed25519 }
+      ]
 
-      const callUR = generateKeyDerivationCall({ paths, curve: Curve.ed25519, origin: 'dummy wallet name' })
+      const callUR = generateKeyDerivationCall({schemas})
 
       expect(callUR.type).toBe('qr-hardware-call')
-      expect(callUR.cbor.toString('hex')).toBe('a2016e6b65792d64657269766174696f6e02d90515a40184d90130a10186182cf500f500f5d90130a101861831f500f500f5d90130a101861854f500f500f5d90130a10186182cf5183cf500f50267656432353531390366736c69703130047164756d6d792077616c6c6574206e616d65')
+      expect(callUR.cbor.toString('hex')).toBe('a2010002d90515a10182d90516a301d90130a10186182cf500f500f502000300d90516a301d90130a1018a182cf51901f5f500f500f500f402010300')
     })
 
     it('should throw error given curve is secp256k1 and algo is bip32ed25519', () => {
-      const paths = ["m/44'/0'/0'", "m/49'/0'/0'", "m/84'/0'/0'", "m/44'/60'/0'"]
-      const params = { paths, curve: Curve.secp256k1, algo: DerivationAlgorithm.bip32ed25519 }
+      const schemas = [
+        { path: "m/44'/0'/0'", curve: Curve.secp256k1, algo: DerivationAlgorithm.bip32ed25519 }
+      ]
 
-      expect(() => generateKeyDerivationCall(params)).toThrow(new Error('the combination of the given curve and algo not supported'))
+      expect(() => generateKeyDerivationCall({ schemas })).toThrow(new Error('the combination of the given curve and algo not supported'))
     })
   })
 })

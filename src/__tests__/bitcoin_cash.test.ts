@@ -21,13 +21,13 @@ test('generateSignRequest', () => {
   }]
   const outputs = [
     {
-      address: 'bitcoincash:qzrxqxsx0lfzyk4ht60a5hwwtr2xjvtxmu0qhkusnx',
+      address: 'qzrxqxsx0lfzyk4ht60a5hwwtr2xjvtxmu0qhkusnx',
       value: BigInt('10000'),
       isChange: false,
       changeAddressPath: ''
     },
     {
-      address: 'bitcoincash:qpgw8p85ysnjutpsk6u490ytydmgdlmc6vzxu680su',
+      address: 'qpgw8p85ysnjutpsk6u490ytydmgdlmc6vzxu680su',
       value: BigInt('18507500'),
       isChange: true,
       changeAddressPath: "M/44'/145'/0'/0/0"
@@ -36,7 +36,7 @@ test('generateSignRequest', () => {
   const fee = '2250'
 
   const type = 'keystone-sign-request'
-  const cborHex = 'a20159016c1f8b08000000000000035d8ebb4a03411885c96ab1a471934aac42109440c85cfe99cc68232ac14651df60aeaeb96d92dd4d36a97c042b6bb1b1f201f4012c045f43506c2ceddc5a381c38c5c7f9c2a0be71313b4aac6b9ccf922c31c970eb662d0cea618fd09eec1d93e64f505d3b3c3aa96f1b23816b47dac2816903d1aead28c16dc615a34a18cf306fdc3d3e7ffca2ddf0f22508df6ad1c37af3be523d504c6aa395520e635d0e2a808223b66c41803ae6a8248c61ccb801459d10aeabad419a28e139a75165f3f5e92b6c1e22c2940529bad218e1b19758118c0c57a4cb89772011388f2c78dcf51613d0e59fe098b252594b0cd4b66aa30ec04e0703dbe9a0321dd4daaf727d9d99e47a6c541aef4d57b3625aa4051afad5720071c69162f16291cd48d19f67c52847d37890a7e322ba3d6b5dfe8327570b31116c998efb793649073c2fad96d9d28eaeec7064f87c55e45ca0348fbedf3fc3cd4ab376fa5fe80fcdc1dd0f96010000026a4243482057616c6c6574'
+  const cborHex = 'a2015901601f8b08000000000000035d8e3b4a03511885c96831a4314915ac4210228130f7f1df9b7b3b4964b051d41ddc6742dec9cc2493acc2ca5ad258b900376021b80037202a6ec0cea985c381537c7c270c6a4737abfedcbac6f56a9ececd7c72fc1984412d8c098d657c4e9aef41f9a0d7bfa89d1823816b473ac281e900d1aea328c11dc615a34a18cf306fdc3f3e7ffca2d3f0761f84afd5cafeb0f9502a9f2926b5d14a2987b12e061540c1115bb420401d735412c63066dc80a24e08d7d5d6204d94f09cd34aa9fef2f41d367b883065418aae344678ec25560423c315e972e21d4804ce230b1e77bdc50474e1131c53565cd61203b5edea3402684518582b424522d48ecaede56e952ff3244713bfdb8e619872a4d870b34957241fadd37c9aa1e5709c25b3bc7277d58e0b6031d8888560db6436cad24532e65961dfa65b3b1dd8c9d4f0f52ecfb8404956f979fb0aeba566f5f2bff80f26ae4ccb7e010000026a4243482057616c6c6574'
   const expectResult = new UR(toBuffer(cborHex), type)
   const result = keystoneSDK.bch.generateSignRequest({
     requestId,

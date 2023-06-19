@@ -1,12 +1,10 @@
-import { CryptoKeypath, PathComponent, SignType, SuiSignRequest, SuiSignature } from '@keystonehq/bc-ur-registry-sui'
+import { CryptoKeypath, PathComponent, SuiSignRequest, SuiSignature } from '@keystonehq/bc-ur-registry-sui'
 import { type SuiSignature as SuiSignatureType } from '../types/signature'
 import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'
 import { type SuiSignRequestProps } from '../types/props'
 
 export class KeystoneSuiSDK {
-  static SignType = SignType
-
   parseSignature (ur: UR): SuiSignatureType {
     if (ur.type !== URType.SuiSignature) {
       throw new Error('type not match')
@@ -22,8 +20,7 @@ export class KeystoneSuiSDK {
 
   generateSignRequest ({
     requestId,
-    signData,
-    signType,
+    intentMessage,
     accounts,
     origin
   }: SuiSignRequestProps): UR {
@@ -40,8 +37,7 @@ export class KeystoneSuiSDK {
     }
     return new SuiSignRequest({
       requestId: uuidParse(requestId),
-      signData: toBuffer(signData),
-      signType,
+      intentMessage: toBuffer(intentMessage),
       derivationPaths,
       addresses,
       origin

@@ -767,10 +767,10 @@
     bs58check "^2.1.2"
     uuid "^8.3.2"
 
-"@keystonehq/bc-ur-registry-sui@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-sui/-/bc-ur-registry-sui-0.2.0.tgz#bd98f4e258d2e43138e44251512580de5e99fc5c"
-  integrity sha512-6cSdKq9XH7jvd2mNf/rHNm0BOB1LU2YofuBYILY8J8/17bUEmhxfz6kTIrjLqUwCenIeKeUAFfygV8kUxGpy1g==
+"@keystonehq/bc-ur-registry-sui@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-sui/-/bc-ur-registry-sui-0.3.0.tgz#72f9b2fd167cb759f961437907fff9e034864fa4"
+  integrity sha512-z2EVkY+ZOu766KsQklM3rXINXaXG2nUmTWMsmde0KO7KiAxW6TYloHXh+DdVZAGWUBQNs1lkVk/9elbDt8Bwog==
   dependencies:
     "@keystonehq/bc-ur-registry" "^0.5.5"
     uuid "^9.0.0"

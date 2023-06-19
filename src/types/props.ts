@@ -2,7 +2,6 @@ import { type SignDataType as CosmosDataType } from '@keystonehq/bc-ur-registry-
 import { type DataType as EthDataType } from '@keystonehq/bc-ur-registry-eth'
 import { type SignType as SolDataType } from '@keystonehq/bc-ur-registry-sol'
 import { type SignType as AptosSignType } from '@keystonehq/bc-ur-registry-aptos'
-import { type SignType as SuiSignType } from '@keystonehq/bc-ur-registry-sui'
 import { type TokenInfo } from './token'
 import { type BchTx_Input } from '../gen/chains/keystone/protos/bch_transaction_pb'
 import { type Input, type Output } from '../gen/protos/btc_transaction_pb'
@@ -110,8 +109,7 @@ export interface ArweaveSignRequestProps {
 
 export interface SuiSignRequestProps {
   requestId: string
-  signData: string
-  signType: SuiSignType
+  intentMessage: string
   accounts: SuiAccount[]
   origin?: string
 }

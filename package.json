@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "tsc -w",
-    "build": "tsc -b tsconfig.build.json",
+    "build": "./build.sh",
     "test": "jest src",
     "proto": "buf generate src"
   },

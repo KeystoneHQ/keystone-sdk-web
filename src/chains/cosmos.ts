@@ -3,6 +3,7 @@ import { URType, type UR } from '../types/ur'
 import { CosmosSignRequest, CosmosSignature, CryptoKeypath, PathComponent, SignDataType as DataType } from '@keystonehq/bc-ur-registry-cosmos'
 import { type CosmosSignature as CosmosSignatureType } from '../types/signature'
 import { type CosmosSignRequestProps } from '../types/props'
+import * as tracker from '../tracker'
 
 export class KeystoneCosmosSDK {
   static DataType = DataType
@@ -12,8 +13,12 @@ export class KeystoneCosmosSDK {
       throw new Error('type not match')
     }
     const sig = CosmosSignature.fromCBOR(ur.cbor)
+    const requestId = uuidStringify(sig.getRequestId())
+    tracker.track('sign', {
+      requestId
+    })
     return {
-      requestId: uuidStringify(sig.getRequestId()),
+      requestId,
       signature: toHex(sig.getSignature()),
       publicKey: toHex(sig.getPublicKey())
     }
@@ -34,6 +39,7 @@ export class KeystoneCosmosSDK {
       )
       addresses.push(account.address)
     })
+    tracker.config.xfp = accounts[0].xfp
     return new CosmosSignRequest({
       signData: toBuffer(signData),
       dataType,

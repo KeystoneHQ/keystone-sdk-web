@@ -11,8 +11,28 @@ import {
 } from './chains'
 import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
+import * as tracker from './tracker'
+
+interface KeystoneSDKConfig {
+  origin?: string
+  disableTracker?: boolean
+}
 
 export class KeystoneSDK {
+  config?: KeystoneSDKConfig
+
+  constructor (config?: KeystoneSDKConfig) {
+    if (config !== undefined) {
+      this.config = config
+      if (typeof config.origin === 'string') {
+        tracker.config.origin = config.origin
+      }
+      if (config.disableTracker === true) {
+        tracker.config.enable = false
+      }
+    }
+  }
+
   private _btc!: KeystoneBitcoinSDK
   get btc (): KeystoneBitcoinSDK {
     if (this._btc === undefined) {
@@ -125,7 +145,20 @@ export class KeystoneSDK {
     return this._xrp
   }
 
+  parseMultiAccounts = parseMultiAccounts
+  parseHDKey = parseHDKey
+  generateKeyDerivationCall = generateKeyDerivationCall
+
+  /**
+   * @deprecated
+   */
   static parseMultiAccounts = parseMultiAccounts
+  /**
+   * @deprecated
+   */
   static parseHDKey = parseHDKey
+  /**
+   * @deprecated
+   */
   static generateKeyDerivationCall = generateKeyDerivationCall
 }

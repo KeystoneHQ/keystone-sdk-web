@@ -28,7 +28,7 @@ export class KeystoneSDK {
         tracker.config.origin = config.origin
       }
       if (config.disableTracker === true) {
-        tracker.config.enable = false
+        tracker.config.enable = !config.disableTracker
       }
     }
   }
@@ -150,15 +150,27 @@ export class KeystoneSDK {
   generateKeyDerivationCall = generateKeyDerivationCall
 
   /**
-   * @deprecated
+   * @deprecated since version 0.2.1.
+   * @description Replaced by a instance function with same name. It will be removed since version 0.3.0.
+   * @example
+   * const sdk = new KeystoneSDK();
+   * const multiAccounts = sdk.parseMultiAccounts(ur);
    */
   static parseMultiAccounts = parseMultiAccounts
   /**
-   * @deprecated
+   * @deprecated since version 0.2.1.
+   * @description Replaced by a instance function with same name. It will be removed since version 0.3.0.
+   * @example
+   * const sdk = new KeystoneSDK();
+   * const account = sdk.parseHDKey(ur);
    */
   static parseHDKey = parseHDKey
   /**
-   * @deprecated
+   * @deprecated since version 0.2.1.
+   * @description Replaced by a instance function with same name. It will be removed since version 0.3.0.
+   * @example
+   * const sdk = new KeystoneSDK();
+   * const ur = sdk.generateKeyDerivationCall(args);
    */
   static generateKeyDerivationCall = generateKeyDerivationCall
 }

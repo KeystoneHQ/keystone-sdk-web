@@ -11,8 +11,28 @@ import {
 } from './chains'
 import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
+import * as tracker from './tracker'
+
+interface KeystoneSDKConfig {
+  origin?: string
+  disableTracker?: boolean
+}
 
 export class KeystoneSDK {
+  config?: KeystoneSDKConfig
+
+  constructor (config?: KeystoneSDKConfig) {
+    if (config !== undefined) {
+      this.config = config
+      if (typeof config.origin === 'string') {
+        tracker.config.origin = config.origin
+      }
+      if (config.disableTracker === true) {
+        tracker.config.enable = !config.disableTracker
+      }
+    }
+  }
+
   private _btc!: KeystoneBitcoinSDK
   get btc (): KeystoneBitcoinSDK {
     if (this._btc === undefined) {
@@ -125,7 +145,32 @@ export class KeystoneSDK {
     return this._xrp
   }
 
+  parseMultiAccounts = parseMultiAccounts
+  parseHDKey = parseHDKey
+  generateKeyDerivationCall = generateKeyDerivationCall
+
+  /**
+   * @deprecated since version 0.2.1.
+   * @description Replaced by a instance function with same name. It will be removed since version 0.3.0.
+   * @example
+   * const sdk = new KeystoneSDK();
+   * const multiAccounts = sdk.parseMultiAccounts(ur);
+   */
   static parseMultiAccounts = parseMultiAccounts
+  /**
+   * @deprecated since version 0.2.1.
+   * @description Replaced by a instance function with same name. It will be removed since version 0.3.0.
+   * @example
+   * const sdk = new KeystoneSDK();
+   * const account = sdk.parseHDKey(ur);
+   */
   static parseHDKey = parseHDKey
+  /**
+   * @deprecated since version 0.2.1.
+   * @description Replaced by a instance function with same name. It will be removed since version 0.3.0.
+   * @example
+   * const sdk = new KeystoneSDK();
+   * const ur = sdk.generateKeyDerivationCall(args);
+   */
   static generateKeyDerivationCall = generateKeyDerivationCall
 }

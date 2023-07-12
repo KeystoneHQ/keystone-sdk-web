@@ -2,7 +2,6 @@ import { type MultiAccounts, type UR, URType } from '../types'
 import { CryptoMultiAccounts } from '@keystonehq/bc-ur-registry'
 import { getCoinSymbol, toHex } from '../utils'
 import { generateExtraData } from './accountHelper'
-import { track } from '../tracker'
 
 export const parseMultiAccounts = (ur: UR): MultiAccounts => {
   if (ur.type !== URType.CryptoMultiAccounts) {
@@ -10,9 +9,6 @@ export const parseMultiAccounts = (ur: UR): MultiAccounts => {
   }
   const accounts = CryptoMultiAccounts.fromCBOR(ur.cbor)
   const masterFingerprint = toHex(accounts.getMasterFingerprint())
-  track('sync', {
-    xfp: masterFingerprint
-  })
   return {
     device: accounts.getDevice(),
     masterFingerprint,

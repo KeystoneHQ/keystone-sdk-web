@@ -1,11 +1,11 @@
 {
   "name": "@keystonehq/keystone-sdk",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Keystone SDK",
   "main": "dist/index.js",
   "scripts": {
     "start": "tsc -w",
-    "build": "./build.sh",
+    "build": "tsc -b tsconfig.build.json",
     "test": "jest src",
     "proto": "buf generate src"
   },

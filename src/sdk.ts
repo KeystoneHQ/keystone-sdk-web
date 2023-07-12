@@ -7,7 +7,8 @@ import {
   KeystoneCosmosSDK, KeystoneDashSDK,
   KeystoneEthereumSDK, KeystoneLitecoinSDK,
   KeystoneSolanaSDK, KeystoneTronSDK,
-  KeystoneNearSDK, KeystoneSuiSDK
+  KeystoneNearSDK, KeystoneSuiSDK,
+  KeystoneEvmSDK
 } from './chains'
 import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
@@ -55,6 +56,14 @@ export class KeystoneSDK {
       this._cosmos = new KeystoneCosmosSDK()
     }
     return this._cosmos
+  }
+
+  private _evm!: KeystoneEvmSDK
+  get evm (): KeystoneEvmSDK {
+    if (this._evm === undefined) {
+      this._evm = new KeystoneEvmSDK()
+    }
+    return this._evm
   }
 
   private _tron!: KeystoneTronSDK

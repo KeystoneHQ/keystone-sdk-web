@@ -25,7 +25,7 @@ export function uuidStringify (id: Buffer): string {
 export function parsePath (path: string): PathComponent[] {
   const chunks = path.replace(/^m\//i, '').split('/')
   return chunks.map(chunk => {
-    const hardened = /'$/.test(chunk)
+    const hardened = chunk.endsWith("'")
     return {
       index: Number(hardened ? chunk.substring(0, chunk.length - 1) : chunk),
       hardened

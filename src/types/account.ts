@@ -40,6 +40,12 @@ export interface CosmosAccount {
   address: string
 }
 
+export interface EvmAccount {
+  path: string
+  xfp: string
+  address?: string
+}
+
 export interface AptosAccount {
   path: string
   xfp: string

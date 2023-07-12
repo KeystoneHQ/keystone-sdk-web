@@ -8,9 +8,10 @@ import { type Input, type Output } from '../gen/protos/btc_transaction_pb'
 import { type DashTx_Input } from '../gen/chains/keystone/protos/dash_transaction_pb'
 import { type Chain } from '../chains/keystone'
 import { type PartialMessage } from '@bufbuild/protobuf'
-import { type CosmosAccount, type AptosAccount, type SuiAccount } from './account'
+import { type CosmosAccount, type AptosAccount, type SuiAccount, type EvmAccount } from './account'
 import { type SaltLen, type SignType as ArweaveSignType } from '@keystonehq/bc-ur-registry-arweave'
 import { type CardanoCertKeyData, type CardanoUtxoData } from '@keystonehq/bc-ur-registry-cardano'
+import { type SignDataType as EvmDataType } from '@keystonehq/bc-ur-registry-evm'
 
 export interface TronSignRequestProps {
   requestId: string
@@ -27,6 +28,15 @@ export interface CosmosSignRequestProps {
   signData: string
   dataType: CosmosDataType
   accounts: CosmosAccount[]
+  origin?: string
+}
+
+export interface EvmSignRequestProps {
+  requestId: string
+  signData: string
+  dataType: EvmDataType
+  customChainIdentifier: number
+  account: EvmAccount
   origin?: string
 }
 

@@ -30,6 +30,7 @@
     "@keystonehq/bc-ur-registry-cardano": "^0.2.0",
     "@keystonehq/bc-ur-registry-cosmos": "^0.2.2",
     "@keystonehq/bc-ur-registry-eth": "^0.15.2",
+    "@keystonehq/bc-ur-registry-evm": "^0.5.2",
     "@keystonehq/bc-ur-registry-keystone": "^0.1.0",
     "@keystonehq/bc-ur-registry-near": "^0.8.0",
     "@keystonehq/bc-ur-registry-sol": "^0.6.2",

@@ -3,9 +3,15 @@ import { CryptoKeypath, DataType, ETHSignature, EthSignRequest, PathComponent } 
 import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'
 import { type EthSignRequestProps } from '../types/props'
+import { type KeystoneSDKConfig } from '../sdk'
 
 export class KeystoneEthereumSDK {
   static DataType = DataType
+  config: KeystoneSDKConfig | undefined
+
+  constructor (config?: KeystoneSDKConfig) {
+    this.config = config
+  }
 
   parseSignature (ur: UR): EthSignature {
     if (ur.type !== URType.EthSignature) {
@@ -37,7 +43,7 @@ export class KeystoneEthereumSDK {
       derivationPath: new CryptoKeypath(parsePath(path).map(e => new PathComponent(e)), toBuffer(xfp)),
       chainId,
       address: address !== undefined ? toBuffer(address) : undefined,
-      origin
+      origin: origin ?? this.config?.origin
     }).toUR()
   }
 }

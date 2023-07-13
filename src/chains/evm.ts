@@ -3,9 +3,15 @@ import { URType, type UR } from '../types/ur'
 import { EvmSignRequest, EvmSignature, CryptoKeypath, PathComponent, SignDataType as DataType } from '@keystonehq/bc-ur-registry-evm'
 import { type EvmSignRequestProps } from '../types/props'
 import { type Signature } from '../types'
+import { type KeystoneSDKConfig } from '../sdk'
 
 export class KeystoneEvmSDK {
   static DataType = DataType
+  config: KeystoneSDKConfig | undefined
+
+  constructor (config?: KeystoneSDKConfig) {
+    this.config = config
+  }
 
   parseSignature (ur: UR): Signature {
     if (ur.type !== URType.EvmSignature) {
@@ -35,7 +41,7 @@ export class KeystoneEvmSDK {
       derivationPath,
       requestId: uuidParse(requestId),
       address: account.address !== undefined ? toBuffer(account.address.substring(account.address.startsWith('0x') ? 2 : 0)) : undefined,
-      origin
+      origin: origin ?? this.config?.origin
     }).toUR()
   }
 }

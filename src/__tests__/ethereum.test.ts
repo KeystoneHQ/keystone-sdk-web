@@ -19,7 +19,9 @@ test('parseSignature', () => {
 })
 
 test('generateSignRequest', () => {
-  const keystoneSDK = new KeystoneSDK()
+  const keystoneSDK = new KeystoneSDK({
+    origin: 'metamask'
+  })
 
   const requestId = '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
   const signData = 'f849808609184e72a00082271094000000000000000000000000000000000000000080a47f7465737432000000000000000000000000000000000000000000000000000000600057808080'
@@ -27,12 +29,11 @@ test('generateSignRequest', () => {
   const xfp = '12345678'
   const chainId = 1
   const address = ''
-  const origin = 'metamask'
   const dataType = KeystoneEthereumSDK.DataType.transaction
 
   const type = 'eth-sign-request'
   const cborHex = 'a701d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d02584bf849808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000578080800301040105d90130a2018a182cf501f501f500f401f4021a12345678064007686d6574616d61736b'
   const expectResult = new UR(toBuffer(cborHex), type)
 
-  expect(keystoneSDK.eth.generateSignRequest({ requestId, signData, dataType, path, xfp, chainId, address, origin })).toStrictEqual(expectResult)
+  expect(keystoneSDK.eth.generateSignRequest({ requestId, signData, dataType, path, xfp, chainId, address })).toStrictEqual(expectResult)
 })

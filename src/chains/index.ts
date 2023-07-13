@@ -1,5 +1,6 @@
 export * from './bitcoin'
 export * from './cosmos'
+export * from './evm'
 export * from './ethereum'
 export * from './solana'
 export * from './tron'

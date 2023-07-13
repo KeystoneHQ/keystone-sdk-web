@@ -7,12 +7,13 @@ import {
   KeystoneCosmosSDK, KeystoneDashSDK,
   KeystoneEthereumSDK, KeystoneLitecoinSDK,
   KeystoneSolanaSDK, KeystoneTronSDK,
-  KeystoneNearSDK, KeystoneSuiSDK
+  KeystoneNearSDK, KeystoneSuiSDK,
+  KeystoneEvmSDK
 } from './chains'
 import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
 
-interface KeystoneSDKConfig {
+export interface KeystoneSDKConfig {
   origin?: string
 }
 
@@ -20,9 +21,7 @@ export class KeystoneSDK {
   config?: KeystoneSDKConfig
 
   constructor (config?: KeystoneSDKConfig) {
-    if (config !== undefined) {
-      this.config = config
-    }
+    this.config = config
   }
 
   private _btc!: KeystoneBitcoinSDK
@@ -36,7 +35,7 @@ export class KeystoneSDK {
   private _eth!: KeystoneEthereumSDK
   get eth (): KeystoneEthereumSDK {
     if (this._eth === undefined) {
-      this._eth = new KeystoneEthereumSDK()
+      this._eth = new KeystoneEthereumSDK(this.config)
     }
     return this._eth
   }
@@ -52,9 +51,17 @@ export class KeystoneSDK {
   private _cosmos!: KeystoneCosmosSDK
   get cosmos (): KeystoneCosmosSDK {
     if (this._cosmos === undefined) {
-      this._cosmos = new KeystoneCosmosSDK()
+      this._cosmos = new KeystoneCosmosSDK(this.config)
     }
     return this._cosmos
+  }
+
+  private _evm!: KeystoneEvmSDK
+  get evm (): KeystoneEvmSDK {
+    if (this._evm === undefined) {
+      this._evm = new KeystoneEvmSDK(this.config)
+    }
+    return this._evm
   }
 
   private _tron!: KeystoneTronSDK

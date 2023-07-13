@@ -742,6 +742,15 @@
     hdkey "^2.0.1"
     uuid "^8.3.2"
 
+"@keystonehq/bc-ur-registry-evm@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-evm/-/bc-ur-registry-evm-0.5.2.tgz#166fa0458345ae4b56761a0f8ee014106b093032"
+  integrity sha512-/ns1cDUz3F0KryYA8AVk4xUV6w7wXTS7aDBsowcUeFSp1olsMLSeA/wkNlUgu5DELuJn5FDd6xrsrx4CGcehEQ==
+  dependencies:
+    "@keystonehq/bc-ur-registry" "^0.5.4"
+    bs58check "^2.1.2"
+    uuid "^9.0.0"
+
 "@keystonehq/bc-ur-registry-keystone@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-keystone/-/bc-ur-registry-keystone-0.1.0.tgz#0fb1a6e868474380e88c42a31dfe47f840b8ae53"

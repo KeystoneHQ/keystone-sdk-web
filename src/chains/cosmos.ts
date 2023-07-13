@@ -3,9 +3,15 @@ import { URType, type UR } from '../types/ur'
 import { CosmosSignRequest, CosmosSignature, CryptoKeypath, PathComponent, SignDataType as DataType } from '@keystonehq/bc-ur-registry-cosmos'
 import { type CosmosSignature as CosmosSignatureType } from '../types/signature'
 import { type CosmosSignRequestProps } from '../types/props'
+import { type KeystoneSDKConfig } from '../sdk'
 
 export class KeystoneCosmosSDK {
   static DataType = DataType
+  config: KeystoneSDKConfig | undefined
+
+  constructor (config?: KeystoneSDKConfig) {
+    this.config = config
+  }
 
   parseSignature (ur: UR): CosmosSignatureType {
     if (ur.type !== URType.CosmosSignature) {
@@ -41,7 +47,7 @@ export class KeystoneCosmosSDK {
       derivationPaths,
       requestId: uuidParse(requestId),
       addresses,
-      origin
+      origin: origin ?? this.config?.origin
     }).toUR()
   }
 }

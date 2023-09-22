@@ -103,7 +103,7 @@ export interface CardanoSignRequestProps {
   requestId: string
   signData: Buffer
   utxos: CardanoUtxoData[]
-  certKeys: CardanoCertKeyData[]
+  extraSigners: CardanoCertKeyData[]
   origin?: string
 }
 

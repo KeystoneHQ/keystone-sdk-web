@@ -20,14 +20,14 @@ export class KeystoneCardanoSDK {
   generateSignRequest ({
     signData,
     utxos,
-    certKeys,
+    extraSigners,
     requestId,
     origin
   }: CardanoSignRequestProps): UR {
     return CardanoSignRequest.constructCardanoSignRequest(
       signData,
       utxos,
-      certKeys,
+      extraSigners,
       requestId,
       origin
     ).toUR()

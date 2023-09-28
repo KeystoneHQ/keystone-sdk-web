@@ -27,6 +27,7 @@ export interface MultiAccounts {
   keys: Account[]
   device?: string
   deviceId?: string
+  deviceVersion?: string
 }
 
 export interface PathComponent {

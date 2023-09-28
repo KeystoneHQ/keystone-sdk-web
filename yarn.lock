@@ -802,10 +802,10 @@
     bs58check "^2.1.2"
     tslib "^2.3.0"
 
-"@keystonehq/bc-ur-registry@^0.6.3":
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry/-/bc-ur-registry-0.6.3.tgz#b9f6f958ed5ef19a78d16fea335aae235ca16ae5"
-  integrity sha512-xwOYrRgqfV5wANpHjmO1ilB2bloY2kMxf8xiZ4CG0U5Zkfwa/9wUaqN60xFaG862w/6wnMOHvLDxDm47xNSDlw==
+"@keystonehq/bc-ur-registry@^0.6.4":
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry/-/bc-ur-registry-0.6.4.tgz#9c57ff9687cafdc0d2bbd04dc36676d3a38c1485"
+  integrity sha512-j8Uy44DuAkvYkbf0jMxRY3UizJfn8wsEQr7GS3miRF44vcq7k0/yemVkftbn3jQ+0JYaUXf5wY7lVpLhAeW5nQ==
   dependencies:
     "@ngraveio/bc-ur" "^1.1.5"
     bs58check "^2.1.2"

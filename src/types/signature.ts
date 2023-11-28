@@ -24,7 +24,7 @@ export interface CosmosSignature extends Signature {
 }
 
 export interface TronSignature {
-  signature: string
+  raw: string
   requestId?: string
 }
 

@@ -5,7 +5,6 @@ import {
   type TronSignature,
   type TronSignRequestProps
 } from '../../types'
-import { Transaction } from '../../gen/chains/tron/protos/tron_pb'
 import pako from 'pako'
 import { Base } from '../../gen/protos/base_pb'
 import { Payload, Payload_Type } from '../../gen/protos/payload_pb'
@@ -23,11 +22,9 @@ export class KeystoneTronSDK {
       throw new Error('invalid sign result')
     }
     const { signId, rawTx } = base.data?.Content.value
-    const tx = Transaction.fromBinary(Buffer.from(rawTx, 'hex'))
-    const signature = Buffer.from(tx.signature[0]).toString('hex')
     return {
       requestId: signId,
-      signature
+      raw: rawTx
     }
   }
 

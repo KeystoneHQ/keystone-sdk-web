@@ -30,6 +30,11 @@ export interface MultiAccounts {
   deviceVersion?: string
 }
 
+export interface AccountDescriptor {
+  masterFingerprint: string
+  keys: Account[]
+}
+
 export interface PathComponent {
   index: number
   hardened: boolean

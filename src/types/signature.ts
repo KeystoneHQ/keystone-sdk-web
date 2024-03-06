@@ -45,3 +45,7 @@ export interface NearSignature {
 export interface SuiSignature extends Signature {
   publicKey: string
 }
+
+export interface BtcSignature extends Signature {
+  publicKey: string
+}

@@ -5,6 +5,7 @@ export enum URType {
   CryptoMultiAccounts = 'crypto-multi-accounts',
   CryptoHDKey = 'crypto-hdkey',
   CryptoAccount = 'crypto-account',
+  BtcSignature = 'btc-signature',
   ArweaveCryptoAccount = 'arweave-crypto-account',
   EthSignature = 'eth-signature',
   SolSignature = 'sol-signature',

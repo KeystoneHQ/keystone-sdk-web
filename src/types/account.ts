@@ -40,17 +40,19 @@ export interface PathComponent {
   hardened: boolean
 }
 
+export interface SignAccount {
+  path: string
+  xfp: string
+  address?: string
+}
+
 export interface CosmosAccount {
   path: string
   xfp: string
   address: string
 }
 
-export interface EvmAccount {
-  path: string
-  xfp: string
-  address?: string
-}
+export interface EvmAccount extends SignAccount {}
 
 export interface AptosAccount {
   path: string
@@ -64,8 +66,6 @@ export interface ArweaveAccount {
   device: string
 }
 
-export interface SuiAccount {
-  path: string
-  xfp: string
-  address?: string
-}
+export interface SuiAccount extends SignAccount {}
+
+export interface BtcAccount extends SignAccount {}

@@ -13,6 +13,7 @@ import { type SaltLen, type SignType as ArweaveSignType } from '@keystonehq/bc-u
 import { type CardanoCertKeyData, type CardanoUtxoData } from '@keystonehq/bc-ur-registry-cardano'
 import { type SignDataType as EvmDataType } from '@keystonehq/bc-ur-registry-evm'
 import { type DataType as BtcDataType } from '@keystonehq/bc-ur-registry-btc'
+import { type DataType as TonDataType } from '@keystonehq/bc-ur-registry-ton'
 
 export interface TronSignRequestProps {
   requestId: string
@@ -132,3 +133,12 @@ export interface BtcSignRequestProps {
   accounts: BtcAccount[]
   origin?: string
 }
+
+export interface TonSignRequestProps {
+  requestId?: string;
+  signData: string;
+  dataType: TonDataType;
+  address: String;
+  xfp?: string;
+  derivationPath?: string;
+};

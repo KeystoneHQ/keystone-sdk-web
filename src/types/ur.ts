@@ -21,4 +21,5 @@ export enum URType {
   XrpAccount = 'bytes',
   XrpSignRequest = 'bytes',
   XrpSignature = 'bytes',
+  TonSignature = 'ton-signature',
 }

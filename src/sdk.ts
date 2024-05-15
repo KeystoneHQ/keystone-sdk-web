@@ -8,7 +8,7 @@ import {
   KeystoneEthereumSDK, KeystoneLitecoinSDK,
   KeystoneSolanaSDK, KeystoneTronSDK,
   KeystoneNearSDK, KeystoneSuiSDK,
-  KeystoneEvmSDK
+  KeystoneEvmSDK, KeystoneTonSDK,
 } from './chains'
 import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall, parseAccount } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
@@ -142,6 +142,14 @@ export class KeystoneSDK {
       this._xrp = new KeystoneXrpSDK()
     }
     return this._xrp
+  }
+
+  private _ton!: KeystoneTonSDK
+  get ton (): KeystoneTonSDK {
+    if (this._ton === undefined) {
+      this._ton = new KeystoneTonSDK(this.config)
+    }
+    return this._ton
   }
 
   parseMultiAccounts = parseMultiAccounts

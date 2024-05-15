@@ -46,6 +46,12 @@ export interface SuiSignature extends Signature {
   publicKey: string
 }
 
+export interface TonSignature {
+  requestId?: string,
+  signature: string,
+  origin?: string
+}
+
 export interface BtcSignature extends Signature {
   publicKey: string
 }

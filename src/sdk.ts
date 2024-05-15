@@ -10,7 +10,7 @@ import {
   KeystoneNearSDK, KeystoneSuiSDK,
   KeystoneEvmSDK, KeystoneTonSDK,
 } from './chains'
-import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall, parseAccount } from './wallet'
+import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall, parseAccount, parseTonAccount } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
 
 export interface KeystoneSDKConfig {
@@ -153,6 +153,7 @@ export class KeystoneSDK {
   }
 
   parseMultiAccounts = parseMultiAccounts
+  parseTonAccount = parseTonAccount
   parseHDKey = parseHDKey
   parseAccount = parseAccount
   generateKeyDerivationCall = generateKeyDerivationCall

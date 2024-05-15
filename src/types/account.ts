@@ -16,6 +16,13 @@ export interface Account {
   extra: AccountExtra
 }
 
+export interface TonAccount {
+  path?: string,
+  xfp?: string,
+  publicKey: string,
+  name?: string,
+}
+
 export enum AccountNote {
   Standard = 'account.standard',
   LedgerLegacy = 'account.ledger_legacy',

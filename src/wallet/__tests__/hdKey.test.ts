@@ -1,4 +1,4 @@
-import { parseHDKey } from '../hdKey'
+import { parseHDKey, parseTonAccount } from '../hdKey'
 import { UR } from '../../types/ur'
 import { toBuffer } from '../../utils'
 
@@ -18,4 +18,15 @@ test('parseHDKey', () => {
   }
 
   expect(parseHDKey(new UR(toBuffer(cborHex), type))).toMatchObject(expectResult)
+})
+
+test('parseTonAccount', () => {
+  const type = 'crypto-hdkey'
+  const cborHex =
+    'a20358208fb494cc03adcba0b7c287ad066117a1b66809feaf2591a8415a261c9738da8509684b657973746f6e65'
+  const expectResult = {
+    publicKey: Buffer.from("j7SUzAOty6C3woetBmEXobZoCf6vJZGoQVomHJc42oU=", "base64").toString('hex'),
+    name: 'Keystone',
+  }
+  expect(parseTonAccount(new UR(toBuffer(cborHex), type))).toMatchObject(expectResult)
 })

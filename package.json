@@ -35,6 +35,7 @@
     "@keystonehq/bc-ur-registry-keystone": "^0.1.0",
     "@keystonehq/bc-ur-registry-near": "^0.8.0",
     "@keystonehq/bc-ur-registry-sol": "^0.6.2",
+    "@keystonehq/bc-ur-registry-stellar": "file:.yalc/@keystonehq/bc-ur-registry-stellar",
     "@keystonehq/bc-ur-registry-sui": "^0.3.0",
     "@keystonehq/bc-ur-registry-ton": "^0.1.0",
     "@ngraveio/bc-ur": "^1.1.6",

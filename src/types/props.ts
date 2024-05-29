@@ -63,6 +63,16 @@ export interface SolSignRequestProps {
   origin?: string
 }
 
+export interface StellarSignRequestProps {
+  requestId: string
+  signData: string
+  dataType: SolDataType
+  path: string
+  xfp: string
+  address?: string
+  origin?: string
+}
+
 export interface KeystoneSignRequestBaseProps<T> {
   requestId: string
   signData: {

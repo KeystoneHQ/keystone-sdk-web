@@ -19,6 +19,11 @@ export interface SolSignature {
   requestId?: string
 }
 
+export interface StellarSignature {
+  signature: string
+  requestId?: string
+}
+
 export interface CosmosSignature extends Signature {
   publicKey: string
 }

@@ -762,10 +762,10 @@
     bs58check "^2.1.2"
     uuid "^8.3.2"
 
-"@keystonehq/bc-ur-registry-stellar@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-stellar/-/bc-ur-registry-stellar-0.0.1.tgz#45cc41df38e0d6dec09a7e3c7249c219060f6484"
-  integrity sha512-qcAgcd7NyuAusDbeKVUrwX6ewPXNg/3+1DMCnjL9zIe12HnQrb5N8JOC9C7UKxHlAtVI32RJfA2nSa+lhoZgYg==
+"@keystonehq/bc-ur-registry-stellar@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-stellar/-/bc-ur-registry-stellar-0.0.3.tgz#fe954cbef8c3c56e700aa39d17099add026104d2"
+  integrity sha512-H2iMqboqMGeDNz09tXq1A5/hjNxnhV5psGn6e5aHfpXTdutPoro1r1iOq9yFav7mKVOtXSPGCKvmAR6+P5SPGw==
   dependencies:
     "@keystonehq/bc-ur-registry" "^0.5.4"
     bs58check "^2.1.2"

@@ -19,6 +19,11 @@ export interface SolSignature {
   requestId?: string
 }
 
+export interface StellarSignature {
+  signature: string
+  requestId?: string
+}
+
 export interface CosmosSignature extends Signature {
   publicKey: string
 }
@@ -47,8 +52,8 @@ export interface SuiSignature extends Signature {
 }
 
 export interface TonSignature {
-  requestId?: string,
-  signature: string,
+  requestId?: string
+  signature: string
   origin?: string
 }
 

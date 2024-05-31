@@ -9,6 +9,7 @@ export enum URType {
   ArweaveCryptoAccount = 'arweave-crypto-account',
   EthSignature = 'eth-signature',
   SolSignature = 'sol-signature',
+  StellarSignature = 'stellar-signature',
   CosmosSignature = 'cosmos-signature',
   EvmSignature = 'evm-signature',
   AptosSignature = 'aptos-signature',

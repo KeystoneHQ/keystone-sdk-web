@@ -1,6 +1,7 @@
 import { type SignDataType as CosmosDataType } from '@keystonehq/bc-ur-registry-cosmos'
 import { type DataType as EthDataType } from '@keystonehq/bc-ur-registry-eth'
 import { type SignType as SolDataType } from '@keystonehq/bc-ur-registry-sol'
+import { type SignType as StellarDataType } from '@keystonehq/bc-ur-registry-stellar'
 import { type SignType as AptosSignType } from '@keystonehq/bc-ur-registry-aptos'
 import { type TokenInfo } from './token'
 import { type BchTx_Input } from '../gen/chains/keystone/protos/bch_transaction_pb'
@@ -57,6 +58,16 @@ export interface SolSignRequestProps {
   requestId: string
   signData: string
   dataType: SolDataType
+  path: string
+  xfp: string
+  address?: string
+  origin?: string
+}
+
+export interface StellarSignRequestProps {
+  requestId: string
+  signData: string
+  dataType: StellarDataType
   path: string
   xfp: string
   address?: string
@@ -135,10 +146,10 @@ export interface BtcSignRequestProps {
 }
 
 export interface TonSignRequestProps {
-  requestId?: string;
-  signData: string;
-  dataType: TonDataType;
-  address: String;
-  xfp?: string;
-  derivationPath?: string;
+  requestId?: string
+  signData: string
+  dataType: TonDataType
+  address: string
+  xfp?: string
+  derivationPath?: string
 };

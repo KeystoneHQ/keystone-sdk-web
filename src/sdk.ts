@@ -9,6 +9,7 @@ import {
   KeystoneSolanaSDK, KeystoneTronSDK,
   KeystoneNearSDK, KeystoneSuiSDK,
   KeystoneEvmSDK, KeystoneTonSDK,
+  KeystoneStellarSDK
 } from './chains'
 import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall, parseAccount, parseTonAccount } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
@@ -46,6 +47,14 @@ export class KeystoneSDK {
       this._sol = new KeystoneSolanaSDK()
     }
     return this._sol
+  }
+
+  private _stellar!: KeystoneStellarSDK
+  get stellar (): KeystoneStellarSDK {
+    if (this._stellar === undefined) {
+      this._stellar = new KeystoneStellarSDK()
+    }
+    return this._stellar
   }
 
   private _cosmos!: KeystoneCosmosSDK

@@ -52,8 +52,8 @@ export interface SuiSignature extends Signature {
 }
 
 export interface TonSignature {
-  requestId?: string,
-  signature: string,
+  requestId?: string
+  signature: string
   origin?: string
 }
 

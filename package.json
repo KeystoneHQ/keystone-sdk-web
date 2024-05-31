@@ -1,6 +1,6 @@
 {
   "name": "@keystonehq/keystone-sdk",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Keystone SDK",
   "main": "dist/index.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "@keystonehq/bc-ur-registry-sol": "^0.6.2",
     "@keystonehq/bc-ur-registry-stellar": "^0.0.1",
     "@keystonehq/bc-ur-registry-sui": "^0.3.0",
-    "@keystonehq/bc-ur-registry-ton": "^0.1.0",
+    "@keystonehq/bc-ur-registry-ton": "^0.1.1",
     "@ngraveio/bc-ur": "^1.1.6",
     "bs58check": "^3.0.1",
     "pako": "^2.1.0",

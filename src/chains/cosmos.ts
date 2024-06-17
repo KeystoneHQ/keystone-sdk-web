@@ -3,7 +3,7 @@ import { URType, type UR } from '../types/ur'
 import { CosmosSignRequest, CosmosSignature, CryptoKeypath, PathComponent, SignDataType as DataType } from '@keystonehq/bc-ur-registry-cosmos'
 import { type CosmosSignature as CosmosSignatureType } from '../types/signature'
 import { type CosmosSignRequestProps } from '../types/props'
-import { type KeystoneSDKConfig } from '../sdk'
+import { type KeystoneSDKConfig } from '../types/config'
 
 export class KeystoneCosmosSDK {
   static DataType = DataType

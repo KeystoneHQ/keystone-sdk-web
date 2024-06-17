@@ -3,7 +3,7 @@ import { CryptoKeypath, DataType, ETHSignature, EthSignRequest, PathComponent } 
 import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'
 import { type EthSignRequestProps } from '../types/props'
-import { type KeystoneSDKConfig } from '../sdk'
+import { type KeystoneSDKConfig } from '../types/config'
 
 export class KeystoneEthereumSDK {
   static DataType = DataType

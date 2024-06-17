@@ -1,6 +1,6 @@
 {
   "name": "@keystonehq/keystone-sdk",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Keystone SDK",
   "main": "dist/index.js",
   "scripts": {

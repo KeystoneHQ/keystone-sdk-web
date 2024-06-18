@@ -1,6 +1,6 @@
 {
   "name": "@keystonehq/keystone-sdk",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Keystone SDK",
   "main": "dist/index.js",
   "scripts": {
@@ -25,19 +25,19 @@
   "dependencies": {
     "@bufbuild/protobuf": "^1.2.0",
     "@keystonehq/bc-ur-registry": "^0.6.4",
-    "@keystonehq/bc-ur-registry-aptos": "^0.3.2",
-    "@keystonehq/bc-ur-registry-arweave": "^0.4.0",
-    "@keystonehq/bc-ur-registry-btc": "^0.1.0",
-    "@keystonehq/bc-ur-registry-cardano": "^0.3.0",
-    "@keystonehq/bc-ur-registry-cosmos": "^0.2.2",
-    "@keystonehq/bc-ur-registry-eth": "^0.20.0",
-    "@keystonehq/bc-ur-registry-evm": "^0.5.2",
-    "@keystonehq/bc-ur-registry-keystone": "^0.1.0",
-    "@keystonehq/bc-ur-registry-near": "^0.8.0",
-    "@keystonehq/bc-ur-registry-sol": "^0.6.2",
-    "@keystonehq/bc-ur-registry-stellar": "^0.0.3",
-    "@keystonehq/bc-ur-registry-sui": "^0.3.0",
-    "@keystonehq/bc-ur-registry-ton": "^0.1.1",
+    "@keystonehq/bc-ur-registry-aptos": "^0.6.3",
+    "@keystonehq/bc-ur-registry-arweave": "^0.5.3",
+    "@keystonehq/bc-ur-registry-btc": "^0.1.1",
+    "@keystonehq/bc-ur-registry-cardano": "^0.3.1",
+    "@keystonehq/bc-ur-registry-cosmos": "^0.5.3",
+    "@keystonehq/bc-ur-registry-eth": "^0.20.1",
+    "@keystonehq/bc-ur-registry-evm": "^0.5.3",
+    "@keystonehq/bc-ur-registry-keystone": "^0.4.3",
+    "@keystonehq/bc-ur-registry-near": "^0.9.3",
+    "@keystonehq/bc-ur-registry-sol": "^0.9.3",
+    "@keystonehq/bc-ur-registry-stellar": "^0.0.4",
+    "@keystonehq/bc-ur-registry-sui": "^0.3.1",
+    "@keystonehq/bc-ur-registry-ton": "^0.1.2",
     "@ngraveio/bc-ur": "^1.1.6",
     "bs58check": "^3.0.1",
     "pako": "^2.1.0",
@@ -61,8 +61,5 @@
     "jest-environment-jsdom": "^29.5.0",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
-  },
-  "resolutions": {
-    "@keystonehq/bc-ur-registry": "^0.6.4"
   }
 }

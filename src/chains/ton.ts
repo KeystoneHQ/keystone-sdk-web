@@ -7,7 +7,7 @@ import { type TonSignature as TonSignatureType } from "../types/signature";
 import { toBuffer, toHex, uuidStringify } from "../utils";
 import { URType, type UR } from "../types/ur";
 import { type TonSignRequestProps } from "../types/props";
-import { KeystoneSDKConfig } from "../sdk";
+import { type KeystoneSDKConfig } from "../types/config";
 
 export class KeystoneTonSDK {
   static DataType = DataType;

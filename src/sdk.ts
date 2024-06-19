@@ -13,10 +13,9 @@ import {
 } from './chains'
 import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall, parseAccount, parseTonAccount } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
+import { type KeystoneSDKConfig } from './types/config'
 
-export interface KeystoneSDKConfig {
-  origin?: string
-}
+export { KeystoneSDKConfig };
 
 export class KeystoneSDK {
   config?: KeystoneSDKConfig

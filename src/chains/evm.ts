@@ -3,7 +3,7 @@ import { URType, type UR } from '../types/ur'
 import { EvmSignRequest, EvmSignature, CryptoKeypath, PathComponent, SignDataType as DataType } from '@keystonehq/bc-ur-registry-evm'
 import { type EvmSignRequestProps } from '../types/props'
 import { type Signature } from '../types'
-import { type KeystoneSDKConfig } from '../sdk'
+import { type KeystoneSDKConfig } from '../types/config'
 
 export class KeystoneEvmSDK {
   static DataType = DataType

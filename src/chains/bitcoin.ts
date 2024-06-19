@@ -3,7 +3,7 @@ import { BtcSignRequest, DataType, BtcSignature, CryptoKeypath, PathComponent } 
 import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'
 import { type BtcSignRequestProps, type BtcSignature as BtcSignatureType } from '../types'
-import { type KeystoneSDKConfig } from '../sdk'
+import { type KeystoneSDKConfig } from '../types/config'
 
 export class KeystoneBitcoinSDK {
   static DataType = DataType

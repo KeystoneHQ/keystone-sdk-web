@@ -120,6 +120,14 @@ export interface CardanoSignRequestProps {
   origin?: string
 }
 
+export interface CardanoSignDataRequestProps {
+  requestId: string
+  payload: string
+  path: string
+  xfp: string
+  origin?: string
+}
+
 export interface ArweaveSignRequestProps {
   requestId: string
   signData: string

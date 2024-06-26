@@ -8,6 +8,12 @@ export interface CardanoSignature {
   witnessSet: string
 }
 
+export interface CardanoSignDataSignature {
+  signature: string
+  publicKey: string
+  requestId: string
+}
+
 export interface EthSignature {
   signature: string
   requestId?: string

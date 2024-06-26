@@ -701,10 +701,10 @@
     "@keystonehq/bc-ur-registry" "^0.6.4"
     uuid "^8.3.2"
 
-"@keystonehq/bc-ur-registry-cardano@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-cardano/-/bc-ur-registry-cardano-0.3.1.tgz#ff88620d9d490d437061b92a8e2f1e5e1f2d36f8"
-  integrity sha512-+fwam5UtnhFDj+xFg3hYwoQ2yf+gpBK40G3l0pf+jJT6oOVHDyxgpjjj5Gqh3EKHGhDGLTmkoD+XD6ZSl47GSA==
+"@keystonehq/bc-ur-registry-cardano@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-cardano/-/bc-ur-registry-cardano-0.3.2.tgz#cf0bc920fef8f12a0df9f4ea3dfaaa6bed63f13d"
+  integrity sha512-TNSe0NBPv8eC1fNsHwtB8TkdWSMB6lSTOVGgezmICDR57qxaEffDdbSNHKvEmRzV69ISdvVpowxZulf9VjEQig==
   dependencies:
     "@keystonehq/bc-ur-registry" "^0.6.4"
     uuid "^8.3.2"

@@ -1,4 +1,9 @@
-import { CardanoSignature as AdaSignature, CardanoSignRequest, CardanoSignDataRequest, CardanoSignDataSignature as AdaSignDataSignature } from '../../../keystone-airgaped-base/packages/ur-registry-cardano/dist'
+import {
+  CardanoSignature as AdaSignature,
+  CardanoSignRequest,
+  CardanoSignDataRequest,
+  CardanoSignDataSignature as AdaSignDataSignature
+} from '@keystonehq/bc-ur-registry-cardano'
 import { type CardanoSignature, type CardanoSignDataSignature } from '../types/signature'
 import { toHex, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'

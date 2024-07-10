@@ -2,12 +2,18 @@ import {
   CardanoSignature as AdaSignature,
   CardanoSignRequest,
   CardanoSignDataRequest,
-  CardanoSignDataSignature as AdaSignDataSignature
+  CardanoSignDataSignature as AdaSignDataSignature,
+  CardanoCatalystRequest,
+  CardanoCatalystSignature as AdaCatalystSignature
 } from '@keystonehq/bc-ur-registry-cardano'
-import { type CardanoSignature, type CardanoSignDataSignature } from '../types/signature'
+import { type CardanoSignature, type CardanoSignDataSignature, type CardanoCatalystSignature } from '../types/signature'
 import { toHex, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'
-import { type CardanoSignRequestProps, type CardanoSignDataRequestProps } from '../types/props'
+import {
+  type CardanoSignRequestProps,
+  type CardanoSignDataRequestProps,
+  type CardanoCatalystRequestProps
+} from '../types/props'
 
 export class KeystoneCardanoSDK {
   parseSignature (ur: UR): CardanoSignature {
@@ -35,6 +41,19 @@ export class KeystoneCardanoSDK {
     }
   }
 
+  parseCatalystSignature (ur: UR): CardanoCatalystSignature {
+    if (ur.type !== URType.CardanoCatalystSignature) {
+      throw new Error('type not match')
+    }
+    const sig = AdaCatalystSignature.fromCBOR(ur.cbor)
+    const requestId = sig.getRequestId()
+
+    return {
+      requestId: Buffer.isBuffer(requestId) ? uuidStringify(requestId) : '',
+      signature: toHex(sig.getSignature())
+    }
+  }
+
   generateSignDataRequest ({
     requestId,
     payload,
@@ -48,6 +67,20 @@ export class KeystoneCardanoSDK {
       xfp,
       requestId,
       origin
+    ).toUR()
+  }
+
+  generateCatalystRequest (props: CardanoCatalystRequestProps): UR {
+    return CardanoCatalystRequest.constructCardanoCatalystRequest(
+      props.delegations,
+      props.stakePub,
+      props.paymentAddress,
+      props.nonce,
+      props.voting_purpose,
+      props.path,
+      props.xfp,
+      props.requestId,
+      props.origin
     ).toUR()
   }
 

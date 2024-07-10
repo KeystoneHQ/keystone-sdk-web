@@ -1,6 +1,6 @@
 {
   "name": "@keystonehq/keystone-sdk",
-  "version": "0.7.3",
+  "version": "0.7.5",
   "description": "Keystone SDK",
   "main": "dist/index.js",
   "scripts": {
@@ -28,7 +28,7 @@
     "@keystonehq/bc-ur-registry-aptos": "^0.6.3",
     "@keystonehq/bc-ur-registry-arweave": "^0.5.3",
     "@keystonehq/bc-ur-registry-btc": "^0.1.1",
-    "@keystonehq/bc-ur-registry-cardano": "^0.3.2",
+    "@keystonehq/bc-ur-registry-cardano": "^0.3.4",
     "@keystonehq/bc-ur-registry-cosmos": "^0.5.3",
     "@keystonehq/bc-ur-registry-eth": "^0.20.1",
     "@keystonehq/bc-ur-registry-evm": "^0.5.3",

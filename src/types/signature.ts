@@ -14,6 +14,11 @@ export interface CardanoSignDataSignature {
   requestId: string
 }
 
+export interface CardanoCatalystSignature {
+  requestId: string
+  signature: string
+}
+
 export interface EthSignature {
   signature: string
   requestId?: string

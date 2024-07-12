@@ -17,6 +17,7 @@ export interface CardanoSignDataSignature {
 export interface CardanoCatalystSignature {
   requestId: string
   signature: string
+  votePrvKeys: string[]
 }
 
 export interface EthSignature {

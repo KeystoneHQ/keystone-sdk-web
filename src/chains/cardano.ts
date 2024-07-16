@@ -47,10 +47,12 @@ export class KeystoneCardanoSDK {
     }
     const sig = AdaCatalystSignature.fromCBOR(ur.cbor)
     const requestId = sig.getRequestId()
+    const votePrvKeys = sig.getVotePrvKeys()
 
     return {
       requestId: Buffer.isBuffer(requestId) ? uuidStringify(requestId) : '',
-      signature: toHex(sig.getSignature())
+      signature: toHex(sig.getSignature()),
+      votePrvKeys: votePrvKeys.map(toHex)
     }
   }
 

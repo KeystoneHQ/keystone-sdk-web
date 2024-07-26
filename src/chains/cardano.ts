@@ -58,6 +58,7 @@ export class KeystoneCardanoSDK {
     requestId,
     payload,
     path,
+    stakePub,
     xfp,
     origin
   }: CardanoSignDataRequestProps): UR {
@@ -65,6 +66,7 @@ export class KeystoneCardanoSDK {
       payload,
       path,
       xfp,
+      stakePub,
       requestId,
       origin
     ).toUR()

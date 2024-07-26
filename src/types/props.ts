@@ -136,6 +136,7 @@ export interface CardanoSignDataRequestProps {
   requestId: string
   payload: string
   path: string
+  stakePub: string
   xfp: string
   origin?: string
 }

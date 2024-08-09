@@ -132,14 +132,25 @@ export interface CardanoCatalystRequestProps {
   origin?: string
 }
 
-export interface CardanoSignDataRequestProps {
+interface BaseCardanoSignDataProps {
   requestId: string
-  payload: string
   path: string
   xpub: string
   xfp: string
   origin?: string
 }
+
+interface WithPayload extends BaseCardanoSignDataProps {
+  payload: string
+  sigStructure?: never
+}
+
+interface WithSigStructure extends BaseCardanoSignDataProps {
+  payload?: never
+  sigStructure: string
+}
+
+export type CardanoSignDataRequestProps = WithPayload | WithSigStructure
 
 export interface ArweaveSignRequestProps {
   requestId: string

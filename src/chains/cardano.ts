@@ -57,13 +57,14 @@ export class KeystoneCardanoSDK {
   generateSignDataRequest ({
     requestId,
     payload,
+    sigStructure,
     path,
     xpub,
     xfp,
     origin
   }: CardanoSignDataRequestProps): UR {
     return CardanoSignDataRequest.constructCardanoSignDataRequest(
-      payload,
+      payload ?? sigStructure,
       path,
       xfp,
       xpub,

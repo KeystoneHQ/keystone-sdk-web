@@ -132,14 +132,30 @@ export interface CardanoCatalystRequestProps {
   origin?: string
 }
 
-export interface CardanoSignDataRequestProps {
-  requestId: string
-  payload: string
-  path: string
-  xpub: string
-  xfp: string
-  origin?: string
+interface BaseSignDataRequestProps {
+  requestId: string;
+  path: string;
+  xfp: string;
+  origin?: string;
 }
+
+interface NextGenSignDataRequestInterface extends BaseSignDataRequestProps {
+  pubKey: string;
+  xpub?: never;
+  sigStructure: string;
+  payload?: never;
+}
+
+interface LegacySignDataRequestInterface extends BaseSignDataRequestProps {
+  /** @deprecated Use `pubKey` instead. */
+  xpub: string;
+  pubKey?: never;
+  /** @deprecated Use `sigStructure` instead. */
+  payload: string;
+  sigStructure?: never;
+}
+
+export type CardanoSignDataRequestProps = NextGenSignDataRequestInterface | LegacySignDataRequestInterface;
 
 export interface ArweaveSignRequestProps {
   requestId: string

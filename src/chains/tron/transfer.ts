@@ -19,10 +19,10 @@ export function raw2tx (signData: Buffer, tokenInfo?: TokenInfo): TronTx {
 
   const override = (tokenInfo !== undefined)
     ? {
-        decimals: tokenInfo.decimals,
-        tokenFullName: tokenInfo.name,
-        tokenShortName: tokenInfo.symbol
-      }
+      decimals: tokenInfo.decimals,
+      tokenFullName: tokenInfo.name,
+      tokenShortName: tokenInfo.symbol
+    }
     : null
 
   const refBlockHash = Buffer.from([...new Uint8Array(8).fill(0), ...rawData.refBlockHash, ...new Uint8Array(16).fill(0)])
@@ -38,59 +38,59 @@ export function raw2tx (signData: Buffer, tokenInfo?: TokenInfo): TronTx {
   }
   let contract
   switch (contractData.type) {
-    case Transaction_Contract_ContractType.TransferContract:
-      try {
-        contract = TransferContract.fromBinary(contractData.parameter.value)
-      } catch (e) {
-        throw new Error('sign data is invalid')
-      }
-      return new TronTx({
-        fee: Number(rawData.feeLimit),
-        from: formatAddress(contract.ownerAddress),
-        latestBlock,
-        to: formatAddress(contract.toAddress),
-        token: 'TRX',
-        value: contract.amount.toString()
-      })
-    case Transaction_Contract_ContractType.TransferAssetContract:
-      try {
-        contract = TransferAssetContract.fromBinary(contractData.parameter.value)
-      } catch (e) {
-        throw new Error('sign data is invalid')
-      }
-      if (override == null) {
-        throw new Error('token info is invalid')
-      }
-      return new TronTx({
-        fee: Number(rawData.feeLimit),
-        from: formatAddress(contract.ownerAddress),
-        latestBlock,
-        override,
-        to: formatAddress(contract.toAddress),
-        token: Buffer.from(contract.assetName).toString(),
-        value: contract.amount.toString()
-      })
+  case Transaction_Contract_ContractType.TransferContract:
+    try {
+      contract = TransferContract.fromBinary(contractData.parameter.value)
+    } catch (e) {
+      throw new Error('sign data is invalid')
+    }
+    return new TronTx({
+      fee: Number(rawData.feeLimit),
+      from: formatAddress(contract.ownerAddress),
+      latestBlock,
+      to: formatAddress(contract.toAddress),
+      token: 'TRX',
+      value: contract.amount.toString()
+    })
+  case Transaction_Contract_ContractType.TransferAssetContract:
+    try {
+      contract = TransferAssetContract.fromBinary(contractData.parameter.value)
+    } catch (e) {
+      throw new Error('sign data is invalid')
+    }
+    if (override == null) {
+      throw new Error('token info is invalid')
+    }
+    return new TronTx({
+      fee: Number(rawData.feeLimit),
+      from: formatAddress(contract.ownerAddress),
+      latestBlock,
+      override,
+      to: formatAddress(contract.toAddress),
+      token: Buffer.from(contract.assetName).toString(),
+      value: contract.amount.toString()
+    })
 
-    case Transaction_Contract_ContractType.TriggerSmartContract:
-      try {
-        contract = TriggerSmartContract.fromBinary(contractData.parameter.value)
-      } catch (e) {
-        throw new Error('sign data is invalid')
-      }
+  case Transaction_Contract_ContractType.TriggerSmartContract:
+    try {
+      contract = TriggerSmartContract.fromBinary(contractData.parameter.value)
+    } catch (e) {
+      throw new Error('sign data is invalid')
+    }
 
-      if (override == null) {
-        throw new Error('token info is invalid')
-      }
-      return new TronTx({
-        contractAddress: formatAddress(contract.contractAddress),
-        fee: Number(rawData.feeLimit),
-        from: formatAddress(contract.ownerAddress),
-        latestBlock,
-        override,
-        to: formatAddress(Buffer.from([65, ...contract.data.slice(16, 36)])),
-        value: BigInt(`0x${Buffer.from(contract.data.slice(36, 68)).toString('hex')}`).toString()
-      })
-    default:
-      throw new Error('contract is not supported')
+    if (override == null) {
+      throw new Error('token info is invalid')
+    }
+    return new TronTx({
+      contractAddress: formatAddress(contract.contractAddress),
+      fee: Number(rawData.feeLimit),
+      from: formatAddress(contract.ownerAddress),
+      latestBlock,
+      override,
+      to: formatAddress(Buffer.from([65, ...contract.data.slice(16, 36)])),
+      value: BigInt(`0x${Buffer.from(contract.data.slice(36, 68)).toString('hex')}`).toString()
+    })
+  default:
+    throw new Error('contract is not supported')
   }
 }

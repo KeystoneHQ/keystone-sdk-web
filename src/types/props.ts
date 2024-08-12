@@ -173,4 +173,4 @@ export interface TonSignRequestProps {
   address: string
   xfp?: string
   derivationPath?: string
-};
+}

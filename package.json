@@ -7,7 +7,9 @@
 		"start": "tsc -w",
 		"build": "tsc -b tsconfig.build.json",
 		"test": "jest src",
-		"proto": "buf generate src"
+		"proto": "buf generate src",
+		"lint": "eslint src --ext .js,.ts",
+		"lint-fix": "eslint src --ext .js,.ts --fix"
 	},
 	"files": [
 		"dist"
@@ -51,7 +53,7 @@
 		"@types/pako": "^2.0.0",
 		"@types/uuid": "^9.0.1",
 		"@typescript-eslint/eslint-plugin": "^5.43.0",
-		"@typescript-eslint/parser": "^5.0.4",
+		"@typescript-eslint/parser": "^8.0.1",
 		"eslint": "^8.0.1",
 		"eslint-config-standard-with-typescript": "^34.0.1",
 		"eslint-plugin-import": "^2.25.2",

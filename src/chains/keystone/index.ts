@@ -33,35 +33,35 @@ export class Keystone {
     let txCase: TXCase
     let coinCode
     switch (chain) {
-      case Chain.LTC:
-        tx = new LtcTx({
-          ...signData,
-          fee: BigInt(signData.fee),
-          dustThreshold: 5460
-        })
-        coinCode = Chain.LTC
-        txCase = TXCase.LTC
-        break
-      case Chain.BCH:
-        tx = new BchTx({
-          ...signData,
-          fee: BigInt(signData.fee),
-          dustThreshold: 546
-        })
-        coinCode = Chain.BCH
-        txCase = TXCase.BCH
-        break
-      case Chain.DASH:
-        tx = new DashTx({
-          ...signData,
-          fee: BigInt(signData.fee),
-          dustThreshold: 546
-        })
-        coinCode = Chain.DASH
-        txCase = TXCase.DASH
-        break
-      default:
-        throw new Error('chain not support')
+    case Chain.LTC:
+      tx = new LtcTx({
+        ...signData,
+        fee: BigInt(signData.fee),
+        dustThreshold: 5460
+      })
+      coinCode = Chain.LTC
+      txCase = TXCase.LTC
+      break
+    case Chain.BCH:
+      tx = new BchTx({
+        ...signData,
+        fee: BigInt(signData.fee),
+        dustThreshold: 546
+      })
+      coinCode = Chain.BCH
+      txCase = TXCase.BCH
+      break
+    case Chain.DASH:
+      tx = new DashTx({
+        ...signData,
+        fee: BigInt(signData.fee),
+        dustThreshold: 546
+      })
+      coinCode = Chain.DASH
+      txCase = TXCase.DASH
+      break
+    default:
+      throw new Error('chain not support')
     }
     return pako.gzip(new Base({
       version: 2,

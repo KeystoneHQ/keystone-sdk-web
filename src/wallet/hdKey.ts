@@ -42,7 +42,7 @@ export const parseTonAccount = (ur: UR): TonAccount => {
 
   const origin = hdKey.getOrigin();
 
-  if (!!origin) {
+  if (origin) {
     const xfp = hdKey.getOrigin().getSourceFingerprint()?.toString("hex");
     if (xfp === undefined) {
       throw new Error("HDKey is invalid");

@@ -21,7 +21,8 @@ export class KeystoneTronSDK {
     if (base.data?.Content.case !== 'signTxResult') {
       throw new Error('invalid sign result')
     }
-    const { signId, rawTx } = base.data?.Content.value
+    const { signId, rawTx } = base.data?.Content?.value ?? {}
+
     return {
       requestId: signId,
       raw: rawTx

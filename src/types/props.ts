@@ -15,7 +15,7 @@ import { type CardanoCertKeyData, type CardanoUtxoData, type CardanoCatalystRawD
 import { type SignDataType as EvmDataType } from '@keystonehq/bc-ur-registry-evm'
 import { type DataType as BtcDataType } from '@keystonehq/bc-ur-registry-btc'
 import { type DataType as TonDataType } from '@keystonehq/bc-ur-registry-ton'
-
+import { MessageAddressFieldType } from '@keystonehq/bc-ur-registry-cardano'
 export interface TronSignRequestProps {
   requestId: string
   signData: string
@@ -154,6 +154,25 @@ interface LegacySignDataRequestInterface extends BaseSignDataRequestProps {
   payload: string;
   sigStructure?: never;
 }
+
+
+export type CardanoSignCip8MessageData = {
+  requestId: string;
+  path: string;
+  xfp: string;
+  xpub: string;
+  origin?: string;
+  messageHex: string;
+  signingPath: string;
+  hashPayload: boolean;
+  preferHexDisplay?: boolean;
+} & ({
+  addressFieldType: MessageAddressFieldType.ADDRESS;
+  address: string;
+} | {
+  addressFieldType: MessageAddressFieldType.KEY_HASH;
+});
+
 
 export type CardanoSignDataRequestProps = NextGenSignDataRequestInterface | LegacySignDataRequestInterface;
 

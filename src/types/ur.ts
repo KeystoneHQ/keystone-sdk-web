@@ -15,6 +15,7 @@ export enum URType {
   AptosSignature = 'aptos-signature',
   CardanoSignature = 'cardano-signature',
   CardanoSignDataSignature = 'cardano-sign-data-signature',
+  CardanoSignCip8DataSignature = 'cardano-sign-cip8-data-signature',
   CardanoCatalystSignature = 'cardano-catalyst-voting-registration-signature',
   TronSignature = 'keystone-sign-result',
   KeystoneSignResult = 'keystone-sign-result',

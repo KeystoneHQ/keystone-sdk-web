@@ -4,17 +4,19 @@ import {
   CardanoSignDataRequest,
   CardanoSignDataSignature as AdaSignDataSignature,
   CardanoCatalystRequest,
-  CardanoCatalystSignature as AdaCatalystSignature
+  CardanoCatalystSignature as AdaCatalystSignature,
+  CardanoSignCip8DataRequest,
+  CardanoSignCip8DataSignature as AdaSignCip8DataSignature
 } from '@keystonehq/bc-ur-registry-cardano'
-import { type CardanoSignature, type CardanoSignDataSignature, type CardanoCatalystSignature } from '../types/signature'
+import { type CardanoSignature, type CardanoSignDataSignature, type CardanoSignCip8DataSignature, type CardanoCatalystSignature } from '../types/signature'
 import { toHex, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'
 import {
   type CardanoSignRequestProps,
   type CardanoSignDataRequestProps,
-  type CardanoCatalystRequestProps
+  type CardanoCatalystRequestProps,
+  type CardanoSignCip8MessageData,
 } from '../types/props'
-
 export class KeystoneCardanoSDK {
   parseSignature (ur: UR): CardanoSignature {
     if (ur.type !== URType.CardanoSignature) {
@@ -40,6 +42,24 @@ export class KeystoneCardanoSDK {
       publicKey: toHex(sig.getPublicKey())
     }
   }
+
+
+  parseSignCip8DataSignature (ur: UR): CardanoSignCip8DataSignature {
+    if (ur.type !== URType.CardanoSignCip8DataSignature) {
+      throw new Error('type not match')
+    }
+    const sig = AdaSignCip8DataSignature.fromCBOR(ur.cbor)
+    const signature = sig.getSignature()
+    const publicKey = sig.getPublicKey()
+    const addressField = sig.getAddressField()
+    return {
+      requestId: '',
+      signature: toHex(signature),
+      publicKey: toHex(publicKey),
+      addressField: toHex(addressField)
+    } 
+  }
+
 
   parseCatalystSignature (ur: UR): CardanoCatalystSignature {
     if (ur.type !== URType.CardanoCatalystSignature) {
@@ -73,6 +93,22 @@ export class KeystoneCardanoSDK {
       origin
     ).toUR()
   }
+
+
+  generateSignCip8DataRequest (props: CardanoSignCip8MessageData): UR {
+    return CardanoSignCip8DataRequest.constructCardanoSignCip8DataRequest(
+      props.messageHex,
+      props.path,
+      props.xfp,
+      props.xpub,
+      props.hashPayload,
+      props.addressFieldType,
+      'address' in props ? props.address : undefined,
+      props.requestId,
+      props.origin
+    ).toUR()
+  }
+
 
   generateCatalystRequest (props: CardanoCatalystRequestProps): UR {
     return CardanoCatalystRequest.constructCardanoCatalystRequest(

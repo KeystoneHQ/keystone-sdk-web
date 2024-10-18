@@ -14,6 +14,13 @@ export interface CardanoSignDataSignature {
   requestId: string
 }
 
+export interface CardanoSignCip8DataSignature {
+  signature: string
+  publicKey: string
+  addressField: string
+  requestId: string
+}
+
 export interface CardanoCatalystSignature {
   requestId: string
   signature: string

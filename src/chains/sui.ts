@@ -1,9 +1,9 @@
-import { CryptoKeypath, PathComponent, SuiSignRequest, SuiSignature } from '@keystonehq/bc-ur-registry-sui'
+import { CryptoKeypath, PathComponent, SuiSignHashRequest, SuiSignRequest, SuiSignature } from '@keystonehq/bc-ur-registry-sui'
 import { type SuiSignature as SuiSignatureType } from '../types/signature'
 import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'
-import { type SuiSignRequestProps } from '../types/props'
-
+import { SuiSignHashRequestProps, type SuiSignRequestProps } from '../types/props'
+import { blake2b } from '@noble/hashes/blake2b';
 export class KeystoneSuiSDK {
   parseSignature (ur: UR): SuiSignatureType {
     if (ur.type !== URType.SuiSignature) {
@@ -17,6 +17,35 @@ export class KeystoneSuiSDK {
       publicKey: toHex(sig.getPublicKey())
     }
   }
+
+
+
+  generateSignHashRequest ({
+    requestId,
+    messageHash,
+    accounts,
+    origin
+  }: SuiSignHashRequestProps): UR {
+    const derivationPaths: CryptoKeypath[] = []
+    const addresses: Buffer[] = []
+    accounts.forEach(account => {
+      derivationPaths.push(
+        new CryptoKeypath(parsePath(account.path).map(e => new PathComponent(e)), toBuffer(account.xfp))
+      )
+      account.address !== undefined && addresses.push(toBuffer(account.address.startsWith('0x') ? account.address.substring(2) : account.address))
+    })
+    if (addresses.length > 0 && addresses.length !== derivationPaths.length) {
+      throw new Error('address and path count must match')
+    }
+    return new SuiSignHashRequest({
+      requestId: uuidParse(requestId),
+      messageHash,
+      derivationPaths,
+      addresses,
+      origin
+    }).toUR()
+  }
+
 
   generateSignRequest ({
     requestId,
@@ -34,6 +63,24 @@ export class KeystoneSuiSDK {
     })
     if (addresses.length > 0 && addresses.length !== derivationPaths.length) {
       throw new Error('address and path count must match')
+    }
+    // check intentMessage size 
+    let intentMessageBuffer = toBuffer(intentMessage)
+    if (intentMessageBuffer.length > 1024) {
+      // hash intentMessage to 32 bytes
+      const hash = blake2b(Uint8Array.from(intentMessageBuffer), { dkLen: 32 });
+      // assert hash length is 32 bytes
+      if (hash.length !== 32) {
+        throw new Error('hash length must be 32')
+      }
+      intentMessage = toHex(hash)
+      return new SuiSignHashRequest({
+        requestId: uuidParse(requestId),
+        messageHash: intentMessage,
+        derivationPaths,
+        addresses,
+        origin
+      }).toUR()
     }
     return new SuiSignRequest({
       requestId: uuidParse(requestId),

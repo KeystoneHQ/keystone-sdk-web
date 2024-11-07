@@ -193,6 +193,13 @@ export interface SuiSignRequestProps {
   origin?: string
 }
 
+export interface SuiSignHashRequestProps {
+  requestId: string
+  messageHash: string
+  accounts: SuiAccount[]
+  origin?: string
+}
+
 export interface BtcSignRequestProps {
   requestId: string
   signData: string

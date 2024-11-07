@@ -42,3 +42,25 @@ test('generateSignRequest', () => {
 
   expect(keystoneSDK.sui.generateSignRequest({ requestId, intentMessage, accounts, origin })).toStrictEqual(expectResult)
 })
+
+
+
+test('generateSignHashRequest', () => {
+  const keystoneSDK = new KeystoneSDK()
+  const requestId = '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
+  const messageHash = 'ce035bd8ab6499dcaa01d623aa7c977ec9be13798046ca1f86c9f3ebcd2f4d13'
+  const messageBuffer = toBuffer(messageHash)
+  expect(messageBuffer.length === 32).toBe(true)
+  const accounts = [
+    {
+      path: "m/44'/784'/0'/0'/0'",
+      xfp: '52744703',
+      address: '504886c9ec43bff70af37f55865094cc3a799cb54479f252d30cd3717f15ecdc'
+    }
+  ]
+  const origin = 'Suiet'
+  const cborHex = "a501d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d027840636530333562643861623634393964636161303164363233616137633937376563396265313337393830343663613166383663396633656263643266346431330381d90130a2018a182cf5190310f500f500f500f5021a5274470304815820504886c9ec43bff70af37f55865094cc3a799cb54479f252d30cd3717f15ecdc05655375696574";
+  let expectResult = new UR(toBuffer(cborHex), 'sui-sign-hash-request')
+  let result = keystoneSDK.sui.generateSignHashRequest({ requestId, messageHash, accounts, origin })
+  expect(result).toStrictEqual(expectResult)
+})

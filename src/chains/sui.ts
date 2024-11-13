@@ -4,6 +4,8 @@ import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'
 import { SuiSignHashRequestProps, type SuiSignRequestProps } from '../types/props'
 import { blake2b } from '@noble/hashes/blake2b';
+
+const MAX_INTENT_MESSAGE_LENGTH = 2048
 export class KeystoneSuiSDK {
   parseSignature (ur: UR): SuiSignatureType {
     if (ur.type !== URType.SuiSignature) {
@@ -17,8 +19,6 @@ export class KeystoneSuiSDK {
       publicKey: toHex(sig.getPublicKey())
     }
   }
-
-
 
   generateSignHashRequest ({
     requestId,
@@ -64,12 +64,10 @@ export class KeystoneSuiSDK {
     if (addresses.length > 0 && addresses.length !== derivationPaths.length) {
       throw new Error('address and path count must match')
     }
-    // check intentMessage size 
     let intentMessageBuffer = toBuffer(intentMessage)
-    if (intentMessageBuffer.length > 1024) {
+    if (intentMessageBuffer.length > MAX_INTENT_MESSAGE_LENGTH) {
       // hash intentMessage to 32 bytes
       const hash = blake2b(Uint8Array.from(intentMessageBuffer), { dkLen: 32 });
-      // assert hash length is 32 bytes
       if (hash.length !== 32) {
         throw new Error('hash length must be 32')
       }

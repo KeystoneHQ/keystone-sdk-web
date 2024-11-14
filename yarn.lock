@@ -771,10 +771,10 @@
     bs58check "^2.1.2"
     uuid "^8.3.2"
 
-"@keystonehq/bc-ur-registry-sui@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@keystonehq/bc-ur-registry-sui/-/bc-ur-registry-sui-0.3.1.tgz#636f601620def48e0488408df049aa15718380a2"
-  integrity sha512-cbxu5AF5xFg9J3p0AXIkp1IMGSSNsaXWRgn22bcnkIlzwMEwmgJR5J/Lg45MIyIpW2p17fKyYqc9yuP0iMALEQ==
+"@keystonehq/bc-ur-registry-sui@0.4.0-alpha.0":
+  version "0.4.0-alpha.0"
+  resolved "https://registry.npmjs.org/@keystonehq/bc-ur-registry-sui/-/bc-ur-registry-sui-0.4.0-alpha.0.tgz#2c25726e1c2f4f351e675bd44b6f54bfc473cd7f"
+  integrity sha512-pwT+wyRnmnXdwMe2buMq3lQzDWc6kj2rxR8THI7fx3dUjYRzb6H4+/A+qwBlq24RWWtHfptLTPMk+LWVy9ABDA==
   dependencies:
     "@keystonehq/bc-ur-registry" "^0.6.4"
     uuid "^9.0.0"
@@ -834,6 +834,11 @@
   version "1.3.0"
   resolved "https://registry.npmjs.org/@noble/hashes/-/hashes-1.3.0.tgz"
   integrity sha512-ilHEACi9DwqJB0pw7kv+Apvh50jiiSyR/cQ3y4W7lOR5mhvn/50FLUfsnfJz0BDZtl/RR16kXvptiv6q1msYZg==
+
+"@noble/hashes@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/@noble/hashes/-/hashes-1.5.0.tgz#abadc5ca20332db2b1b2aa3e496e9af1213570b0"
+  integrity sha512-1j6kQFb7QRru7eKN3ZDvRcP13rugwdxZqCjbiAVZfIJwgj2A65UmT4TgARXGlXgnRkORLTDTrO19ZErt7+QXgA==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

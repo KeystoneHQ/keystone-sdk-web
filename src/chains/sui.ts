@@ -46,6 +46,11 @@ export class KeystoneSuiSDK {
     }).toUR()
   }
 
+  generateIntentMessageHash (intentMessage: string): string {
+    let intentMessageBuffer = toBuffer(intentMessage)
+    const hash = blake2b(Uint8Array.from(intentMessageBuffer), { dkLen: 32 });
+    return toHex(hash)
+  }
 
   generateSignRequest ({
     requestId,

@@ -16,12 +16,25 @@ import { KeystoneXrpSDK } from './chains/xrp'
 import { type KeystoneSDKConfig } from './types/config'
 
 export { KeystoneSDKConfig };
+const CONFIG_URL = "https://keyst.one/statics/sdk/config.json";
 
 export class KeystoneSDK {
   config?: KeystoneSDKConfig
 
   constructor (config?: KeystoneSDKConfig) {
     this.config = config
+  }
+
+  static async create (config?: KeystoneSDKConfig) {
+    try {
+      // fetch max message size limit from keystone server
+      const res = await fetch(CONFIG_URL)
+      const onlineConfig = await res.json()
+      return new KeystoneSDK({ ...config, ...onlineConfig })
+    } catch (err) {
+      console.error("fetch config error", err)
+      return new KeystoneSDK(config)
+    }
   }
 
   private _btc!: KeystoneBitcoinSDK
@@ -131,7 +144,7 @@ export class KeystoneSDK {
   private _sui!: KeystoneSuiSDK
   get sui (): KeystoneSuiSDK {
     if (this._sui === undefined) {
-      this._sui = new KeystoneSuiSDK()
+      this._sui = new KeystoneSuiSDK(this.config)
     }
     return this._sui
   }

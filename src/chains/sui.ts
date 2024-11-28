@@ -4,9 +4,14 @@ import { parsePath, toBuffer, toHex, uuidParse, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'
 import { SuiSignHashRequestProps, type SuiSignRequestProps } from '../types/props'
 import { blake2b } from '@noble/hashes/blake2b';
+import { KeystoneSDKConfig } from '../types'
 
-const MAX_INTENT_MESSAGE_LENGTH = 2048
 export class KeystoneSuiSDK {
+  config: KeystoneSDKConfig | undefined
+
+  constructor (config?: KeystoneSDKConfig) {
+    this.config = config
+  }
   parseSignature (ur: UR): SuiSignatureType {
     if (ur.type !== URType.SuiSignature) {
       throw new Error('type not match')
@@ -58,6 +63,7 @@ export class KeystoneSuiSDK {
     accounts,
     origin
   }: SuiSignRequestProps): UR {
+    const maxIntentMessageLength = this.config?.sizeLimit?.sui ?? 2048
     const derivationPaths: CryptoKeypath[] = []
     const addresses: Buffer[] = []
     accounts.forEach(account => {
@@ -70,7 +76,7 @@ export class KeystoneSuiSDK {
       throw new Error('address and path count must match')
     }
     let intentMessageBuffer = toBuffer(intentMessage)
-    if (intentMessageBuffer.length > MAX_INTENT_MESSAGE_LENGTH) {
+    if (intentMessageBuffer.length > maxIntentMessageLength) {
       // hash intentMessage to 32 bytes
       const hash = blake2b(Uint8Array.from(intentMessageBuffer), { dkLen: 32 });
       if (hash.length !== 32) {

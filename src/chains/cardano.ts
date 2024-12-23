@@ -139,7 +139,7 @@ export class KeystoneCardanoSDK {
 
   checkNeedSignTxHash(signData:Buffer): boolean {
     // check if signData is too long , so we convert it to sign tx hash request
-    const maxTxMaxSize = this.config?.sizeLimit?.cardano ?? 2048
+    const maxTxMaxSize = this.config?.sizeLimit?.ada ?? 2048
     return signData.length >= maxTxMaxSize
   }
 
@@ -161,7 +161,7 @@ export class KeystoneCardanoSDK {
     origin
   }: CardanoSignRequestProps): UR {
     // check if signData is too long , so we convert it to sign tx hash request
-    const maxTxMaxSize = this.config?.sizeLimit?.cardano ?? 2048
+    const maxTxMaxSize = this.config?.sizeLimit?.ada ?? 2048
     if (signData.length >= maxTxMaxSize) {
       const txHash = blake2b(Uint8Array.from(signData), { dkLen: 32 })
       const utxoPaths = utxos.map(utxo => new CryptoKeypath(parsePath(utxo.hdPath).map(e => new PathComponent(e)), toBuffer(utxo.xfp)))

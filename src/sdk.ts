@@ -152,7 +152,7 @@ export class KeystoneSDK {
   private _cardano!: KeystoneCardanoSDK
   get cardano (): KeystoneCardanoSDK {
     if (this._cardano === undefined) {
-      this._cardano = new KeystoneCardanoSDK()
+      this._cardano = new KeystoneCardanoSDK(this.config)
     }
     return this._cardano
   }

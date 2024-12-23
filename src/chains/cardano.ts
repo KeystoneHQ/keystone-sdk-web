@@ -6,10 +6,13 @@ import {
   CardanoCatalystRequest,
   CardanoCatalystSignature as AdaCatalystSignature,
   CardanoSignCip8DataRequest,
-  CardanoSignCip8DataSignature as AdaSignCip8DataSignature
+  CardanoSignCip8DataSignature as AdaSignCip8DataSignature,
+  CardanoSignTxHashRequest,
+  CryptoKeypath,
+  PathComponent,
 } from '@keystonehq/bc-ur-registry-cardano'
 import { type CardanoSignature, type CardanoSignDataSignature, type CardanoSignCip8DataSignature, type CardanoCatalystSignature } from '../types/signature'
-import { toHex, uuidStringify } from '../utils'
+import { parsePath, toBuffer, toHex, uuidStringify } from '../utils'
 import { URType, type UR } from '../types/ur'
 import {
   type CardanoSignRequestProps,
@@ -17,7 +20,17 @@ import {
   type CardanoCatalystRequestProps,
   type CardanoSignCip8MessageData,
 } from '../types/props'
+import { KeystoneSDKConfig } from '../types'
+import { blake2b } from '@noble/hashes/blake2b'
 export class KeystoneCardanoSDK {
+
+  config: KeystoneSDKConfig|undefined
+
+  constructor (config?: KeystoneSDKConfig) {
+    this.config = config
+  }
+
+
   parseSignature (ur: UR): CardanoSignature {
     if (ur.type !== URType.CardanoSignature) {
       throw new Error('type not match')
@@ -124,6 +137,22 @@ export class KeystoneCardanoSDK {
     ).toUR()
   }
 
+  checkNeedSignTxHash(signData:Buffer): boolean {
+    // check if signData is too long , so we convert it to sign tx hash request
+    const maxTxMaxSize = this.config?.sizeLimit?.ada ?? 2048
+    return signData.length >= maxTxMaxSize
+  }
+
+  generateSignTxHashRequest (txHash: string, paths: CryptoKeypath[], addressList: string[],  origin?: string, requestId?: string): UR {
+    return CardanoSignTxHashRequest.constructCardanoSignTxHashRequest(
+      txHash,
+      paths,
+      addressList,
+      requestId,
+      origin
+    ).toUR()
+  }
+
   generateSignRequest ({
     signData,
     utxos,
@@ -131,6 +160,23 @@ export class KeystoneCardanoSDK {
     requestId,
     origin
   }: CardanoSignRequestProps): UR {
+    // check if signData is too long , so we convert it to sign tx hash request
+    const maxTxMaxSize = this.config?.sizeLimit?.ada ?? 2048
+    if (signData.length >= maxTxMaxSize) {
+      const txHash = blake2b(Uint8Array.from(signData), { dkLen: 32 })
+      const utxoPaths = utxos.map(utxo => new CryptoKeypath(parsePath(utxo.hdPath).map(e => new PathComponent(e)), toBuffer(utxo.xfp)))
+      const extraSignerPaths = extraSigners.map(signer => new CryptoKeypath(parsePath(signer.keyPath).map(e => new PathComponent(e)), toBuffer(signer.xfp)))
+      const paths = [...utxoPaths, ...extraSignerPaths]
+      // add extra signers to addresses
+      const addresses = utxos.map(utxo => utxo.address)
+      return CardanoSignTxHashRequest.constructCardanoSignTxHashRequest(
+        Buffer.from(txHash).toString('hex'),
+        paths,
+        addresses,
+        requestId,
+        origin
+      ).toUR()
+    }
     return CardanoSignRequest.constructCardanoSignRequest(
       signData,
       utxos,

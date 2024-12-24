@@ -143,6 +143,11 @@ export class KeystoneCardanoSDK {
     return signData.length >= maxTxMaxSize
   }
 
+  generateTxHash(signData:Buffer): string {
+    // if signData is too long , we need to generate tx hash
+    return Buffer.from(blake2b(Uint8Array.from(signData), { dkLen: 32 })).toString('hex')
+  }
+
   generateSignTxHashRequest (txHash: string, paths: CryptoKeypath[], addressList: string[],  origin?: string, requestId?: string): UR {
     return CardanoSignTxHashRequest.constructCardanoSignTxHashRequest(
       txHash,

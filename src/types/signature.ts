@@ -48,6 +48,7 @@ export interface CosmosSignature extends Signature {
 
 export interface TronSignature {
   raw: string
+  txId: string
   requestId?: string
 }
 

@@ -1,5 +1,6 @@
 import * as uuid from 'uuid'
 import { type PathComponent } from '../types/account'
+import { Buffer } from 'buffer'
 
 export * from './coin'
 export {

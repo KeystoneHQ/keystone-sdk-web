@@ -9,7 +9,7 @@ import {
   KeystoneSolanaSDK, KeystoneTronSDK,
   KeystoneNearSDK, KeystoneSuiSDK,
   KeystoneEvmSDK, KeystoneTonSDK,
-  KeystoneStellarSDK
+  KeystoneStellarSDK, KeystoneAvalancheSDK,
 } from './chains'
 import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall, parseAccount, parseTonAccount } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
@@ -171,6 +171,14 @@ export class KeystoneSDK {
       this._ton = new KeystoneTonSDK(this.config)
     }
     return this._ton
+  }
+
+  private _avalanche!: KeystoneAvalancheSDK
+  get avalanche (): KeystoneAvalancheSDK {
+    if (this._avalanche === undefined) {
+      this._avalanche = new KeystoneAvalancheSDK()
+    }
+    return this._avalanche
   }
 
   parseMultiAccounts = parseMultiAccounts

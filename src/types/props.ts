@@ -74,6 +74,11 @@ export interface StellarSignRequestProps {
   origin?: string
 }
 
+export interface AvalancheSignRequestProps {
+  requestId?: string
+  signData: string
+}
+
 export interface KeystoneSignRequestBaseProps<T> {
   requestId: string
   signData: {

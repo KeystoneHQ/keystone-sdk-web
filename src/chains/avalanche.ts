@@ -5,9 +5,16 @@ import { AvalancheSignRequest } from '@keystonehq/bc-ur-registry-avalanche';
 
 export class KeystoneAvalancheSDK {
   generateSignRequest({
-    requestId,
     signData,
+    mfp,
+    xpub,
+    walletIndex,
   }: AvalancheSignRequestProps): UR {
-    return AvalancheSignRequest.constructAvalancheRequest(toBuffer(signData), requestId ?? undefined).toUR();
+    return AvalancheSignRequest.constructAvalancheRequest(
+      toBuffer(signData),
+      mfp,
+      xpub,
+      walletIndex,
+    ).toUR();
   }
 }

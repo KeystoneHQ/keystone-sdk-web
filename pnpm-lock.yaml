@@ -17,6 +17,9 @@ dependencies:
   '@keystonehq/bc-ur-registry-arweave':
     specifier: ^0.5.3
     version: 0.5.3
+  '@keystonehq/bc-ur-registry-avalanche':
+    specifier: ^0.0.4
+    version: 0.0.4
   '@keystonehq/bc-ur-registry-btc':
     specifier: ^0.1.1
     version: 0.1.1
@@ -902,6 +905,14 @@ packages:
     resolution: {integrity: sha512-b5OAzhW7HLaOX7OEyWA+Bz+4EJIzCT7c+JXU0TElzpBD5rGo4ylf+StuyV6WnuKx5NV11fv9k2XDyHit26CCLA==}
     dependencies:
       '@keystonehq/bc-ur-registry': 0.6.4
+      uuid: 8.3.2
+    dev: false
+
+  /@keystonehq/bc-ur-registry-avalanche@0.0.4:
+    resolution: {integrity: sha512-I32b+k17jrGCPpYW3tlav+BKdGBI8cMZat/AiQnr66JUSuewl+Cn7E7UqrQ3L7qZbSXquYUKUjYXdtMTACNnyQ==}
+    dependencies:
+      '@keystonehq/bc-ur-registry': 0.6.4
+      buffer: 6.0.3
       uuid: 8.3.2
     dev: false
 

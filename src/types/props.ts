@@ -77,6 +77,9 @@ export interface StellarSignRequestProps {
 export interface AvalancheSignRequestProps {
   requestId?: string
   signData: string
+  mfp: string
+  xpub: string
+  walletIndex: number
 }
 
 export interface KeystoneSignRequestBaseProps<T> {

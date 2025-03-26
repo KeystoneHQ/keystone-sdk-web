@@ -1,0 +1,16 @@
+syntax = "proto3";
+package protoc;
+option java_package = "com.keystone.cold.protobuf";
+option java_outer_classname = "DogeTxProtoc";
+
+import "protos/btc_transaction.proto";
+
+
+message DogeTx {
+    // fee = outputs.size > 1 ? fee = sum(input.value) - sum(output.value) : fee
+    int64 fee = 1;
+    int32 dustThreshold = 2;
+    string memo = 3;
+    repeated Input inputs = 4;
+    repeated Output outputs = 5;
+}

@@ -99,6 +99,7 @@ export interface KeystoneSignRequestProps extends KeystoneSignRequestBaseProps<A
 
 export type LTCSignRequestProps = KeystoneSignRequestBaseProps<Array<PartialMessage<Input>>>
 
+export type DOGESignRequestProps = KeystoneSignRequestBaseProps<Array<PartialMessage<Input>>>
 export type BCHSignRequestProps = KeystoneSignRequestBaseProps<Array<PartialMessage<BchTx_Input>>>
 
 export type DashSignRequestProps = KeystoneSignRequestBaseProps<Array<PartialMessage<DashTx_Input>>>

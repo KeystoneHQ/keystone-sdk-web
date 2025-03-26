@@ -14,6 +14,7 @@ import {
 import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall, parseAccount, parseTonAccount } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
 import { type KeystoneSDKConfig } from './types/config'
+import { KeystoneDogecoinSDK } from './chains/doge';
 
 export { KeystoneSDKConfig };
 const CONFIG_URL = "https://keyst.one/statics/sdk/config.json";
@@ -99,6 +100,15 @@ export class KeystoneSDK {
       this._ltc = new KeystoneLitecoinSDK()
     }
     return this._ltc
+  }
+
+
+  private _doge!: KeystoneDogecoinSDK
+  get doge (): KeystoneDogecoinSDK {
+    if (this._doge === undefined) {
+      this._doge = new KeystoneDogecoinSDK()
+    }
+    return this._doge
   }
 
   private _bch!: KeystoneBitcoinCashSDK

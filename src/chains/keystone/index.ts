@@ -8,18 +8,21 @@ import { SignTransaction } from '../../gen/protos/transaction_pb'
 import { LtcTx } from '../../gen/chains/keystone/protos/ltc_transaction_pb'
 import { BchTx } from '../../gen/chains/keystone/protos/bch_transaction_pb'
 import { DashTx } from '../../gen/chains/keystone/protos/dash_transaction_pb'
+import { DogeTx } from '../../gen/chains/keystone/protos/doge_transaction_pb'
 import { type KeystoneSignResult as KeystoneSignResultType } from '../../types/signature'
 
 export enum Chain {
   LTC = 'LTC',
   BCH = 'BCH',
-  DASH = 'DASH'
+  DASH = 'DASH',
+  DOGE = 'DOGE'
 }
 
 export enum TXCase {
   LTC = 'ltcTx',
   BCH = 'bchTx',
-  DASH = 'dashTx'
+  DASH = 'dashTx',
+  DOGE = 'dogeTx'
 }
 
 export class Keystone {
@@ -59,6 +62,16 @@ export class Keystone {
       })
       coinCode = Chain.DASH
       txCase = TXCase.DASH
+      break
+    case Chain.DOGE:
+      tx = new DogeTx({
+        ...signData,
+        fee: BigInt(signData.fee),
+        // 0.01 DOGE = 1000000
+        dustThreshold: 1000000
+      })
+      coinCode = Chain.DOGE
+      txCase = TXCase.DOGE
       break
     default:
       throw new Error('chain not support')

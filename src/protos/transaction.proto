@@ -7,7 +7,7 @@ import "chains/keystone/protos/bch_transaction.proto";
 import "chains/keystone/protos/dash_transaction.proto";
 import "chains/keystone/protos/ltc_transaction.proto";
 import "chains/keystone/protos/tron_transaction.proto";
-
+import "chains/keystone/protos/doge_transaction.proto";
 message SignTransaction {
     string coinCode = 1;
     string signId = 2;
@@ -31,5 +31,6 @@ message SignTransaction {
         // DotTx dotTx = 19;
         // KsmTx ksmTx = 20;
         // CfxTx cfxTx = 21;
+        DogeTx dogeTx = 22;
     }
 }

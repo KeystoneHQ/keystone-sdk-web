@@ -33,8 +33,8 @@ importers:
         specifier: ^0.5.3
         version: 0.5.3
       '@keystonehq/bc-ur-registry-eth':
-        specifier: ^0.20.1
-        version: 0.20.1
+        specifier: ^0.22.0
+        version: 0.22.0
       '@keystonehq/bc-ur-registry-evm':
         specifier: ^0.5.3
         version: 0.5.3
@@ -95,7 +95,7 @@ importers:
         version: 9.0.8
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.43.0
-        version: 5.62.0(@typescript-eslint/parser@8.19.0)(eslint@8.57.1)(typescript@5.7.2)
+        version: 5.62.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)
       '@typescript-eslint/parser':
         specifier: ^8.0.1
         version: 8.19.0(eslint@8.57.1)(typescript@5.7.2)
@@ -104,10 +104,10 @@ importers:
         version: 8.57.1
       eslint-config-standard-with-typescript:
         specifier: ^34.0.1
-        version: 34.0.1(@typescript-eslint/eslint-plugin@5.62.0)(eslint-plugin-import@2.31.0)(eslint-plugin-n@15.7.0)(eslint-plugin-promise@6.6.0)(eslint@8.57.1)(typescript@5.7.2)
+        version: 34.0.1(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1))(eslint-plugin-n@15.7.0(eslint@8.57.1))(eslint-plugin-promise@6.6.0(eslint@8.57.1))(eslint@8.57.1)(typescript@5.7.2)
       eslint-plugin-import:
         specifier: ^2.25.2
-        version: 2.31.0(@typescript-eslint/parser@8.19.0)(eslint@8.57.1)
+        version: 2.31.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)
       eslint-plugin-n:
         specifier: ^15.0.0
         version: 15.7.0(eslint@8.57.1)
@@ -116,13 +116,13 @@ importers:
         version: 6.6.0(eslint@8.57.1)
       jest:
         specifier: ^29.5.0
-        version: 29.7.0
+        version: 29.7.0(@types/node@22.10.2)
       jest-environment-jsdom:
         specifier: ^29.5.0
         version: 29.7.0
       ts-jest:
         specifier: ^29.1.0
-        version: 29.2.5(@babel/core@7.26.0)(jest@29.7.0)(typescript@5.7.2)
+        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.10.2))(typescript@5.7.2)
       typescript:
         specifier: ^5.0.4
         version: 5.7.2
@@ -510,8 +510,8 @@ packages:
   '@keystonehq/bc-ur-registry-cosmos@0.5.3':
     resolution: {integrity: sha512-bCmm2LMM4EHiLrjhfkbzfnwTXi4ez56MfwKYke8Z0roeaJbHmr2KkCg6/MePLjeK9PRbY0jKXBmCowMe2DhfhA==}
 
-  '@keystonehq/bc-ur-registry-eth@0.20.1':
-    resolution: {integrity: sha512-vQpqhj2DeDI1/xwY3eqj1PWgqqTdg53RgMVBUZUV3O8CSc0nbnH4SaP3cx85KEOO+4Loq6SXHbFJr1egalM2ng==}
+  '@keystonehq/bc-ur-registry-eth@0.22.0':
+    resolution: {integrity: sha512-YnOgt5MsTdK6Mn0ZV65Bq8dolvsOGG+4c/MHDq0UaYMLufL55tZgIY++wSa6Qy2pur+jmSr70idBXK3lactGtQ==}
 
   '@keystonehq/bc-ur-registry-evm@0.5.3':
     resolution: {integrity: sha512-K3tmY1Y2SDImtSnCPFoASMBNernbN/ZRIIkp8iKegDeyHtaPbzfNIdaEL/wUHVoieTgTOUTwyWZspBvvbgrivw==}
@@ -2895,8 +2895,9 @@ snapshots:
 
   '@bufbuild/protoc-gen-es@1.10.0(@bufbuild/protobuf@1.10.0)':
     dependencies:
-      '@bufbuild/protobuf': 1.10.0
       '@bufbuild/protoplugin': 1.10.0
+    optionalDependencies:
+      '@bufbuild/protobuf': 1.10.0
     transitivePeerDependencies:
       - supports-color
 
@@ -3174,10 +3175,10 @@ snapshots:
       bs58check: 2.1.2
       uuid: 8.3.2
 
-  '@keystonehq/bc-ur-registry-eth@0.20.1':
+  '@keystonehq/bc-ur-registry-eth@0.22.0':
     dependencies:
       '@ethereumjs/util': 9.1.0
-      '@keystonehq/bc-ur-registry': 0.6.4
+      '@keystonehq/bc-ur-registry': 0.7.0
       hdkey: 2.1.0
       uuid: 8.3.2
 
@@ -3358,7 +3359,7 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.3
 
-  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@8.19.0)(eslint@8.57.1)(typescript@5.7.2)':
+  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
       '@typescript-eslint/parser': 8.19.0(eslint@8.57.1)(typescript@5.7.2)
@@ -3372,6 +3373,7 @@ snapshots:
       natural-compare-lite: 1.4.0
       semver: 7.6.3
       tsutils: 3.21.0(typescript@5.7.2)
+    optionalDependencies:
       typescript: 5.7.2
     transitivePeerDependencies:
       - supports-color
@@ -3383,6 +3385,7 @@ snapshots:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.7.2)
       debug: 4.4.0
       eslint: 8.57.1
+    optionalDependencies:
       typescript: 5.7.2
     transitivePeerDependencies:
       - supports-color
@@ -3416,6 +3419,7 @@ snapshots:
       debug: 4.4.0
       eslint: 8.57.1
       tsutils: 3.21.0(typescript@5.7.2)
+    optionalDependencies:
       typescript: 5.7.2
     transitivePeerDependencies:
       - supports-color
@@ -3433,6 +3437,7 @@ snapshots:
       is-glob: 4.0.3
       semver: 7.6.3
       tsutils: 3.21.0(typescript@5.7.2)
+    optionalDependencies:
       typescript: 5.7.2
     transitivePeerDependencies:
       - supports-color
@@ -3818,7 +3823,7 @@ snapshots:
       ripemd160: 2.0.2
       sha.js: 2.4.11
 
-  create-jest@29.7.0:
+  create-jest@29.7.0(@types/node@22.10.2):
     dependencies:
       '@jest/types': 29.6.3
       chalk: 4.1.2
@@ -4043,23 +4048,23 @@ snapshots:
     optionalDependencies:
       source-map: 0.6.1
 
-  eslint-config-standard-with-typescript@34.0.1(@typescript-eslint/eslint-plugin@5.62.0)(eslint-plugin-import@2.31.0)(eslint-plugin-n@15.7.0)(eslint-plugin-promise@6.6.0)(eslint@8.57.1)(typescript@5.7.2):
+  eslint-config-standard-with-typescript@34.0.1(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1))(eslint-plugin-n@15.7.0(eslint@8.57.1))(eslint-plugin-promise@6.6.0(eslint@8.57.1))(eslint@8.57.1)(typescript@5.7.2):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@8.19.0)(eslint@8.57.1)(typescript@5.7.2)
+      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@5.7.2)
       eslint: 8.57.1
-      eslint-config-standard: 17.0.0(eslint-plugin-import@2.31.0)(eslint-plugin-n@15.7.0)(eslint-plugin-promise@6.6.0)(eslint@8.57.1)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.19.0)(eslint@8.57.1)
+      eslint-config-standard: 17.0.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1))(eslint-plugin-n@15.7.0(eslint@8.57.1))(eslint-plugin-promise@6.6.0(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)
       eslint-plugin-n: 15.7.0(eslint@8.57.1)
       eslint-plugin-promise: 6.6.0(eslint@8.57.1)
       typescript: 5.7.2
     transitivePeerDependencies:
       - supports-color
 
-  eslint-config-standard@17.0.0(eslint-plugin-import@2.31.0)(eslint-plugin-n@15.7.0)(eslint-plugin-promise@6.6.0)(eslint@8.57.1):
+  eslint-config-standard@17.0.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1))(eslint-plugin-n@15.7.0(eslint@8.57.1))(eslint-plugin-promise@6.6.0(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       eslint: 8.57.1
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.19.0)(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)
       eslint-plugin-n: 15.7.0(eslint@8.57.1)
       eslint-plugin-promise: 6.6.0(eslint@8.57.1)
 
@@ -4071,10 +4076,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.19.0)(eslint-import-resolver-node@0.3.9)(eslint@8.57.1):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint@8.57.1):
     dependencies:
-      '@typescript-eslint/parser': 8.19.0(eslint@8.57.1)(typescript@5.7.2)
       debug: 3.2.7
+    optionalDependencies:
+      '@typescript-eslint/parser': 8.19.0(eslint@8.57.1)(typescript@5.7.2)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
     transitivePeerDependencies:
@@ -4086,10 +4092,9 @@ snapshots:
       eslint-utils: 2.1.0
       regexpp: 3.2.0
 
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.0)(eslint@8.57.1):
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1):
     dependencies:
       '@rtsao/scc': 1.1.0
-      '@typescript-eslint/parser': 8.19.0(eslint@8.57.1)(typescript@5.7.2)
       array-includes: 3.1.8
       array.prototype.findlastindex: 1.2.5
       array.prototype.flat: 1.3.3
@@ -4098,7 +4103,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.19.0)(eslint-import-resolver-node@0.3.9)(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.19.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
@@ -4109,6 +4114,8 @@ snapshots:
       semver: 6.3.1
       string.prototype.trimend: 1.0.9
       tsconfig-paths: 3.15.0
+    optionalDependencies:
+      '@typescript-eslint/parser': 8.19.0(eslint@8.57.1)(typescript@5.7.2)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -4707,13 +4714,13 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-cli@29.7.0:
+  jest-cli@29.7.0(@types/node@22.10.2):
     dependencies:
       '@jest/core': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
       chalk: 4.1.2
-      create-jest: 29.7.0
+      create-jest: 29.7.0(@types/node@22.10.2)
       exit: 0.1.2
       import-local: 3.2.0
       jest-config: 29.7.0(@types/node@22.10.2)
@@ -4731,7 +4738,6 @@ snapshots:
       '@babel/core': 7.26.0
       '@jest/test-sequencer': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.10.2
       babel-jest: 29.7.0(@babel/core@7.26.0)
       chalk: 4.1.2
       ci-info: 3.9.0
@@ -4751,6 +4757,8 @@ snapshots:
       pretty-format: 29.7.0
       slash: 3.0.0
       strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 22.10.2
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -4847,7 +4855,7 @@ snapshots:
       jest-util: 29.7.0
 
   jest-pnp-resolver@1.2.3(jest-resolve@29.7.0):
-    dependencies:
+    optionalDependencies:
       jest-resolve: 29.7.0
 
   jest-regex-util@29.6.3: {}
@@ -4985,12 +4993,12 @@ snapshots:
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
-  jest@29.7.0:
+  jest@29.7.0(@types/node@22.10.2):
     dependencies:
       '@jest/core': 29.7.0
       '@jest/types': 29.6.3
       import-local: 3.2.0
-      jest-cli: 29.7.0
+      jest-cli: 29.7.0(@types/node@22.10.2)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -5587,13 +5595,12 @@ snapshots:
     dependencies:
       typescript: 5.7.2
 
-  ts-jest@29.2.5(@babel/core@7.26.0)(jest@29.7.0)(typescript@5.7.2):
+  ts-jest@29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.10.2))(typescript@5.7.2):
     dependencies:
-      '@babel/core': 7.26.0
       bs-logger: 0.2.6
       ejs: 3.1.10
       fast-json-stable-stringify: 2.1.0
-      jest: 29.7.0
+      jest: 29.7.0(@types/node@22.10.2)
       jest-util: 29.7.0
       json5: 2.2.3
       lodash.memoize: 4.1.2
@@ -5601,6 +5608,11 @@ snapshots:
       semver: 7.6.3
       typescript: 5.7.2
       yargs-parser: 21.1.1
+    optionalDependencies:
+      '@babel/core': 7.26.0
+      '@jest/transform': 29.7.0
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.26.0)
 
   tsconfig-paths@3.15.0:
     dependencies:

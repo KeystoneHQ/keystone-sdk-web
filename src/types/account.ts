@@ -75,4 +75,6 @@ export interface ArweaveAccount {
 
 export interface SuiAccount extends SignAccount {}
 
+export interface IotaAccount extends SignAccount {}
+
 export interface BtcAccount extends SignAccount {}

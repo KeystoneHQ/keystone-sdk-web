@@ -38,6 +38,9 @@ importers:
       '@keystonehq/bc-ur-registry-evm':
         specifier: ^0.5.3
         version: 0.5.3
+      '@keystonehq/bc-ur-registry-iota':
+        specifier: 0.1.0
+        version: 0.1.0
       '@keystonehq/bc-ur-registry-keystone':
         specifier: ^0.4.3
         version: 0.4.3
@@ -515,6 +518,9 @@ packages:
 
   '@keystonehq/bc-ur-registry-evm@0.5.3':
     resolution: {integrity: sha512-K3tmY1Y2SDImtSnCPFoASMBNernbN/ZRIIkp8iKegDeyHtaPbzfNIdaEL/wUHVoieTgTOUTwyWZspBvvbgrivw==}
+
+  '@keystonehq/bc-ur-registry-iota@0.1.0':
+    resolution: {integrity: sha512-oA4oKrONYE3yz+6M96s1jlE4pnFiVLWjB9HpUfoBqPD4UwFaPJGhaOdTMvFJCrY2iogClqenXvYLPXXrg+Wppw==}
 
   '@keystonehq/bc-ur-registry-keystone@0.4.3':
     resolution: {integrity: sha512-YTf0p9TYYq9+bfF/wMEE2gbhNiV1S0m31hMwnl+4kn3q1avwlrXZ6h30nANZXD31NQ8hMuLO8x7Ny+0AldmAOA==}
@@ -3186,6 +3192,11 @@ snapshots:
     dependencies:
       '@keystonehq/bc-ur-registry': 0.6.4
       bs58check: 2.1.2
+      uuid: 9.0.1
+
+  '@keystonehq/bc-ur-registry-iota@0.1.0':
+    dependencies:
+      '@keystonehq/bc-ur-registry': 0.6.4
       uuid: 9.0.1
 
   '@keystonehq/bc-ur-registry-keystone@0.4.3':

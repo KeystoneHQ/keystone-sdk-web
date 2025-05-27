@@ -70,6 +70,10 @@ export interface SuiSignature extends Signature {
   publicKey: string
 }
 
+export interface IotaSignature extends Signature {
+  publicKey: string
+}
+
 export interface TonSignature {
   requestId?: string
   signature: string

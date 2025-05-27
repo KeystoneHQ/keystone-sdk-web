@@ -4,5 +4,6 @@ export interface KeystoneSDKConfig {
     sizeLimit?: {
       sui?: number
       ada?: number
+      iota?: number
     }
   }

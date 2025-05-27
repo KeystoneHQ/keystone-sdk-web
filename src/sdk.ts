@@ -15,6 +15,7 @@ import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall, parseAccount
 import { KeystoneXrpSDK } from './chains/xrp'
 import { type KeystoneSDKConfig } from './types/config'
 import { KeystoneDogecoinSDK } from './chains/doge';
+import { KeystoneIotaSDK } from './chains/iota';
 
 export { KeystoneSDKConfig };
 const CONFIG_URL = "https://keyst.one/statics/sdk/config.json";
@@ -157,6 +158,14 @@ export class KeystoneSDK {
       this._sui = new KeystoneSuiSDK(this.config)
     }
     return this._sui
+  }
+
+  private _iota!: KeystoneIotaSDK
+  get iota (): KeystoneIotaSDK {
+    if (this._iota === undefined) {
+      this._iota = new KeystoneIotaSDK(this.config)
+    }
+    return this._iota
   }
 
   private _cardano!: KeystoneCardanoSDK

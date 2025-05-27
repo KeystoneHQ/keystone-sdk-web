@@ -9,7 +9,7 @@ import { type Input, type Output } from '../gen/protos/btc_transaction_pb'
 import { type DashTx_Input } from '../gen/chains/keystone/protos/dash_transaction_pb'
 import { type Chain } from '../chains/keystone'
 import { type PartialMessage } from '@bufbuild/protobuf'
-import { type CosmosAccount, type AptosAccount, type SuiAccount, type EvmAccount, type BtcAccount } from './account'
+import { type CosmosAccount, type AptosAccount, type SuiAccount, type EvmAccount, type BtcAccount, IotaAccount } from './account'
 import { type SaltLen, type SignType as ArweaveSignType } from '@keystonehq/bc-ur-registry-arweave'
 import { type CardanoCertKeyData, type CardanoUtxoData, type CardanoCatalystRawDelegationsProps } from '@keystonehq/bc-ur-registry-cardano'
 import { type SignDataType as EvmDataType } from '@keystonehq/bc-ur-registry-evm'
@@ -206,6 +206,20 @@ export interface SuiSignHashRequestProps {
   requestId: string
   messageHash: string
   accounts: SuiAccount[]
+  origin?: string
+}
+
+export interface IotaSignHashRequestProps {
+  requestId: string
+  messageHash: string
+  accounts: IotaAccount[]
+  origin?: string
+}
+
+export interface IotaSignRequestProps {
+  requestId: string
+  intentMessage: string
+  accounts: IotaAccount[]
   origin?: string
 }
 

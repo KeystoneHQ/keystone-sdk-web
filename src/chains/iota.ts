@@ -44,7 +44,7 @@ export class KeystoneIotaSDK {
     }
     return new IotaSignHashRequest({
       requestId: uuidParse(requestId),
-      messageHash: toBuffer(messageHash),
+      messageHash: messageHash,
       derivationPaths,
       addresses,
       origin
@@ -85,7 +85,7 @@ export class KeystoneIotaSDK {
       intentMessage = toHex(hash)
       return new IotaSignHashRequest({
         requestId: uuidParse(requestId),
-        messageHash: toBuffer(intentMessage),
+        messageHash: intentMessage,
         derivationPaths,
         addresses,
         origin

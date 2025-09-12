@@ -2,6 +2,7 @@ export { UR } from '@ngraveio/bc-ur'
 
 export enum URType {
   CryptoPSBT = 'crypto-psbt',
+  CryptoPSBTExtend = 'crypto-psbt-extend',
   CryptoMultiAccounts = 'crypto-multi-accounts',
   CryptoHDKey = 'crypto-hdkey',
   CryptoAccount = 'crypto-account',

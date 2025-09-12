@@ -12,8 +12,8 @@ importers:
         specifier: ^1.2.0
         version: 1.10.0
       '@keystonehq/bc-ur-registry':
-        specifier: ^0.7.0
-        version: 0.7.0
+        specifier: ^0.7.1
+        version: 0.7.1
       '@keystonehq/bc-ur-registry-aptos':
         specifier: ^0.6.3
         version: 0.6.3
@@ -543,8 +543,8 @@ packages:
   '@keystonehq/bc-ur-registry@0.6.4':
     resolution: {integrity: sha512-j8Uy44DuAkvYkbf0jMxRY3UizJfn8wsEQr7GS3miRF44vcq7k0/yemVkftbn3jQ+0JYaUXf5wY7lVpLhAeW5nQ==}
 
-  '@keystonehq/bc-ur-registry@0.7.0':
-    resolution: {integrity: sha512-E6NUd6Y+YYM+IcYGOEXfO9+MU1s63Qjm8brtHftvNhxbdXhGtTYIsa4FQmqZ6q34q91bMkMqUQFsQYPmIxcxfg==}
+  '@keystonehq/bc-ur-registry@0.7.1':
+    resolution: {integrity: sha512-6eVIjNt/P+BmuwcYccbPYVS85473SFNplkqWF/Vb3ePCzLX00tn0WZBO1FGpS4X4nfXtceTfvUeNvQKoTGtXrw==}
 
   '@ngraveio/bc-ur@1.1.13':
     resolution: {integrity: sha512-j73akJMV4+vLR2yQ4AphPIT5HZmxVjn/LxpL7YHoINnXoH6ccc90Zzck6/n6a3bCXOVZwBxq+YHwbAKRV+P8Zg==}
@@ -3184,7 +3184,7 @@ snapshots:
   '@keystonehq/bc-ur-registry-eth@0.22.0':
     dependencies:
       '@ethereumjs/util': 9.1.0
-      '@keystonehq/bc-ur-registry': 0.7.0
+      '@keystonehq/bc-ur-registry': 0.7.1
       hdkey: 2.1.0
       uuid: 8.3.2
 
@@ -3211,7 +3211,7 @@ snapshots:
 
   '@keystonehq/bc-ur-registry-sol@0.9.5':
     dependencies:
-      '@keystonehq/bc-ur-registry': 0.7.0
+      '@keystonehq/bc-ur-registry': 0.7.1
       bs58check: 2.1.2
       uuid: 8.3.2
 
@@ -3237,7 +3237,7 @@ snapshots:
       bs58check: 2.1.2
       tslib: 2.8.1
 
-  '@keystonehq/bc-ur-registry@0.7.0':
+  '@keystonehq/bc-ur-registry@0.7.1':
     dependencies:
       '@ngraveio/bc-ur': 1.1.13
       bs58check: 2.1.2

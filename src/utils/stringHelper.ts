@@ -8,7 +8,7 @@ export {
 }
 
 export function toHex (buf: Buffer | Uint8Array | undefined): string {
-  return buf === undefined ? '' : Buffer.from(buf).toString('hex')
+  return buf === undefined ? '' : Buffer.from(buf as any).toString('hex')
 }
 
 export function toBuffer (hex: string | undefined): Buffer {

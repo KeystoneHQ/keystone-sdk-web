@@ -59,6 +59,9 @@ importers:
       '@keystonehq/bc-ur-registry-ton':
         specifier: ^0.1.2
         version: 0.1.2
+      '@keystonehq/bc-ur-registry-zcash':
+        specifier: 0.1.2
+        version: 0.1.2
       '@ngraveio/bc-ur':
         specifier: ^1.1.6
         version: 1.1.13
@@ -539,6 +542,9 @@ packages:
 
   '@keystonehq/bc-ur-registry-ton@0.1.2':
     resolution: {integrity: sha512-m36/QODXTbkQQacM8vIopt5RvE/uc/f9f4Jc9VFxsxKWmld3aGwrMsLB1SBSva31kawikOVSMEWXhXlQ07UJhA==}
+
+  '@keystonehq/bc-ur-registry-zcash@0.1.2':
+    resolution: {integrity: sha512-HkHSiz1WeMDaCMU75Uiu+Ozjaqe+rtInHuQFRUb6u89bH/+sJZb3XBkZ8lzJUwqlCMMWUZ0DbEtoRKYpb9kSzg==}
 
   '@keystonehq/bc-ur-registry@0.6.4':
     resolution: {integrity: sha512-j8Uy44DuAkvYkbf0jMxRY3UizJfn8wsEQr7GS3miRF44vcq7k0/yemVkftbn3jQ+0JYaUXf5wY7lVpLhAeW5nQ==}
@@ -3229,6 +3235,11 @@ snapshots:
   '@keystonehq/bc-ur-registry-ton@0.1.2':
     dependencies:
       '@keystonehq/bc-ur-registry': 0.6.4
+      uuid: 9.0.1
+
+  '@keystonehq/bc-ur-registry-zcash@0.1.2':
+    dependencies:
+      '@keystonehq/bc-ur-registry': 0.7.1
       uuid: 9.0.1
 
   '@keystonehq/bc-ur-registry@0.6.4':

@@ -29,4 +29,5 @@ export enum URType {
   XrpSignRequest = 'bytes',
   XrpSignature = 'bytes',
   TonSignature = 'ton-signature',
+  ZcashPCZT = 'zcash-pczt',
 }

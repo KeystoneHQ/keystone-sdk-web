@@ -11,6 +11,7 @@ import {
   KeystoneEvmSDK, KeystoneTonSDK,
   KeystoneStellarSDK, KeystoneAvalancheSDK,
   KeystonePsbtSDK,
+  KeystoneZcashSDK,
 } from './chains'
 import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall, parseAccount, parseTonAccount } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
@@ -207,6 +208,14 @@ export class KeystoneSDK {
       this._psbt = new KeystonePsbtSDK()
     }
     return this._psbt
+  }
+
+  private _zcash!: KeystoneZcashSDK
+  get zcash (): KeystoneZcashSDK {
+    if (this._zcash === undefined) {
+      this._zcash = new KeystoneZcashSDK()
+    }
+    return this._zcash
   }
 
   parseMultiAccounts = parseMultiAccounts

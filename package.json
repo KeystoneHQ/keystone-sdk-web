@@ -1,6 +1,6 @@
 {
 	"name": "@keystonehq/keystone-sdk",
-	"version": "0.11.5",
+	"version": "0.11.6",
 	"description": "Keystone SDK",
 	"main": "dist/index.js",
 	"scripts": {
@@ -42,6 +42,7 @@
 		"@keystonehq/bc-ur-registry-sui": "0.4.0-alpha.0",
 		"@keystonehq/bc-ur-registry-iota": "^0.1.4",
 		"@keystonehq/bc-ur-registry-ton": "^0.1.2",
+		"@keystonehq/bc-ur-registry-zcash": "0.1.2",
 		"@ngraveio/bc-ur": "^1.1.6",
 		"@noble/hashes": "^1.5.0",
 		"bs58check": "^3.0.1",

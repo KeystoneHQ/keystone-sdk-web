@@ -32,6 +32,8 @@ export function raw2tx (signData: Buffer, tokenInfo?: TokenInfo): TronTx {
     timestamp: BigInt(Number(rawData.expiration) - 600 * 5 * 1000)
   })
 
+  const memoString = rawData.data.length > 0 ? Buffer.from(rawData.data).toString('utf-8') : ''
+
   const contractData = rawData.contract[0]
   if (contractData.parameter === undefined) {
     throw new Error('contract is invalid')
@@ -50,7 +52,8 @@ export function raw2tx (signData: Buffer, tokenInfo?: TokenInfo): TronTx {
       latestBlock,
       to: formatAddress(contract.toAddress),
       token: 'TRX',
-      value: contract.amount.toString()
+      value: contract.amount.toString(),
+      memo: memoString
     })
   case Transaction_Contract_ContractType.TransferAssetContract:
     try {
@@ -68,7 +71,8 @@ export function raw2tx (signData: Buffer, tokenInfo?: TokenInfo): TronTx {
       override,
       to: formatAddress(contract.toAddress),
       token: Buffer.from(contract.assetName).toString(),
-      value: contract.amount.toString()
+      value: contract.amount.toString(),
+      memo: memoString
     })
 
   case Transaction_Contract_ContractType.TriggerSmartContract:
@@ -88,7 +92,8 @@ export function raw2tx (signData: Buffer, tokenInfo?: TokenInfo): TronTx {
       latestBlock,
       override,
       to: formatAddress(Buffer.from([65, ...contract.data.slice(16, 36)])),
-      value: BigInt(`0x${Buffer.from(contract.data.slice(36, 68)).toString('hex')}`).toString()
+      value: BigInt(`0x${Buffer.from(contract.data.slice(36, 68)).toString('hex')}`).toString(),
+      memo: memoString
     })
   default:
     throw new Error('contract is not supported')

@@ -1,5 +1,6 @@
 import {
   Curve,
+  DeriveContextHashCall,
   DerivationAlgorithm,
   KeyDerivation,
   QRHardwareCall,
@@ -10,7 +11,14 @@ import {
 import { type UR } from '@ngraveio/bc-ur'
 import { pathToKeypath } from '../utils'
 
-export { Curve, DerivationAlgorithm, QRHardwareCallVersion }
+export {
+  Curve,
+  DeriveContextHashCall,
+  DerivationAlgorithm,
+  QRHardwareCall,
+  QRHardwareCallType,
+  QRHardwareCallVersion,
+}
 
 export interface KeySchema {
 	path: string
@@ -23,6 +31,15 @@ export interface KeyDerivationCallArgs {
 	schemas: KeySchema[]
 	origin?: string
 	version?: QRHardwareCallVersion
+}
+
+export interface DeriveContextHashCallArgs {
+  appName: string
+  network: string
+  keyPath: string
+  context: string
+  origin?: string
+  version?: QRHardwareCallVersion
 }
 
 export const generateKeyDerivationCall = ({
@@ -59,6 +76,29 @@ export const generateKeyDerivationCall = ({
     keyDerivation,
     origin,
     version ? QRHardwareCallVersion.V1 : QRHardwareCallVersion.V0
+  )
+  return hardwareCall.toUR()
+}
+
+export const generateDeriveContextHashCall = ({
+  appName,
+  network,
+  keyPath,
+  context,
+  origin,
+  version,
+}: DeriveContextHashCallArgs): UR => {
+  const deriveContextHashCall = new DeriveContextHashCall(
+    appName,
+    network,
+    pathToKeypath(keyPath),
+    context
+  )
+  const hardwareCall = new QRHardwareCall(
+    QRHardwareCallType.DeriveContextHash,
+    deriveContextHashCall,
+    origin,
+    version ?? QRHardwareCallVersion.V0
   )
   return hardwareCall.toUR()
 }

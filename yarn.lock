@@ -787,19 +787,19 @@
     "@keystonehq/bc-ur-registry" "^0.6.4"
     uuid "^9.0.0"
 
-"@keystonehq/bc-ur-registry@^0.6.4":
-  version "0.6.4"
-  resolved "https://registry.npmjs.org/@keystonehq/bc-ur-registry/-/bc-ur-registry-0.6.4.tgz"
-  integrity sha512-j8Uy44DuAkvYkbf0jMxRY3UizJfn8wsEQr7GS3miRF44vcq7k0/yemVkftbn3jQ+0JYaUXf5wY7lVpLhAeW5nQ==
+"@keystonehq/bc-ur-registry@0.8.0":
+  version "0.8.0"
+  resolved "https://registry.npmjs.org/@keystonehq/bc-ur-registry/-/bc-ur-registry-0.8.0.tgz#3c31a9520b99f07aa459999e7e9a66058768d93e"
+  integrity sha512-o+R1r68SoTemZXiH4W6GPiU1e64YPuIoxXqqFNTIRvEV6c7NoKrDiYgnsARZpxn6sseElmJ2c2O8s8nXKrHVTg==
   dependencies:
     "@ngraveio/bc-ur" "^1.1.5"
     bs58check "^2.1.2"
     tslib "^2.3.0"
 
-"@keystonehq/bc-ur-registry@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.npmmirror.com/@keystonehq/bc-ur-registry/-/bc-ur-registry-0.7.0.tgz#d0322d6a5cd2796dd0e40662c47b5a95ec917d9a"
-  integrity sha512-E6NUd6Y+YYM+IcYGOEXfO9+MU1s63Qjm8brtHftvNhxbdXhGtTYIsa4FQmqZ6q34q91bMkMqUQFsQYPmIxcxfg==
+"@keystonehq/bc-ur-registry@^0.6.4":
+  version "0.6.4"
+  resolved "https://registry.npmjs.org/@keystonehq/bc-ur-registry/-/bc-ur-registry-0.6.4.tgz"
+  integrity sha512-j8Uy44DuAkvYkbf0jMxRY3UizJfn8wsEQr7GS3miRF44vcq7k0/yemVkftbn3jQ+0JYaUXf5wY7lVpLhAeW5nQ==
   dependencies:
     "@ngraveio/bc-ur" "^1.1.5"
     bs58check "^2.1.2"

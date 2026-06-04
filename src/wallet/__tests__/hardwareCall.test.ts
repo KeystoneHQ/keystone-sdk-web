@@ -1,4 +1,13 @@
-import { generateKeyDerivationCall, Curve, DerivationAlgorithm } from '../hardwareCall'
+import {
+  DeriveContextHashCall,
+  generateDeriveContextHashCall,
+  generateKeyDerivationCall,
+  Curve,
+  DerivationAlgorithm,
+  QRHardwareCall,
+  QRHardwareCallType,
+  QRHardwareCallVersion,
+} from '../hardwareCall'
 
 describe('hardwareCall', () => {
   describe('generateKeyDerivationCall', () => {
@@ -34,6 +43,35 @@ describe('hardwareCall', () => {
       ]
 
       expect(() => generateKeyDerivationCall({ schemas })).toThrow(new Error('the combination of the given curve and algo not supported'))
+    })
+  })
+
+  describe('generateDeriveContextHashCall', () => {
+    it('should generate derive context hash call', () => {
+      const callUR = generateDeriveContextHashCall({
+        appName: 'babylon-btc-vault',
+        network: 'bitcoin-mainnet',
+        keyPath: "m/44'/0'/0'/0/0",
+        context: 'deadbeef',
+        origin: 'babylon',
+        version: QRHardwareCallVersion.V1,
+      })
+
+      expect(callUR.type).toBe('qr-hardware-call')
+      expect(callUR.cbor.toString('hex')).toBe('a4010102d90517a40171626162796c6f6e2d6274632d7661756c74026f626974636f696e2d6d61696e6e657403d90130a1018a182cf500f500f500f400f4046864656164626565660367626162796c6f6e0401')
+
+      const hardwareCall = QRHardwareCall.fromCBOR(callUR.cbor)
+      expect(hardwareCall.getType()).toBe(QRHardwareCallType.DeriveContextHash)
+      expect(hardwareCall.getOrigin()).toBe('babylon')
+      expect(hardwareCall.getVersion()).toBe(QRHardwareCallVersion.V1)
+
+      const params = hardwareCall.getParams()
+      expect(params).toBeInstanceOf(DeriveContextHashCall)
+      if (params instanceof DeriveContextHashCall) {
+        expect(params.getAppName()).toBe('babylon-btc-vault')
+        expect(params.getNetwork()).toBe('bitcoin-mainnet')
+        expect(params.getContext()).toBe('deadbeef')
+      }
     })
   })
 })

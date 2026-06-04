@@ -13,7 +13,14 @@ import {
   KeystonePsbtSDK,
   KeystoneZcashSDK,
 } from './chains'
-import { parseMultiAccounts, parseHDKey, generateKeyDerivationCall, parseAccount, parseTonAccount } from './wallet'
+import {
+  parseMultiAccounts,
+  parseHDKey,
+  generateDeriveContextHashCall,
+  generateKeyDerivationCall,
+  parseAccount,
+  parseTonAccount
+} from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
 import { type KeystoneSDKConfig } from './types/config'
 import { KeystoneDogecoinSDK } from './chains/doge';
@@ -222,6 +229,7 @@ export class KeystoneSDK {
   parseTonAccount = parseTonAccount
   parseHDKey = parseHDKey
   parseAccount = parseAccount
+  generateDeriveContextHashCall = generateDeriveContextHashCall
   generateKeyDerivationCall = generateKeyDerivationCall
 
   /**
@@ -248,4 +256,5 @@ export class KeystoneSDK {
    * const ur = sdk.generateKeyDerivationCall(args);
    */
   static generateKeyDerivationCall = generateKeyDerivationCall
+  static generateDeriveContextHashCall = generateDeriveContextHashCall
 }

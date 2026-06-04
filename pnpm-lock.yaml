@@ -12,8 +12,8 @@ importers:
         specifier: ^1.2.0
         version: 1.10.0
       '@keystonehq/bc-ur-registry':
-        specifier: ^0.7.1
-        version: 0.7.1
+        specifier: 0.8.0
+        version: 0.8.0
       '@keystonehq/bc-ur-registry-aptos':
         specifier: ^0.6.3
         version: 0.6.3
@@ -551,6 +551,9 @@ packages:
 
   '@keystonehq/bc-ur-registry@0.7.1':
     resolution: {integrity: sha512-6eVIjNt/P+BmuwcYccbPYVS85473SFNplkqWF/Vb3ePCzLX00tn0WZBO1FGpS4X4nfXtceTfvUeNvQKoTGtXrw==}
+
+  '@keystonehq/bc-ur-registry@0.8.0':
+    resolution: {integrity: sha512-o+R1r68SoTemZXiH4W6GPiU1e64YPuIoxXqqFNTIRvEV6c7NoKrDiYgnsARZpxn6sseElmJ2c2O8s8nXKrHVTg==}
 
   '@ngraveio/bc-ur@1.1.13':
     resolution: {integrity: sha512-j73akJMV4+vLR2yQ4AphPIT5HZmxVjn/LxpL7YHoINnXoH6ccc90Zzck6/n6a3bCXOVZwBxq+YHwbAKRV+P8Zg==}
@@ -3249,6 +3252,12 @@ snapshots:
       tslib: 2.8.1
 
   '@keystonehq/bc-ur-registry@0.7.1':
+    dependencies:
+      '@ngraveio/bc-ur': 1.1.13
+      bs58check: 2.1.2
+      tslib: 2.8.1
+
+  '@keystonehq/bc-ur-registry@0.8.0':
     dependencies:
       '@ngraveio/bc-ur': 1.1.13
       bs58check: 2.1.2

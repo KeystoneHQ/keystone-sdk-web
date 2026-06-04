@@ -4,8 +4,14 @@ import { KeystoneSDK } from './sdk'
 export * from '@ngraveio/bc-ur'
 export * from './types'
 export * from './chains'
-export { Curve, DerivationAlgorithm } from './wallet/hardwareCall'
-export { QRHardwareCallVersion } from '@keystonehq/bc-ur-registry'
+export {
+  Curve,
+  DeriveContextHashCall,
+  DerivationAlgorithm,
+  QRHardwareCall,
+  QRHardwareCallType,
+  QRHardwareCallVersion,
+} from './wallet/hardwareCall'
 export default KeystoneSDK
 
 export { KeystoneSDK, utils }

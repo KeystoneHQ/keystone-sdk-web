@@ -98,7 +98,7 @@ export const generateDeriveContextHashCall = ({
     QRHardwareCallType.DeriveContextHash,
     deriveContextHashCall,
     origin,
-    version ?? QRHardwareCallVersion.V0
+    version ?? QRHardwareCallVersion.V1
   )
   return hardwareCall.toUR()
 }

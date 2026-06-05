@@ -8,7 +8,7 @@ import {
   QRHardwareCallType,
   QRHardwareCallVersion,
 } from '@keystonehq/bc-ur-registry'
-import { type UR } from '@ngraveio/bc-ur'
+import { URDecoder, type UR } from '@ngraveio/bc-ur'
 import { pathToKeypath } from '../utils'
 
 export {
@@ -40,6 +40,14 @@ export interface DeriveContextHashCallArgs {
   context: string
   origin?: string
   version?: QRHardwareCallVersion
+}
+
+export const parseURBytes = (ur: UR | string): Buffer => {
+  const bytesUR = typeof ur === 'string' ? URDecoder.decode(ur) : ur
+  if (bytesUR.type !== 'bytes') {
+    throw new Error('ur bytes is invalid')
+  }
+  return bytesUR.decodeCBOR()
 }
 
 export const generateKeyDerivationCall = ({

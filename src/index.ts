@@ -11,6 +11,7 @@ export {
   QRHardwareCall,
   QRHardwareCallType,
   QRHardwareCallVersion,
+  parseURBytes,
 } from './wallet/hardwareCall'
 export default KeystoneSDK
 

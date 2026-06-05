@@ -18,6 +18,7 @@ import {
   parseHDKey,
   generateDeriveContextHashCall,
   generateKeyDerivationCall,
+  parseURBytes,
   parseAccount,
   parseTonAccount
 } from './wallet'
@@ -231,6 +232,7 @@ export class KeystoneSDK {
   parseAccount = parseAccount
   generateDeriveContextHashCall = generateDeriveContextHashCall
   generateKeyDerivationCall = generateKeyDerivationCall
+  parseURBytes = parseURBytes
 
   /**
    * @deprecated since version 0.2.1.
@@ -257,4 +259,5 @@ export class KeystoneSDK {
    */
   static generateKeyDerivationCall = generateKeyDerivationCall
   static generateDeriveContextHashCall = generateDeriveContextHashCall
+  static parseURBytes = parseURBytes
 }

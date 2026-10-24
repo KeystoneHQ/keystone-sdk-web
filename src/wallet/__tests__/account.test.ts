@@ -75,10 +75,16 @@ test('parseAccount', () => {
 
 test('parseAccount throw error', () => {
   const type = 'crypto-account'
-  const cborHex = 'a3011ae9181cf30281d9012fa203582102eae4b876a8696134b868f88cc2f51f'
+  // Complete CBOR containing a key without its required derivation origin.
+  const cborHex = 'a2011ae9181cf30281d9012fa1035821021111111111111111111111111111111111111111111111111111111111111111'
   const parse = (): void => {
     parseAccount(new UR(toBuffer(cborHex), type))
   }
 
   expect(parse).toThrowError('account is invalid')
+})
+
+test('parseAccount rejects truncated CBOR', () => {
+  const ur = new UR(toBuffer('a3011ae9181cf30281d9012fa203582102eae4b876a8696134b868f88cc2f51f'), 'crypto-account')
+  expect(() => parseAccount(ur)).toThrow()
 })

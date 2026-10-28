@@ -18,6 +18,7 @@ export class KeystoneTronNativeSDK {
 
   generateSignRequest ({ requestId, signData, path, xfp, address, origin, dataType = TronNativeDataType.Transaction }: TronNativeSignRequestProps): UR {
     try {
+      if (typeof signData === 'string') signData = signData.replace(/^0x/i, '')
       if (typeof signData !== 'string' || signData.length > MAX_SIGN_DATA_BYTES * 2 ||
           !/^(?:[0-9a-f]{2})+$/i.test(signData) || !/^[0-9a-f]{8}$/i.test(xfp) ||
           typeof path !== 'string' || path.length > 256 ||

@@ -1,12 +1,9 @@
 import {
   KeystoneAptosSDK,
   KeystoneArweaveSDK,
-  KeystoneBitcoinCashSDK,
   KeystoneBitcoinSDK,
   KeystoneCardanoSDK,
-  KeystoneCosmosSDK, KeystoneDashSDK,
-  KeystoneEthereumSDK, KeystoneLitecoinSDK,
-  KeystoneSolanaSDK, KeystoneTronSDK, KeystoneTronNativeSDK,
+  KeystoneCosmosSDK, KeystoneEthereumSDK, KeystoneSolanaSDK, KeystoneTronNativeSDK,
   KeystoneNearSDK, KeystoneSuiSDK,
   KeystoneEvmSDK, KeystoneTonSDK,
   KeystoneStellarSDK, KeystoneAvalancheSDK,
@@ -24,7 +21,6 @@ import {
 } from './wallet'
 import { KeystoneXrpSDK } from './chains/xrp'
 import { type KeystoneSDKConfig } from './types/config'
-import { KeystoneDogecoinSDK } from './chains/doge';
 import { KeystoneIotaSDK } from './chains/iota';
 
 export { KeystoneSDKConfig };
@@ -97,13 +93,6 @@ export class KeystoneSDK {
     return this._evm
   }
 
-  private _tron!: KeystoneTronSDK
-  get tron (): KeystoneTronSDK {
-    if (this._tron === undefined) {
-      this._tron = new KeystoneTronSDK()
-    }
-    return this._tron
-  }
 
   private _tronNative!: KeystoneTronNativeSDK
   get tronNative (): KeystoneTronNativeSDK {
@@ -113,38 +102,10 @@ export class KeystoneSDK {
     return this._tronNative
   }
 
-  private _ltc!: KeystoneLitecoinSDK
-  get ltc (): KeystoneLitecoinSDK {
-    if (this._ltc === undefined) {
-      this._ltc = new KeystoneLitecoinSDK()
-    }
-    return this._ltc
-  }
 
 
-  private _doge!: KeystoneDogecoinSDK
-  get doge (): KeystoneDogecoinSDK {
-    if (this._doge === undefined) {
-      this._doge = new KeystoneDogecoinSDK()
-    }
-    return this._doge
-  }
 
-  private _bch!: KeystoneBitcoinCashSDK
-  get bch (): KeystoneBitcoinCashSDK {
-    if (this._bch === undefined) {
-      this._bch = new KeystoneBitcoinCashSDK()
-    }
-    return this._bch
-  }
 
-  private _dash!: KeystoneDashSDK
-  get dash (): KeystoneDashSDK {
-    if (this._dash === undefined) {
-      this._dash = new KeystoneDashSDK()
-    }
-    return this._dash
-  }
 
   private _aptos!: KeystoneAptosSDK
   get aptos (): KeystoneAptosSDK {

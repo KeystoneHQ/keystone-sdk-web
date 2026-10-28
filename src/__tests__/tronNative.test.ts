@@ -14,11 +14,9 @@ const signature = Buffer.from(signatureCbor.slice(-130), 'hex')
 const result = (fields: Record<number, unknown>): UR => new UR(encodeDataItem(new DataItem(fields)), URType.TronNativeSignature)
 const fields = (): Record<number, unknown> => ({ 1: new DataItem(uuidParse(requestId), 37), 2: signature })
 
-it('exports a separate cached implementation and preserves legacy UR aliases', () => {
+it('exports a cached native implementation', () => {
   expect(sdk.tronNative).toBeInstanceOf(KeystoneTronNativeSDK)
   expect(sdk.tronNative).toBe(sdk.tronNative)
-  expect(sdk.tronNative).not.toBe(sdk.tron)
-  expect(URType.TronSignature).toBe('keystone-sign-result')
   expect(KeystoneTronNativeSDK.DataType.Transaction).toBe(1)
 })
 it('matches the fixture CBOR byte for byte and preserves the original raw_data', () => {
@@ -74,7 +72,6 @@ it.each([
 })
 it('does not accept legacy responses or silently fall back', () => {
   const modern = new UR(Buffer.from(signatureCbor, 'hex'), 'tron-signature')
-  expect(() => sdk.tron.parseSignature(modern)).toThrow()
   expect(() => sdk.tronNative.parseSignature(new UR(modern.cbor, 'keystone-sign-result')))
     .toThrow('Invalid TRON native signature')
 })

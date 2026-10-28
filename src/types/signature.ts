@@ -46,16 +46,7 @@ export interface CosmosSignature extends Signature {
   publicKey: string
 }
 
-export interface TronSignature {
-  raw: string
-  txId: string
-  requestId?: string
-}
 
-export interface KeystoneSignResult {
-  requestId?: string
-  rawData: string
-}
 
 export interface AptosSignature extends Signature {
   authenticationPublicKey: string

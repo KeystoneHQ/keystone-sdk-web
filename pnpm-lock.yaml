@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@bufbuild/protobuf':
-        specifier: ^1.2.0
-        version: 1.10.0
       '@keystonehq/bc-ur-registry':
         specifier: 0.8.1
         version: 0.8.1
@@ -41,9 +38,6 @@ importers:
       '@keystonehq/bc-ur-registry-iota':
         specifier: ^0.1.4
         version: 0.1.4
-      '@keystonehq/bc-ur-registry-keystone':
-        specifier: ^0.4.3
-        version: 0.4.3
       '@keystonehq/bc-ur-registry-near':
         specifier: ^0.9.3
         version: 0.9.3
@@ -74,9 +68,6 @@ importers:
       buffer:
         specifier: ^6.0.3
         version: 6.0.3
-      pako:
-        specifier: ^2.1.0
-        version: 2.1.0
       ripple-binary-codec:
         specifier: ^1.4.3
         version: 1.11.0
@@ -84,18 +75,9 @@ importers:
         specifier: ^9.0.0
         version: 9.0.1
     devDependencies:
-      '@bufbuild/buf':
-        specifier: ^1.15.0-1
-        version: 1.48.0
-      '@bufbuild/protoc-gen-es':
-        specifier: ^1.2.0
-        version: 1.10.0(@bufbuild/protobuf@1.10.0)
       '@types/jest':
         specifier: ^29.5.0
         version: 29.5.14
-      '@types/pako':
-        specifier: ^2.0.0
-        version: 2.0.3
       '@types/uuid':
         specifier: ^9.0.1
         version: 9.0.8

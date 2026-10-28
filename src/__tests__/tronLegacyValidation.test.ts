@@ -12,9 +12,9 @@ import { TransferContract, TransferAssetContract, TriggerSmartContract } from '.
 
 const sdk = new KeystoneTronSDK()
 const signId = '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
-const owner = Buffer.from('41' + '11'.repeat(20), 'hex')
-const recipient = Buffer.from('41' + '22'.repeat(20), 'hex')
-// Synthetic test bytes: this suite checks parsing, not cryptographic validity.
+const owner = Buffer.from('41c8599111f29c1e1e061265b4af93ea1f274ad78a', 'hex')
+const recipient = Buffer.from('41b6e708a39781c96bd399c7657780ff9fe9f052a8', 'hex')
+// Public abandon fixture; modified cases below check parsing, not signature verification.
 function transaction (): Transaction {
   return new Transaction({ rawData: new Transaction_raw({
     refBlockBytes: Buffer.from('1234', 'hex'), refBlockHash: Buffer.alloc(8, 1),
@@ -23,7 +23,7 @@ function transaction (): Transaction {
       typeUrl: 'type.googleapis.com/protocol.TransferContract',
       value: new TransferContract({ ownerAddress: owner, toAddress: recipient, amount: 1n }).toBinary()
     }) })]
-  }), signature: [Buffer.alloc(65, 1)] })
+  }), signature: [Buffer.from('b2086dba3471dff4567ea2d097a81494311eabe430814dbedb6d96a00ddeaf071ee27399fe30d206324f807a6021d4778e85fecde50ef3ba6cf7e306909c75dd01', 'hex')] })
 }
 function id (tx: Transaction): string { return Buffer.from(sha256(tx.rawData!.toBinary())).toString('hex') }
 function wrap (rawTx: string, txId: string, requestId = signId): UR {

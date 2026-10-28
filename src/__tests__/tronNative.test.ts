@@ -2,13 +2,13 @@ import KeystoneSDK, { KeystoneTronNativeSDK, TronNativeDataType, UR, URType } fr
 import { DataItem, encodeDataItem, decodeToDataItem } from '@keystonehq/bc-ur-registry'
 import { uuidParse } from '../utils'
 
-// Cross-language vectors from firmware's ur-registry 1.0.9 TRON Rust tests.
-const raw = "0a0207902208e1b9de559665c6714080c49789bb2c5aae01081f12a9010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412740a1541c79f045e4d48ad8dae00e6a6714dae1e000adfcd1215410d292c98a5eca06c2085fff993996423cf66c93b2244a9059cbb0000000000000000000000009bbce520d984c3b95ad10cb4e32a9294e6338da300000000000000000000000000000000000000000000000000000000000f424070c0b6e087bb2c90018094ebdc03"
-const requestCbor = "a501d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d0258d40a0207902208e1b9de559665c6714080c49789bb2c5aae01081f12a9010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412740a1541c79f045e4d48ad8dae00e6a6714dae1e000adfcd1215410d292c98a5eca06c2085fff993996423cf66c93b2244a9059cbb0000000000000000000000009bbce520d984c3b95ad10cb4e32a9294e6338da300000000000000000000000000000000000000000000000000000000000f424070c0b6e087bb2c90018094ebdc03030104d90130a2018a182cf518c3f500f500f400f4021a12121212066b74726f6e2077616c6c6574"
-const signatureCbor = "a201d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d02584147b1f77b3e30cfbbfa41d795dd34475865240617dd1c5a7bad526f5fd89e52cd057c80b665cc2431efab53520e2b1b92a0425033baee915df858ca1c588b0a1800"
+// Public abandon × 11 + about fixture, empty passphrase, m/44'/195'/0'/0/0.
+const raw = "0a0212342208010101010101010140e0a499ffbc315a67080112630a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412320a1541c8599111f29c1e1e061265b4af93ea1f274ad78a121541b6e708a39781c96bd399c7657780ff9fe9f052a818c0843d7080d095ffbc31"
+const requestCbor = "a501d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d0258850a0212342208010101010101010140e0a499ffbc315a67080112630a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412320a1541c8599111f29c1e1e061265b4af93ea1f274ad78a121541b6e708a39781c96bd399c7657780ff9fe9f052a818c0843d7080d095ffbc31030104d90130a2018a182cf518c3f500f500f400f4021a73c5da0a066b74726f6e2077616c6c6574"
+const signatureCbor = "a201d825509b1deb4d3b7d4bad9bdd2b0d7b3dcb6d025841825f6ce0f253580ab7c83b53a90b6b428aef5273c02f36cad48662f4ffb275431f345ad672e7857ac7b2037ba0d102d989161f51a819c8bcf6326a9957e81c6a00"
 
 const requestId = '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
-const props = { requestId, signData: raw, path: "m/44'/195'/0'/0/0", xfp: '12121212', origin: 'tron wallet' }
+const props = { requestId, signData: raw, path: "m/44'/195'/0'/0/0", xfp: '73c5da0a', origin: 'tron wallet' }
 const sdk = new KeystoneSDK()
 const signature = Buffer.from(signatureCbor.slice(-130), 'hex')
 const result = (fields: Record<number, unknown>): UR => new UR(encodeDataItem(new DataItem(fields)), URType.TronNativeSignature)
@@ -21,14 +21,14 @@ it('exports a separate cached implementation and preserves legacy UR aliases', (
   expect(URType.TronSignature).toBe('keystone-sign-result')
   expect(KeystoneTronNativeSDK.DataType.Transaction).toBe(1)
 })
-it('matches firmware request CBOR byte for byte and preserves the original raw_data', () => {
+it('matches the fixture CBOR byte for byte and preserves the original raw_data', () => {
   const ur = sdk.tronNative.generateSignRequest(props)
   expect(ur.type).toBe('tron-sign-request')
   expect(ur.type).not.toBe('keystone-sign-request')
   expect(ur.cbor.toString('hex')).toBe(requestCbor)
   expect(decodeToDataItem(ur.cbor).getData()[2].toString('hex')).toBe(raw)
 })
-it('decodes the firmware signature fixture without returning raw or txid', () => {
+it('decodes the fixture signature without returning raw or txid', () => {
   expect(sdk.tronNative.parseSignature(new UR(Buffer.from(signatureCbor, 'hex'), 'tron-signature')))
     .toEqual({ requestId, signature: signature.toString('hex') })
 })

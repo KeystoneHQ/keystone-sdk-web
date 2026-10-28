@@ -4,8 +4,11 @@ import { toHex } from '../utils'
 import { URType, type UR } from '../types/ur'
 import { type KeystoneSDKConfig } from '../types/config'
 
+export { CoinIds } from '@keystonehq/bc-ur-registry'
+
 export class KeystonePsbtSDK {
   static DataType = DataType
+  static CoinIds = CoinIds
   config: KeystoneSDKConfig | undefined
 
   constructor (config?: KeystoneSDKConfig) {

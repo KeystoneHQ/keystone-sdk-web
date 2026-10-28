@@ -83,3 +83,6 @@ export interface TonSignature {
 export interface BtcSignature extends Signature {
   publicKey: string
 }
+
+/** Signature only; the caller must verify it against the saved original request. */
+export interface TronNativeSignature extends Signature {}

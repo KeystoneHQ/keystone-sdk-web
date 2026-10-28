@@ -9,25 +9,15 @@ import pako from 'pako'
 import { Base } from '../../gen/protos/base_pb'
 import { Payload, Payload_Type } from '../../gen/protos/payload_pb'
 import { SignTransaction } from '../../gen/protos/transaction_pb'
-import { KeystoneSignRequest, KeystoneSignResult } from '@keystonehq/bc-ur-registry-keystone'
+import { KeystoneSignRequest } from '@keystonehq/bc-ur-registry-keystone'
+import { validateLegacyResult } from './validateLegacyResult'
 
 export class KeystoneTronSDK {
   parseSignature (ur: UR): TronSignature {
     if (ur.type !== URType.KeystoneSignResult) {
       throw new Error('type not match')
     }
-    const sig = KeystoneSignResult.fromCBOR(ur.cbor)
-    const base = Base.fromBinary(pako.ungzip(sig.getSignResult()))
-    if (base.data?.Content.case !== 'signTxResult') {
-      throw new Error('invalid sign result')
-    }
-    const { signId, rawTx,txId } = base.data?.Content?.value ?? {}
-
-    return {
-      requestId: signId,
-      raw: rawTx,
-      txId: txId
-    }
+    return validateLegacyResult(ur.cbor)
   }
 
   generateSignRequest ({
@@ -70,3 +60,5 @@ export class KeystoneTronSDK {
     }).toUR()
   }
 }
+
+export { KeystoneTronNativeSDK, TronNativeDataType } from './native'

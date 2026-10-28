@@ -6,7 +6,7 @@ import {
   KeystoneCardanoSDK,
   KeystoneCosmosSDK, KeystoneDashSDK,
   KeystoneEthereumSDK, KeystoneLitecoinSDK,
-  KeystoneSolanaSDK, KeystoneTronSDK,
+  KeystoneSolanaSDK, KeystoneTronSDK, KeystoneTronNativeSDK,
   KeystoneNearSDK, KeystoneSuiSDK,
   KeystoneEvmSDK, KeystoneTonSDK,
   KeystoneStellarSDK, KeystoneAvalancheSDK,
@@ -103,6 +103,14 @@ export class KeystoneSDK {
       this._tron = new KeystoneTronSDK()
     }
     return this._tron
+  }
+
+  private _tronNative!: KeystoneTronNativeSDK
+  get tronNative (): KeystoneTronNativeSDK {
+    if (this._tronNative === undefined) {
+      this._tronNative = new KeystoneTronNativeSDK()
+    }
+    return this._tronNative
   }
 
   private _ltc!: KeystoneLitecoinSDK

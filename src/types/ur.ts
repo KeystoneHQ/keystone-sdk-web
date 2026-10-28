@@ -19,7 +19,10 @@ export enum URType {
   CardanoSignDataSignature = 'cardano-sign-data-signature',
   CardanoSignCip8DataSignature = 'cardano-sign-cip8-data-signature',
   CardanoCatalystSignature = 'cardano-catalyst-voting-registration-signature',
+  // Legacy alias retained for existing integrations.
   TronSignature = 'keystone-sign-result',
+  TronNativeSignRequest = 'tron-sign-request',
+  TronNativeSignature = 'tron-signature',
   KeystoneSignResult = 'keystone-sign-result',
   NearSignature = 'near-signature',
   ArweaveSignature = 'arweave-signature',

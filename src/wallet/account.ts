@@ -2,6 +2,7 @@ import { type AccountDescriptor, type UR, URType, type Account } from '../types'
 import { CryptoAccount, type CryptoHDKey, RegistryTypes } from '@keystonehq/bc-ur-registry'
 import { getCoinSymbol, toHex } from '../utils'
 import { generateExtraData } from './accountHelper'
+import { assertAllowedAccountPath } from './accountPathAllowlist'
 
 export const parseAccount = (ur: UR): AccountDescriptor => {
   if (ur.type !== URType.CryptoAccount) {
@@ -19,6 +20,7 @@ export const parseAccount = (ur: UR): AccountDescriptor => {
       if (origin === undefined) {
         throw new Error('account is invalid')
       }
+      const path = assertAllowedAccountPath(origin)
       let extendedPublicKey
       if (chainCode.length !== 0 && parentFingerprint.length !== 0) {
         extendedPublicKey = key.getBip32Key()
@@ -27,7 +29,7 @@ export const parseAccount = (ur: UR): AccountDescriptor => {
       const coinType = origin.getComponents()[1].getIndex()
       keys.push({
         chain: getCoinSymbol(coinType),
-        path: `m/${origin.getPath()}`,
+        path,
         publicKey: toHex(key.getKey()),
         name: key.getName(),
         chainCode,

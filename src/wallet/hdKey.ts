@@ -2,6 +2,7 @@ import { type Account, type UR, URType, TonAccount } from "../types";
 import { CryptoHDKey } from "@keystonehq/bc-ur-registry";
 import { getCoinSymbol, toHex } from "../utils";
 import { generateExtraData } from "./accountHelper";
+import { assertAllowedAccountPath } from './accountPathAllowlist';
 
 export const parseHDKey = (ur: UR): Account => {
   if (ur.type !== URType.CryptoHDKey) {
@@ -11,6 +12,7 @@ export const parseHDKey = (ur: UR): Account => {
   const chainCode = toHex(hdKey.getChainCode());
   const parentFingerprint = toHex(hdKey.getParentFingerprint());
   const origin = hdKey.getOrigin();
+  const path = assertAllowedAccountPath(origin);
   const xfp = hdKey.getOrigin().getSourceFingerprint()?.toString("hex");
   if (xfp === undefined) {
     throw new Error("HDKey is invalid");
@@ -23,7 +25,7 @@ export const parseHDKey = (ur: UR): Account => {
   const coinType = origin.getComponents()[1].getIndex();
   return {
     chain: getCoinSymbol(coinType),
-    path: `m/${origin.getPath()}`,
+    path,
     publicKey: toHex(hdKey.getKey()),
     name: hdKey.getName(),
     xfp: origin.getSourceFingerprint().toString("hex"),
@@ -43,13 +45,14 @@ export const parseTonAccount = (ur: UR): TonAccount => {
   const origin = hdKey.getOrigin();
 
   if (origin) {
+    const path = assertAllowedAccountPath(origin);
     const xfp = hdKey.getOrigin().getSourceFingerprint()?.toString("hex");
     if (xfp === undefined) {
       throw new Error("HDKey is invalid");
     }
     //it's a bip39 style mnemonic so the ton key is derived by the path;
     return {
-      path: `m/${origin.getPath()}`,
+      path,
       publicKey: toHex(hdKey.getKey()),
       name: hdKey.getName(),
       xfp: origin.getSourceFingerprint().toString("hex"),

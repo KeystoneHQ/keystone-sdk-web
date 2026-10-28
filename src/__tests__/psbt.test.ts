@@ -1,5 +1,4 @@
-import { CoinIds } from '@keystonehq/bc-ur-registry'
-import { KeystonePsbtSDK } from '../chains/psbt'
+import { CoinIds, KeystonePsbtSDK } from '../chains/psbt'
 import { UR, URType } from '../types/ur'
 import { toBuffer } from '../utils'
 
@@ -22,4 +21,33 @@ test('generatePSBT', () => {
   const expectResult = new UR(toBuffer(cborHex), type)
 
   expect(keystoneSDK.generatePSBT(psbt, CoinIds.Dogecoin)).toStrictEqual(expectResult)
+})
+
+test.each([
+  [CoinIds.Litecoin, 'a20142aabb0202'],
+  [CoinIds.Dogecoin, 'a20142aabb0203'],
+  [CoinIds.Dash, 'a20142aabb0205'],
+  [CoinIds.BitcoinCash, 'a20142aabb021891'],
+] as const)('PSBT Extend coin %i uses the expected CBOR', (coinId, cborHex) => {
+  const sdk = new KeystonePsbtSDK()
+  const expected = new UR(toBuffer(cborHex), URType.CryptoPSBTExtend)
+  expect(sdk.generatePSBT(toBuffer('aabb'), coinId)).toStrictEqual(expected)
+  expect(sdk.parseCoinId(expected)).toBe(coinId)
+  expect(sdk.parsePSBT(expected)).toBe('aabb')
+})
+
+test('Dash coin ID is 5', () => {
+  expect(CoinIds.Dash).toBe(5)
+  expect(KeystonePsbtSDK.CoinIds.Dash).toBe(5)
+})
+
+test.each([-1, 1, 4, 6, 2147483647])('rejects unsupported coin ID %i', (coinId) => {
+  expect(() => new KeystonePsbtSDK().generatePSBT(toBuffer('aabb'), coinId as CoinIds)).toThrow('invalid coin_id')
+})
+
+test('rejects the old Dash ID when parsing', () => {
+  const sdk = new KeystonePsbtSDK()
+  const ur = new UR(toBuffer('a20142aabb0204'), URType.CryptoPSBTExtend)
+  expect(() => sdk.parseCoinId(ur)).toThrow('invalid coin_id')
+  expect(() => sdk.parsePSBT(ur)).toThrow('invalid coin_id')
 })

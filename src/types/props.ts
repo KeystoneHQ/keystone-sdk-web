@@ -239,3 +239,16 @@ export interface TonSignRequestProps {
   xfp?: string
   derivationPath?: string
 }
+
+/** Direct raw_data transaction bytes, or personal-message bytes, encoded as hex.
+ * address, when provided, is a base58check TRON address. tokenInfo is not part of this protocol.
+ */
+export interface TronNativeSignRequestProps {
+  requestId: string
+  signData: string
+  path: string
+  xfp: string
+  dataType?: 1 | 2
+  address?: string
+  origin?: string
+}

@@ -1,6 +1,7 @@
 import { Buffer } from 'buffer'
 import { CryptoMultiAccounts, CryptoHDKey, CryptoKeypath, CryptoCoinInfo, PathComponent, DataItem, decodeToDataItem } from '@keystonehq/bc-ur-registry'
 import { AccountNote } from '../types'
+import { assertAllowedAccountPath } from './accountPathAllowlist'
 export const MAX_CONNECTION_CBOR_BYTES = 64 * 1024
 type ConnectionValue = unknown
 
@@ -101,6 +102,7 @@ function hdkey (value: ConnectionValue, mfp: Buffer): CryptoHDKey {
   const key = bytes(map.get(3), [32, 33])
   if (key.length === 33 && key[0] !== 2 && key[0] !== 3) return invalidMultiAccounts()
   const origin = keypath(map.get(6), mfp, true)
+  assertAllowedAccountPath(origin)
   const coinType = origin.getComponents()[1].getIndex()!
   const chainCode = map.has(4) ? bytes(map.get(4), [32]) : undefined
   const parent = map.has(8) ? fingerprint(map.get(8)) : undefined
